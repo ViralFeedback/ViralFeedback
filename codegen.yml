@@ -1,0 +1,21 @@
+overwrite: true
+schema: 'http://localhost:8080/graphql'
+documents: 'shared/graphql/*.graphql'
+generates:
+  packages/web/src/graphql/index.tsx:
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'
+    config:
+      withHooks: true
+      withHOC: false
+      withComponent: false
+      withResultType: true
+      scalars:
+        Time: Date
+  packages/web/src/graphql/graphql.schema.json:
+    plugins:
+      - 'introspection'
+# TODO typescript-resolvers
+# https://graphql-code-generator.com/docs/plugins/typescript-resolvers

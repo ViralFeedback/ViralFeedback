@@ -1,37 +1,41 @@
 {
-  "name": "viral-feedback",
-  "private": true,
-  "scripts": {
-    "gql": "graphql-codegen --config codegen.yml",
-    "lint": "eslint ./ --ext .js,.jsx,.ts,.tsx",
-    "test": "lerna exec npm test"
-  },
-  "dependencies": {
-    "graphql": "^15.0.0"
-  },
-  "devDependencies": {
-    "@babel/core": "~7.9.0",
-    "@graphql-codegen/cli": "^1.13.2",
-    "@graphql-codegen/introspection": "1.13.2",
-    "@graphql-codegen/typescript": "1.13.2",
-    "@graphql-codegen/typescript-operations": "1.13.2",
-    "@graphql-codegen/typescript-react-apollo": "1.13.2",
-    "@types/jest": "^25.2.1",
-    "@types/react": "~16.9.23",
-    "@typescript-eslint/eslint-plugin": "^2.29.0",
-    "@typescript-eslint/parser": "^2.29.0",
-    "babel-preset-expo": "~8.1.0",
-    "eslint": "^6.8.0",
-    "eslint-config-airbnb-typescript": "^7.2.1",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-flowtype": "^5.1.3",
-    "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-jest": "^23.9.0",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react": "^7.19.0",
-    "eslint-plugin-react-hooks": "^4.0.4",
-    "lerna": "^3.20.2",
-    "prettier": "^2.0.5",
-    "typescript": "~3.8.3"
-  }
+    "name": "viral-feedback",
+    "private": true,
+    "scripts": {
+        "gql": "graphql-codegen --config codegen.yml",
+        "lint": "eslint ./ --ext .js,.jsx,.ts,.tsx",
+        "test": "lerna exec npm test"
+    },
+    "dependencies": {
+        "graphql": "^15.0.0"
+    },
+    "devDependencies": {
+        "@babel/core": "~7.9.0",
+        "@graphql-codegen/cli": "^1.13.2",
+        "@graphql-codegen/introspection": "1.13.2",
+        "@graphql-codegen/typescript": "1.13.2",
+        "@graphql-codegen/typescript-operations": "1.13.2",
+        "@graphql-codegen/typescript-react-apollo": "1.13.2",
+        "@graphql-codegen/typescript-resolvers": "^1.15.4",
+        "@types/jest": "^25.2.1",
+        "@types/react": "~16.9.23",
+        "@typescript-eslint/eslint-plugin": "^2.29.0",
+        "@typescript-eslint/parser": "^2.29.0",
+        "babel-preset-expo": "~8.1.0",
+        "eslint": "^6.8.0",
+        "eslint-config-airbnb-typescript": "^7.2.1",
+        "eslint-config-prettier": "^6.11.0",
+        "eslint-plugin-flowtype": "^5.1.3",
+        "eslint-plugin-import": "^2.20.2",
+        "eslint-plugin-jest": "^23.9.0",
+        "eslint-plugin-jsx-a11y": "^6.2.3",
+        "eslint-plugin-react": "^7.19.0",
+        "eslint-plugin-react-hooks": "^4.0.4",
+        "lerna": "^3.20.2",
+        "prettier": "^2.0.5",
+        "typescript": "~3.8.3"
+    },
+    "eslintConfig": {
+        "extends": "react-app"
+    }
 }
