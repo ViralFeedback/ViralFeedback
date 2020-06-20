@@ -1,6 +1,6 @@
 const { RESTDataSource } = require('apollo-datasource-rest');
 
-class HypothesisAPI extends RESTDataSource {
+export default class HypothesisAPI extends RESTDataSource {
     constructor() {
         super();
         this.baseURL = 'https://api.hypothes.is/';

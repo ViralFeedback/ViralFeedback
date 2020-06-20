@@ -1,26 +1,42 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+
+import './styles/css/app.css';
+
+import '@fortawesome/fontawesome-free/css/all.css';
+import { Navigation } from './navigation/navigation';
+import ApolloClient from 'apollo-boost';
+
+import { ApolloProvider } from '@apollo/react-hooks';
+
+const apiUri: string = process.env.REACT_APP_SERVER_URI
+    ? process.env.REACT_APP_SERVER_URI
+    : 'http://localhost:8080';
+
+const client = new ApolloClient({
+    credentials: 'include',
+    onError: (errors: any) => {
+        console.log(errors);
+    },
+    // request: async (operation) => {
+    //     operation.setContext((record: any) => {
+    //         const headers = {
+    //             ...record.headers
+    //         };
+    //
+    //         return {
+    //             headers
+    //         };
+    //     });
+    // },
+    uri: apiUri
+});
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <ApolloProvider client={client}>
+            <Navigation />
+        </ApolloProvider>
+    );
 }
 
 export default App;
