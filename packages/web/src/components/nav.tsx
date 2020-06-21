@@ -5,7 +5,7 @@ import {
     withRouter,
     RouteComponentProps
 } from 'react-router-dom';
-import { Routes } from 'navigation/routes';
+import { Routes } from '../navigation/routes';
 
 interface INav extends RouteComponentProps {}
 
