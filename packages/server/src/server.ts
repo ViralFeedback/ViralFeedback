@@ -2,7 +2,7 @@ import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import depthLimit from 'graphql-depth-limit';
 import { createServer } from 'http';
-import HypothesisAPI from 'hypothesis-apollo-rest-datasource';
+import HypothesisAPI from './hypothesis-apollo-rest-datasource';
 import compression from 'compression';
 import cors from 'cors';
 import schema from './schema';
@@ -15,6 +15,8 @@ const server = new ApolloServer({
             HypothesisAPI: new HypothesisAPI()
         };
     },
+    introspection: true,
+    playground: true,
     validationRules: [depthLimit(7)]
 });
 

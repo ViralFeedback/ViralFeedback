@@ -2,7 +2,8 @@ import { IResolvers } from 'graphql-tools';
 
 const resolverMap: IResolvers = {
     Query: {
-        helloWorld(_: void, args: void): string {
+        anotations(_: void, args: void, ctx: any): string {
+            console.log(ctx);
             return `👋 Hello world! 👋`;
         }
     }
