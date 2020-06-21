@@ -1,0 +1,24 @@
+query Annotations {
+  anotations {
+    total
+    rows {
+      text
+      user
+      user_info {
+        display_name
+      }
+      uri
+      links {
+        html
+        incontext
+      }
+      tags
+      target {
+        source
+        selector {
+          exact
+        }
+      }
+    }
+  }
+}

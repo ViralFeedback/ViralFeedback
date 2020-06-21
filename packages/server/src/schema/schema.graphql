@@ -1,3 +1,61 @@
+type UserInfo {
+  display_name: String
+}
+
+type Links {
+  html: String
+  incontext: String
+  json: String
+}
+
+type Document {
+  title: [String]
+}
+
+type Selector {
+  type: String
+  exact: String
+  endOffset: Int
+  startOffset: Int
+  endContainer: String
+  startContainer: String
+}
+
+type Target {
+  source: String
+  selector: [Selector]
+}
+
+type Permissions {
+  delete: [String]
+  update: [String]
+  admin: [String]
+  read: [String]
+}
+
+type Annotation {
+  id: String
+  created: String
+  updated: String
+  user: String
+  uri: String
+  text: String
+  group: String
+  flagged: Boolean
+  hidden: Boolean
+  user_info: UserInfo
+  links: Links
+  document: Document
+  target: [Target]
+  permissions: Permissions
+  tags: [String]
+}
+
+type APIResponse {
+  total: Int
+  rows: [Annotation!]
+}
+
 type Query {
-  anotations: String!
+  anotations: APIResponse
 }

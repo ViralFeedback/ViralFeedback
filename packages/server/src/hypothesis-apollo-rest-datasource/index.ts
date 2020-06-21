@@ -3,7 +3,7 @@ import { RESTDataSource, RequestOptions } from 'apollo-datasource-rest';
 export default class HypothesisAPI extends RESTDataSource {
     constructor() {
         super();
-        this.baseURL = 'https://api.hypothes.is/';
+        this.baseURL = 'https://hypothes.is/api';
     }
 
     willSendRequest(request: RequestOptions) {
@@ -13,7 +13,7 @@ export default class HypothesisAPI extends RESTDataSource {
         );
     }
 
-    async getAnnotation(id) {
-        return this.get(`annotations/${id}`);
+    async getAnnotations() {
+        return this.get(`search`);
     }
 }
