@@ -20,7 +20,7 @@ const server = new ApolloServer({
     validationRules: [depthLimit(7)]
 });
 
-app.use('*', cors());
+app.use('*', cors({ origin: '*' }));
 app.use(compression());
 
 server.applyMiddleware({ app, path: '/graphql' });

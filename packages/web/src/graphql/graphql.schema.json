@@ -579,7 +579,7 @@
         "description": null,
         "fields": [
           {
-            "name": "anotations",
+            "name": "annotations",
             "description": null,
             "args": [],
             "type": {

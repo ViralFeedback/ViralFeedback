@@ -79,7 +79,7 @@ export type ApiResponse = {
 
 export type Query = {
    __typename?: 'Query';
-  anotations?: Maybe<ApiResponse>;
+  annotations?: Maybe<ApiResponse>;
 };
 
 export type AnnotationsQueryVariables = {};
@@ -87,7 +87,7 @@ export type AnnotationsQueryVariables = {};
 
 export type AnnotationsQuery = (
   { __typename?: 'Query' }
-  & { anotations?: Maybe<(
+  & { annotations?: Maybe<(
     { __typename?: 'APIResponse' }
     & Pick<ApiResponse, 'total'>
     & { rows?: Maybe<Array<(
@@ -114,7 +114,7 @@ export type AnnotationsQuery = (
 
 export const AnnotationsDocument = gql`
     query Annotations {
-  anotations {
+  annotations {
     total
     rows {
       text

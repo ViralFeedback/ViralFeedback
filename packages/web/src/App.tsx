@@ -10,24 +10,12 @@ import { ApolloProvider } from '@apollo/react-hooks';
 
 const apiUri: string = process.env.REACT_APP_SERVER_URI
     ? process.env.REACT_APP_SERVER_URI
-    : 'http://localhost:8080';
+    : 'http://localhost:8080/graphql';
 
 const client = new ApolloClient({
-    credentials: 'include',
     onError: (errors: any) => {
         console.log(errors);
     },
-    // request: async (operation) => {
-    //     operation.setContext((record: any) => {
-    //         const headers = {
-    //             ...record.headers
-    //         };
-    //
-    //         return {
-    //             headers
-    //         };
-    //     });
-    // },
     uri: apiUri
 });
 

@@ -57,5 +57,5 @@ type APIResponse {
 }
 
 type Query {
-  anotations: APIResponse
+  annotations: APIResponse
 }
