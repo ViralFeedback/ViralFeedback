@@ -30,6 +30,6 @@ const port = process.env.PORT || 8080;
 
 httpServer.listen({ port }, (): void =>
     console.log(
-        `\n🚀      GraphQL is now running on http://localhost:8080/graphql`
+        `\n🚀      GraphQL is now running on http://localhost:${port}/graphql`
     )
 );

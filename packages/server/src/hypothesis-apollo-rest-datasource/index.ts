@@ -32,7 +32,6 @@ export default class HypothesisAPI extends RESTDataSource {
     }
 
     async getAnnotations(query: ISearchAnnotationsQuery) {
-        console.log(query);
         return this.get(`search`, query);
     }
 }

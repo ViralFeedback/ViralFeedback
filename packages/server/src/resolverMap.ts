@@ -1,9 +1,9 @@
 import { IResolvers } from 'graphql-tools';
+import { ApiResponse } from './graphql';
 
 const resolverMap: IResolvers = {
     Query: {
-        // TODO gql generate some return types
-        async annotations(_: void, args: void, ctx: any): Promise<any> {
+        async annotations(_: void, args: void, ctx: any): Promise<ApiResponse> {
             return await ctx.dataSources.HypothesisAPI.getAnnotations(args);
         }
     }
