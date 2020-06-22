@@ -1,5 +1,23 @@
 import { RESTDataSource, RequestOptions } from 'apollo-datasource-rest';
 
+type ISearchAnnotationsQuery = {
+    any?: string;
+    group?: string;
+    limit?: number;
+    offset?: number;
+    order?: 'asc' | 'desc';
+    quote?: string;
+    references?: string;
+    search_after?: string;
+    sort?: 'created' | 'updated' | 'group' | 'id' | 'user';
+    tag?: string;
+    tags?: string[];
+    text?: string;
+    uri?: 'string';
+    user?: string;
+    wildcard_uri?: string;
+};
+
 export default class HypothesisAPI extends RESTDataSource {
     constructor() {
         super();
@@ -13,7 +31,8 @@ export default class HypothesisAPI extends RESTDataSource {
         );
     }
 
-    async getAnnotations() {
-        return this.get(`search`);
+    async getAnnotations(query: ISearchAnnotationsQuery) {
+        console.log(query);
+        return this.get(`search`, query);
     }
 }

@@ -1,5 +1,38 @@
-query Annotations {
-  annotations {
+query Annotations (
+        $any: String,
+        $group: String,
+        $limit: Int,
+        $offset: Int,
+        $order: Order,
+        $quote: String,
+        $references: String,
+        $search_after: String,
+        $sort: Sort,
+        $tag: String,
+        $tags: [String],
+        $text: String,
+        $uri: String,
+        $user: String,
+        $wildcard_uri: String
+    ) {
+    annotations (
+        any: $any,
+        group: $group,
+        limit: $limit,
+        offset: $offset,
+        order: $order,
+        quote: $quote,
+        references: $references,
+        search_after: $search_after,
+        sort: $sort,
+        tag: $tag,
+        tags: $tags,
+        text: $text,
+        uri: $uri,
+        user: $user,
+        wildcard_uri: $wildcard_uri
+    )
+  {
     total
     rows {
       text

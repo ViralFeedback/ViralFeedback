@@ -77,12 +77,60 @@ export type ApiResponse = {
   rows?: Maybe<Array<Annotation>>;
 };
 
+export enum Sort {
+  Created = 'created',
+  Updated = 'updated',
+  Group = 'group',
+  Id = 'id',
+  User = 'user'
+}
+
+export enum Order {
+  Asc = 'asc',
+  Desc = 'desc'
+}
+
 export type Query = {
    __typename?: 'Query';
   annotations?: Maybe<ApiResponse>;
 };
 
-export type AnnotationsQueryVariables = {};
+
+export type QueryAnnotationsArgs = {
+  any?: Maybe<Scalars['String']>;
+  group?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order?: Maybe<Order>;
+  quote?: Maybe<Scalars['String']>;
+  references?: Maybe<Scalars['String']>;
+  search_after?: Maybe<Scalars['String']>;
+  sort?: Maybe<Sort>;
+  tag?: Maybe<Scalars['String']>;
+  tags?: Maybe<Array<Maybe<Scalars['String']>>>;
+  text?: Maybe<Scalars['String']>;
+  uri?: Maybe<Scalars['String']>;
+  user?: Maybe<Scalars['String']>;
+  wildcard_uri?: Maybe<Scalars['String']>;
+};
+
+export type AnnotationsQueryVariables = {
+  any?: Maybe<Scalars['String']>;
+  group?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order?: Maybe<Order>;
+  quote?: Maybe<Scalars['String']>;
+  references?: Maybe<Scalars['String']>;
+  search_after?: Maybe<Scalars['String']>;
+  sort?: Maybe<Sort>;
+  tag?: Maybe<Scalars['String']>;
+  tags?: Maybe<Array<Maybe<Scalars['String']>>>;
+  text?: Maybe<Scalars['String']>;
+  uri?: Maybe<Scalars['String']>;
+  user?: Maybe<Scalars['String']>;
+  wildcard_uri?: Maybe<Scalars['String']>;
+};
 
 
 export type AnnotationsQuery = (
@@ -113,8 +161,8 @@ export type AnnotationsQuery = (
 
 
 export const AnnotationsDocument = gql`
-    query Annotations {
-  annotations {
+    query Annotations($any: String, $group: String, $limit: Int, $offset: Int, $order: Order, $quote: String, $references: String, $search_after: String, $sort: Sort, $tag: String, $tags: [String], $text: String, $uri: String, $user: String, $wildcard_uri: String) {
+  annotations(any: $any, group: $group, limit: $limit, offset: $offset, order: $order, quote: $quote, references: $references, search_after: $search_after, sort: $sort, tag: $tag, tags: $tags, text: $text, uri: $uri, user: $user, wildcard_uri: $wildcard_uri) {
     total
     rows {
       text
@@ -151,6 +199,21 @@ export const AnnotationsDocument = gql`
  * @example
  * const { data, loading, error } = useAnnotationsQuery({
  *   variables: {
+ *      any: // value for 'any'
+ *      group: // value for 'group'
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *      order: // value for 'order'
+ *      quote: // value for 'quote'
+ *      references: // value for 'references'
+ *      search_after: // value for 'search_after'
+ *      sort: // value for 'sort'
+ *      tag: // value for 'tag'
+ *      tags: // value for 'tags'
+ *      text: // value for 'text'
+ *      uri: // value for 'uri'
+ *      user: // value for 'user'
+ *      wildcard_uri: // value for 'wildcard_uri'
  *   },
  * });
  */
