@@ -77,10 +77,10 @@ export interface IAnnotationDataObject {
 const Annotation: FunctionComponent<IAnnotationDataObject> = ({ data }) => {
     let quote;
     if (data.target[0]?.selector) {
-        console.log(data.target[0]?.selector);
+        // console.log(data.target[0]?.selector);
         quote = data.target[0]?.selector[1].exact;
     }
-    if (data.user_info.display_name === null) return null;
+    // if (data.user_info.display_name === null) return null;
 
     return (
         <article className="media annotation">
@@ -97,13 +97,13 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({ data }) => {
                             url={data.target[0].source}
                         />
                     }
-                    <p>
+                    <div>
                         <strong>{data.user_info.display_name}</strong>{' '}
                         <small>{data.created}</small>
                         <br />
                         {quote ? <blockquote>{quote}</blockquote> : null}
                         <ReactMarkdown source={data.text} />
-                    </p>
+                    </div>
                 </div>
                 {
                     // <nav className="level is-mobile">

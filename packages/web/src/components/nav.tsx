@@ -11,9 +11,9 @@ interface INav extends RouteComponentProps {}
 
 const Nav: FunctionComponent<any> = () => {
     return (
-        <nav className="navbar is-transparent">
+        <nav className="navbar is-transparent is-fixed-top">
             <div className="navbar-brand">
-                <a className="navbar-item" href="https://bulma.io">
+                <a className="navbar-item" href="/">
                     <img
                         src="virus.png"
                         alt="Viral Feedback"

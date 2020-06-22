@@ -1,6 +1,15 @@
-.annotation {
-  max-width: 640px;
-  margin-bottom: 30px; }
+.app .annotation-feed {
+  padding-top: 30px; }
+  .app .annotation-feed .annotation {
+    max-width: 640px;
+    margin: auto;
+    margin-bottom: 30px; }
+
+.app .navbar {
+  box-shadow: 0 0 25px 0 rgba(171, 167, 191, 0.25); }
+
+.app .page-content {
+  margin-top: 56px; }
 
 /*! bulma.io v0.8.2 | MIT License | github.com/jgthms/bulma */
 @keyframes spinAround {

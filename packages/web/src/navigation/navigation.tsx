@@ -13,7 +13,9 @@ export const Navigation: FunctionComponent = () => {
                         return (
                             <Route exact path={value.path} key={key}>
                                 <Nav />
-                                <value.component />
+                                <div className="page-content">
+                                    <value.component />
+                                </div>
                             </Route>
                         );
                     })}
