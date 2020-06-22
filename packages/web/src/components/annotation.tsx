@@ -76,59 +76,84 @@ export interface IAnnotationDataObject {
 
 const Annotation: FunctionComponent<IAnnotationDataObject> = ({ data }) => {
     let quote;
-    if (data.target[0]?.selector) {
-        // console.log(data.target[0]?.selector);
-        quote = data.target[0]?.selector[1].exact;
+
+    const selector = data.target[0]?.selector;
+    if (selector) {
+        for (const i in selector) {
+            if (selector[i].exact) quote = selector[i].exact;
+        }
     }
-    // if (data.user_info.display_name === null) return null;
 
     return (
-        <article className="media annotation">
+        <article className="media annotation card">
             <div className="media-content">
                 <div className="content">
-                    {
-                        // TODO if we like this feature we need to run our own proxy
-                        // https://github.com/Rob--W/cors-anywhere
-                        <ReactTinyLink
-                            cardSize="small"
-                            showGraphic={true}
-                            maxLine={2}
-                            minLine={1}
-                            url={data.target[0].source}
-                        />
-                    }
+                    <ReactTinyLink
+                        cardSize="small"
+                        loadSecureUrl={true}
+                        maxLine={2}
+                        minLine={1}
+                        showGraphic={true}
+                        url={data.target[0].source}
+                    />
+                    <br />
                     <div>
-                        <strong>{data.user_info.display_name}</strong>{' '}
+                        <a
+                            href={`https://hypothes.is/users/${parseUserName(
+                                data.user
+                            )}`}
+                        >
+                            <strong className="username">
+                                {data.user_info.display_name
+                                    ? data.user_info.display_name
+                                    : parseUserName(data.user)}
+                            </strong>
+                        </a>{' '}
                         <small>{data.created}</small>
                         <br />
                         {quote ? <blockquote>{quote}</blockquote> : null}
                         <ReactMarkdown source={data.text} />
                     </div>
                 </div>
-                {
-                    // <nav className="level is-mobile">
-                    //     <div className="level-left">
-                    //         <a className="level-item">
-                    //             <span className="icon is-small">
-                    //                 <i className="fas fa-reply"></i>
-                    //             </span>
-                    //         </a>
-                    //         <a className="level-item">
-                    //             <span className="icon is-small">
-                    //                 <i className="fas fa-retweet"></i>
-                    //             </span>
-                    //         </a>
-                    //         <a className="level-item">
-                    //             <span className="icon is-small">
-                    //                 <i className="fas fa-heart"></i>
-                    //             </span>
-                    //         </a>
-                    //     </div>
-                    // </nav>
-                }
+                <div className="tags">
+                    {data.tags.map((value, key) => {
+                        return (
+                            <span className="tag" key={key}>
+                                {value}
+                            </span>
+                        );
+                    })}
+                </div>
+                <nav className="level">
+                    <div className="level-left">
+                        <a
+                            className="level-item"
+                            data-tooltip="View in context"
+                            href={data.links.incontext}
+                        >
+                            <span className="icon is-small">
+                                <i className="fas fa-external-link-square-alt"></i>
+                            </span>
+                        </a>
+                        <a
+                            className="level-item"
+                            data-tooltip="Share this annotation"
+                            href={data.links.html}
+                        >
+                            <span className="icon is-small">
+                                <i className="fas fa-share-alt"></i>
+                            </span>
+                        </a>
+                    </div>
+                </nav>
             </div>
         </article>
     );
+};
+
+const parseUserName = (account: string) => {
+    const username = account.match(/acct:(.*?)@/i)![1];
+    return username;
 };
 
 export default Annotation;

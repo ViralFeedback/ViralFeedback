@@ -1,6 +1,7 @@
 @charset "utf-8";
 
 // Overrides
+$link: #a6a6a6;
 $progress-indeterminate-duration: 0.75s;
 
 .app {
@@ -11,6 +12,25 @@ $progress-indeterminate-duration: 0.75s;
             max-width: 640px;
             margin: auto;
             margin-bottom: 30px;
+            padding: 20px;
+            border: none;
+
+            .content {
+                blockquote {
+                    background-color: unset;
+                    margin-top: 1em;
+                    padding: 0em 1.5em;
+                }
+            }
+
+            .react_tinylink_card {
+                border: none;
+                box-shadow: none;
+            }
+
+            .username {
+                color: #363636;
+            }
         }
     }
 

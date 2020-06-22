@@ -5,16 +5,16 @@ import Loading from '../components/loading';
 import { useAnnotationsQuery } from '../graphql';
 
 const HomeFeed: FunctionComponent = () => {
-    const { data, loading, error, variables } = useAnnotationsQuery({
+    const { data, loading, error } = useAnnotationsQuery({
         variables: {
-            // group: 'demo-group',
-            limit: 10
+            limit: 100,
+            group: '2ZpQXmM1'
         }
     });
 
     const annotations: any = data?.annotations?.rows;
 
-    console.log(annotations);
+    if (error) console.log(error);
 
     if (loading) return <Loading />;
 
