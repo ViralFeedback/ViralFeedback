@@ -46,7 +46,7 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.SSHKEY }}
         port: ${{ secrets.PORT }}
-        timeout: 300s
+        timeout: 1000s
         source: "./packages/server"
         target: "/opt/app"
 
