@@ -20,7 +20,7 @@ const HomeFeed: FunctionComponent = () => {
 
     return (
         <div className="annotation-feed container has-text-centered">
-            {annotations && annotations.length != 0 ? (
+            {annotations && annotations.length !== 0 ? (
                 annotations.map((value, key) => {
                     return <Annotation data={value} key={key} />;
                 })

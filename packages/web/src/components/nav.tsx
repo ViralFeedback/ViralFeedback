@@ -1,10 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import {
-    Link,
-    matchPath,
-    withRouter,
-    RouteComponentProps
-} from 'react-router-dom';
+import { Link, RouteComponentProps } from 'react-router-dom';
 import { Routes } from '../navigation/routes';
 
 interface INav extends RouteComponentProps {}
@@ -60,6 +55,7 @@ const Nav: FunctionComponent<any> = () => {
                                     data-social-action="tweet"
                                     data-social-target="https://bulma.io"
                                     target="_blank"
+                                    rel="noopener noreferrer"
                                     href="https://twitter.com/intent/tweet?text=Viral Feedback&amp;hashtags=factcheck&amp;url=https://viralfeedback.org"
                                 >
                                     <span className="icon">

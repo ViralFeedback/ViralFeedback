@@ -2,7 +2,8 @@ import React, { FunctionComponent } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { ReactTinyLink } from 'react-tiny-link';
 
-import { parseJSON, formatRelative, formatRFC3339 } from 'date-fns';
+// // TODO support annotation timestamps
+// import { parseJSON, formatRelative, formatRFC3339 } from 'date-fns';
 
 export interface Range {
     endOffset: number;
