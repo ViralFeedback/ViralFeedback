@@ -20,7 +20,7 @@ jobs:
 
     # Runs a single command using the runners shell
     - name: Install dependencies
-      run: npx learna exec npm ci
+      run: npx lerna exec npm ci
 
     - name: Lint code
       run: npm run lint
