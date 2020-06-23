@@ -1,0 +1,9 @@
+[build]
+  command = "npm run build"
+  publish="packages/web/build"
+  base = "packages/web"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
