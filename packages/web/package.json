@@ -34,7 +34,7 @@
         "build": "react-scripts build",
         "css-build": "node-sass --omit-source-map-url src/styles/sass/app.scss src/styles/css/app.css",
         "css-watch": "npm run css-build -- --watch",
-        "test": "react-scripts test",
+        "test": "react-scripts test --watchAll=false",
         "eject": "react-scripts eject"
     },
     "eslintConfig": {
