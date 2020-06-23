@@ -58,7 +58,7 @@ jobs:
         port: ${{ secrets.PORT }}
         key: ${{ secrets.SSHKEY }}
         script: |
-          cd /opt/app/
+          cd /opt/app/packages/server
           npm ci
           npm run build
           npm run start
