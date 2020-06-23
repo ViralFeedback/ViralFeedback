@@ -47,7 +47,7 @@ jobs:
         key: ${{ secrets.SSHKEY }}
         port: ${{ secrets.PORT }}
         timeout: 1000s
-        source: "./packages/server"
+        source: "packages/server"
         target: "/opt/app"
 
     - name: Executing remote command
