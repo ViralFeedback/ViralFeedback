@@ -44,7 +44,7 @@ jobs:
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
-        ket: ${{ secrets.SSHKEY }}
+        key: ${{ secrets.SSHKEY }}
         port: ${{ secrets.PORT }}
         source: "./packages/server"
         target: "/opt/app"
