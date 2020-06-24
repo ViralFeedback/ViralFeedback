@@ -32,6 +32,20 @@ $progress-indeterminate-duration: 0.75s;
                 color: #363636;
             }
         }
+
+        .search-bar {
+            max-width: 640px;
+            margin: auto;
+            padding-bottom: 25px;
+
+            .search-dropdown {
+                min-width: 350px;
+
+                .filter-by-topic {
+                    padding: 1em;
+                }
+            }
+        }
     }
 
     .navbar {
@@ -46,3 +60,4 @@ $progress-indeterminate-duration: 0.75s;
 // Vendor
 @import '../../../node_modules/bulma/bulma.sass';
 @import '../../../node_modules/bulma-tooltip/src/sass/index.sass';
+@import '../../../node_modules/bulma-checkradio/src/sass/index.sass';

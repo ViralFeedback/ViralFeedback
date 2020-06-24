@@ -125,7 +125,7 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({ data }) => {
                         );
                     })}
                 </div>
-                <nav className="level">
+                <nav className="level is-mobile">
                     <div className="level-left">
                         <a
                             className="level-item"

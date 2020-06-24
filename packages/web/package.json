@@ -15,12 +15,14 @@
         "@types/react-router-dom": "^5.1.5",
         "apollo-boost": "^0.4.9",
         "bulma": "^0.8.2",
+        "bulma-checkradio": "^1.1.1",
         "bulma-tooltip": "^3.0.2",
         "date-fns": "^2.14.0",
         "graphql": "^15.1.0",
         "react": "^16.13.1",
         "react-dom": "^16.13.1",
         "react-markdown": "^4.3.1",
+        "react-multi-select-component": "^2.0.11",
         "react-router-dom": "^5.1.2",
         "react-scripts": "3.4.1",
         "react-tiny-link": "^3.5.0",
@@ -41,7 +43,11 @@
         "extends": "react-app"
     },
     "browserslist": {
-        "production": [">0.2%", "not dead", "not op_mini all"],
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
         "development": [
             "last 1 chrome version",
             "last 1 firefox version",

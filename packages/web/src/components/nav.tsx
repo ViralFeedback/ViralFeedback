@@ -50,10 +50,23 @@ const Nav: FunctionComponent<any> = () => {
                         <div className="field is-grouped">
                             <p className="control">
                                 <a
-                                    className="bd-tw-button button"
+                                    className="bd-tw-button button is-primary"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    href="#"
+                                >
+                                    <span className="icon">
+                                        <i className="fas fa-inbox"></i>
+                                    </span>
+                                    <span>Suggest Article</span>
+                                </a>
+                            </p>
+                            <p className="control">
+                                <a
+                                    className="bd-tw-button button is-info"
                                     data-social-network="Twitter"
                                     data-social-action="tweet"
-                                    data-social-target="https://bulma.io"
+                                    data-social-target="https://viralfeedback.org"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     href="https://twitter.com/intent/tweet?text=Viral Feedback&amp;hashtags=factcheck&amp;url=https://viralfeedback.org"
