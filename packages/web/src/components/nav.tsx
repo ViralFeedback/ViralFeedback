@@ -53,7 +53,7 @@ const Nav: FunctionComponent<any> = () => {
                                     className="bd-tw-button button is-primary"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    href="#"
+                                    href="https://viralfeedback.org"
                                 >
                                     <span className="icon">
                                         <i className="fas fa-inbox"></i>
