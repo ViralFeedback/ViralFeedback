@@ -65,4 +65,4 @@ jobs:
           nvm install lts/Erbium
           npm ci
           npm run build
-          npm run start
+          systemctl restart viral
