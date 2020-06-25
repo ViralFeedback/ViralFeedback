@@ -127,7 +127,7 @@ export type AnnotationsQuery = (
     & Pick<ApiResponse, 'total'>
     & { rows?: Maybe<Array<(
       { __typename?: 'Annotation' }
-      & Pick<Annotation, 'text' | 'user' | 'uri' | 'tags'>
+      & Pick<Annotation, 'created' | 'updated' | 'text' | 'user' | 'uri' | 'tags'>
       & { user_info?: Maybe<(
         { __typename?: 'UserInfo' }
         & Pick<UserInfo, 'display_name'>
@@ -152,6 +152,8 @@ export const AnnotationsDocument = gql`
   annotations(any: $any, group: $group, limit: $limit, offset: $offset, order: $order, quote: $quote, references: $references, search_after: $search_after, sort: $sort, tag: $tag, tags: $tags, text: $text, uri: $uri, user: $user, wildcard_uri: $wildcard_uri) {
     total
     rows {
+      created
+      updated
       text
       user
       user_info {

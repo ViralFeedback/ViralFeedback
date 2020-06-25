@@ -16,6 +16,10 @@ $progress-indeterminate-duration: 0.75s;
             border: none;
 
             .content {
+                .annotation-content {
+                    margin-top: 0.5em;
+                }
+
                 blockquote {
                     background-color: unset;
                     margin-top: 1em;
@@ -26,6 +30,11 @@ $progress-indeterminate-duration: 0.75s;
             .react_tinylink_card {
                 border: none;
                 box-shadow: none;
+            }
+
+            .timestamp {
+                opacity: 0.7;
+                margin-left: 0.25em;
             }
 
             .username {
@@ -56,7 +65,7 @@ $progress-indeterminate-duration: 0.75s;
         box-shadow: 0 0 25px 0 rgba(171, 167, 191, 0.25);
 
         .logo {
-            margin-right: -1em;
+            margin-right: -1.5em;
         }
     }
 

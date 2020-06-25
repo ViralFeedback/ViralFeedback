@@ -3,7 +3,7 @@ import ReactMarkdown from 'react-markdown';
 import { ReactTinyLink } from 'react-tiny-link';
 
 // // TODO support annotation timestamps
-// import { parseJSON, formatRelative, formatRFC3339 } from 'date-fns';
+import { formatRelative } from 'date-fns';
 
 export interface Range {
     endOffset: number;
@@ -85,6 +85,12 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({ data }) => {
         }
     }
 
+    let annotationPublishedDate: any = data.updated;
+    annotationPublishedDate = formatRelative(
+        Date.parse(annotationPublishedDate),
+        new Date()
+    );
+
     return (
         <article className="media annotation card">
             <div className="media-content">
@@ -97,8 +103,8 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({ data }) => {
                         showGraphic={true}
                         url={data.target[0].source}
                     />
-                    <br />
-                    <div>
+
+                    <div className="annotation-content">
                         <a
                             href={`https://hypothes.is/users/${parseUserName(
                                 data.user
@@ -110,23 +116,28 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({ data }) => {
                                     : parseUserName(data.user)}
                             </strong>
                         </a>{' '}
-                        <small>{data.created}</small>
+                        <small className="timestamp">
+                            {annotationPublishedDate}
+                        </small>
                         <br />
                         {quote ? <blockquote>{quote}</blockquote> : null}
                         <ReactMarkdown source={data.text} />
                     </div>
                 </div>
-                <div className="tags">
-                    {data.tags.map((value, key) => {
-                        return (
-                            <span className="tag" key={key}>
-                                {value}
-                            </span>
-                        );
-                    })}
-                </div>
+
                 <nav className="level is-mobile">
                     <div className="level-left">
+                        <div className="tags">
+                            {data.tags.map((value, key) => {
+                                return (
+                                    <span className="tag" key={key}>
+                                        {value}
+                                    </span>
+                                );
+                            })}
+                        </div>
+                    </div>
+                    <div className="level-right">
                         <a
                             className="level-item"
                             data-tooltip="View in context"

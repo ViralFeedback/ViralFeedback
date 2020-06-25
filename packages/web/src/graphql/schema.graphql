@@ -1,57 +1,58 @@
-query Annotations (
-        $any: String,
-        $group: String,
-        $limit: Int,
-        $offset: Int,
-        $order: String,
-        $quote: String,
-        $references: String,
-        $search_after: String,
-        $sort: String,
-        $tag: String,
-        $tags: [String],
-        $text: String,
-        $uri: String,
-        $user: String,
-        $wildcard_uri: String
-    ) {
-    annotations (
-        any: $any,
-        group: $group,
-        limit: $limit,
-        offset: $offset,
-        order: $order,
-        quote: $quote,
-        references: $references,
-        search_after: $search_after,
-        sort: $sort,
-        tag: $tag,
-        tags: $tags,
-        text: $text,
-        uri: $uri,
-        user: $user,
+query Annotations(
+    $any: String
+    $group: String
+    $limit: Int
+    $offset: Int
+    $order: String
+    $quote: String
+    $references: String
+    $search_after: String
+    $sort: String
+    $tag: String
+    $tags: [String]
+    $text: String
+    $uri: String
+    $user: String
+    $wildcard_uri: String
+) {
+    annotations(
+        any: $any
+        group: $group
+        limit: $limit
+        offset: $offset
+        order: $order
+        quote: $quote
+        references: $references
+        search_after: $search_after
+        sort: $sort
+        tag: $tag
+        tags: $tags
+        text: $text
+        uri: $uri
+        user: $user
         wildcard_uri: $wildcard_uri
-    )
-  {
-    total
-    rows {
-      text
-      user
-      user_info {
-        display_name
-      }
-      uri
-      links {
-        html
-        incontext
-      }
-      tags
-      target {
-        source
-        selector {
-          exact
+    ) {
+        total
+        rows {
+            created
+            updated
+            text
+            user
+            user_info {
+                display_name
+            }
+            uri
+            links {
+                html
+                incontext
+            }
+            tags
+            target {
+                source
+                selector {
+                    exact
+                }
+            }
         }
-      }
     }
-  }
 }
