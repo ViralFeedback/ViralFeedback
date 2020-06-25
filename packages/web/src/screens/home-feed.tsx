@@ -71,7 +71,7 @@ const HomeFeed: FunctionComponent = () => {
                                     <h6 className="title is-6">Show:</h6>
                                     <div className="field">
                                         <input
-                                            className="is-checkradio is-success"
+                                            className="is-checkradio has-background-color is-success"
                                             id="exampleCheckboxSuccess"
                                             type="checkbox"
                                             name="exampleCheckboxSuccess"
@@ -84,7 +84,7 @@ const HomeFeed: FunctionComponent = () => {
 
                                     <div className="field">
                                         <input
-                                            className="is-checkradio is-info"
+                                            className="is-checkradio has-background-color is-info"
                                             id="exampleCheckboxWarning"
                                             type="checkbox"
                                             name="exampleCheckboxWarning"
@@ -97,7 +97,7 @@ const HomeFeed: FunctionComponent = () => {
 
                                     <div className="field">
                                         <input
-                                            className="is-checkradio is-warning"
+                                            className="is-checkradio has-background-color is-warning"
                                             id="exampleCheckboxDefault"
                                             type="checkbox"
                                             name="exampleCheckboxDefault"
@@ -110,7 +110,7 @@ const HomeFeed: FunctionComponent = () => {
 
                                     <div className="field">
                                         <input
-                                            className="is-checkradio is-danger"
+                                            className="is-checkradio has-background-color is-danger"
                                             id="exampleCheckboxDanger"
                                             type="checkbox"
                                             name="exampleCheckboxDanger"
@@ -184,7 +184,6 @@ const TopicMultiSelect: React.FC = () => {
                 value={selected}
                 onChange={setSelected}
                 labelledBy={'Select'}
-                hasSelectAll={true}
             />
         </div>
     );

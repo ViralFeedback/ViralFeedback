@@ -44,12 +44,20 @@ $progress-indeterminate-duration: 0.75s;
                 .filter-by-topic {
                     padding: 1em;
                 }
+
+                .title {
+                    margin-bottom: 10px;
+                }
             }
         }
     }
 
     .navbar {
         box-shadow: 0 0 25px 0 rgba(171, 167, 191, 0.25);
+
+        .logo {
+            margin-right: -1em;
+        }
     }
 
     .page-content {

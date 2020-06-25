@@ -8,11 +8,19 @@ const Nav: FunctionComponent<any> = () => {
     return (
         <nav className="navbar is-transparent is-fixed-top">
             <div className="navbar-brand">
-                <a className="navbar-item" href="/">
+                <a className="navbar-item logo" href="/">
                     <img
                         src="virus.png"
-                        alt="Viral Feedback"
+                        alt="Virus <Logo></Logo>"
                         width="28"
+                        height="28"
+                    />
+                </a>
+                <a className="navbar-item" href="/">
+                    <img
+                        src="title.png"
+                        alt="Viral Feedback"
+                        width="200"
                         height="28"
                     />
                 </a>
