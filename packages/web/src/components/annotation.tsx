@@ -1,9 +1,8 @@
+import { formatRelative } from 'date-fns';
 import React, { FunctionComponent } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { ReactTinyLink } from 'react-tiny-link';
-
-// // TODO support annotation timestamps
-import { formatRelative } from 'date-fns';
+import Truncate from 'react-truncate';
 
 export interface Range {
     endOffset: number;
@@ -130,7 +129,26 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({ data }) => {
                         <div className="tags">
                             {data.tags.map((value, key) => {
                                 return (
-                                    <span className="tag" key={key}>
+                                    <span
+                                        className={`tag  ${
+                                            value === 'Well supported'
+                                                ? 'is-success'
+                                                : ''
+                                        } ${
+                                            value === 'Additional context'
+                                                ? 'is-info'
+                                                : ''
+                                        } ${
+                                            value === 'More context needed'
+                                                ? 'is-warning'
+                                                : ''
+                                        } ${
+                                            value === 'Poorly supported'
+                                                ? 'is-danger'
+                                                : ''
+                                        }`}
+                                        key={key}
+                                    >
                                         {value}
                                     </span>
                                 );

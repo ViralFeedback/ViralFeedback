@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import Annotation from 'components/annotation';
+import Annotation, { IAnnotation } from 'components/annotation';
 import EmptyState from 'components/emptyState';
 import Loading from 'components/loading';
 import { useAnnotationsQuery } from '../graphql';
@@ -17,6 +17,7 @@ const HomeFeed: FunctionComponent = () => {
     });
 
     const annotations: any = data?.annotations?.rows;
+    const total = data?.annotations?.total;
 
     if (error) console.log(error);
 
@@ -27,7 +28,7 @@ const HomeFeed: FunctionComponent = () => {
             <div className="level search-bar">
                 <div className="level-left">
                     <div className="level-item subtitle is-5">
-                        <strong>{data?.annotations?.total}</strong>
+                        <strong>{total ? total : 0}</strong>
                         <span style={{ paddingLeft: 7 }}>results</span>
                     </div>
                 </div>
