@@ -2,7 +2,7 @@ import { formatRelative } from 'date-fns';
 import React, { FunctionComponent } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { ReactTinyLink } from 'react-tiny-link';
-import Truncate from 'react-truncate';
+import TextTruncate from 'react-text-truncate';
 
 export interface Range {
     endOffset: number;
@@ -77,6 +77,8 @@ export interface IAnnotationDataObject {
 const Annotation: FunctionComponent<IAnnotationDataObject> = ({ data }) => {
     let quote;
 
+    const [showExtendedQuote, setShowExtendedQuote] = React.useState(false);
+
     const selector = data.target[0]?.selector;
     if (selector) {
         for (const i in selector) {
@@ -119,8 +121,29 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({ data }) => {
                             {annotationPublishedDate}
                         </small>
                         <br />
-                        {quote ? <blockquote>{quote}</blockquote> : null}
-                        <ReactMarkdown source={data.text} />
+                        {quote ? (
+                            <blockquote>
+                                <TextTruncate
+                                    line={showExtendedQuote ? 0 : 3}
+                                    element="span"
+                                    truncateText="…"
+                                    text={quote}
+                                    textTruncateChild={
+                                        <span
+                                            className="has-text-link read-more"
+                                            onClick={() =>
+                                                setShowExtendedQuote(
+                                                    !showExtendedQuote
+                                                )
+                                            }
+                                        >
+                                            Read on
+                                        </span>
+                                    }
+                                />
+                            </blockquote>
+                        ) : null}
+                        <ReactMarkdown>{data.text}</ReactMarkdown>
                     </div>
                 </div>
 

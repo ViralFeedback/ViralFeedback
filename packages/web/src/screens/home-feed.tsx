@@ -16,7 +16,7 @@ const HomeFeed: FunctionComponent = () => {
         }
     });
 
-    const annotations: any = data?.annotations?.rows;
+    const annotations: IAnnotation[] = data?.annotations?.rows;
     const total = data?.annotations?.total;
 
     if (error) console.log(error);
