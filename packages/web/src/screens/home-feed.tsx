@@ -16,12 +16,12 @@ const HomeFeed: FunctionComponent = () => {
         }
     });
 
-    const annotations: IAnnotation[] = data?.annotations?.rows;
-    const total = data?.annotations?.total;
-
     if (error) console.log(error);
 
     if (loading) return <Loading />;
+
+    const annotations: any = data?.annotations?.rows;
+    const total = data?.annotations?.total;
 
     return (
         <div className="annotation-feed container">

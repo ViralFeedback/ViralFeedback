@@ -1,7 +1,7 @@
 .app .annotation-feed {
   padding-top: 30px; }
   .app .annotation-feed .annotation {
-    max-width: 640px;
+    max-width: 670px;
     margin: auto;
     margin-bottom: 30px;
     padding: 20px;
@@ -25,7 +25,7 @@
     .app .annotation-feed .annotation .username {
       color: #363636; }
   .app .annotation-feed .search-bar {
-    max-width: 640px;
+    max-width: 670px;
     margin: auto;
     padding-bottom: 25px; }
     .app .annotation-feed .search-bar .search-dropdown {

@@ -101,6 +101,11 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({ data }) => {
                         loadSecureUrl={true}
                         maxLine={2}
                         minLine={1}
+                        proxyUrl={
+                            process.env.REACT_APP_PROXY
+                                ? process.env.REACT_APP_PROXY
+                                : 'http://localhost:8080/proxy'
+                        }
                         showGraphic={true}
                         url={data.target[0].source}
                     />
