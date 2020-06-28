@@ -60,8 +60,23 @@ jobs:
                   key: ${{ secrets.SSHKEY }}
                   port: ${{ secrets.PORT }}
                   timeout: 1000s
-                  source: 'packages/web/build'
-                  target: '/var/www/web/build'
+                  source: 'packages/web/'
+                  target: '/var/www/web/'
+
+            - name: Build web and start static file server
+              uses: appleboy/scp-action@master
+              env:
+                  HYPOTHESIS_API_TOKEN: ${{ secrets.HYPOTHESIS_API_TOKEN }}
+              with:
+                  host: ${{ secrets.HOST }}
+                  username: ${{ secrets.USERNAME }}
+                  key: ${{ secrets.SSHKEY }}
+                  port: ${{ secrets.PORT }}
+                  timeout: 1000s
+                  script: |
+                      cd /var/www/web
+                      npm ci
+                      npm run build
 
             - name: Executing remote command
               uses: appleboy/ssh-action@master
@@ -72,10 +87,6 @@ jobs:
                   key: ${{ secrets.SSHKEY }}
                   script: |
                       cd /opt/app/packages/server
-                      wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
-                      export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-                      [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-                      nvm install lts/Erbium
                       npm ci
                       npm run build
                       systemctl restart viral
