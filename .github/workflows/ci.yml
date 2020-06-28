@@ -66,8 +66,8 @@ jobs:
             - name: Build web and start static file server
               uses: appleboy/scp-action@master
               env:
-                  REACT_APP_PROXY: ${{ secret.REACT_APP_PROXY }}
-                  REACT_APP_SERVER_URI: ${{ secret.REACT_APP_SERVER_URI }}
+                  REACT_APP_PROXY: ${{ secrets.REACT_APP_PROXY }}
+                  REACT_APP_SERVER_URI: ${{ secrets.REACT_APP_SERVER_URI }}
               with:
                   host: ${{ secrets.HOST }}
                   username: ${{ secrets.USERNAME }}
