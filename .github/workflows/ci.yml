@@ -60,7 +60,7 @@ jobs:
                   key: ${{ secrets.SSHKEY }}
                   port: ${{ secrets.PORT }}
                   timeout: 1000s
-                  source: 'packages/web/'
+                  source: 'packages/web'
                   target: '/var/www/web/'
 
             - name: Build web and start static file server
