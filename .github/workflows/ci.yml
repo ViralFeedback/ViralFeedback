@@ -75,7 +75,7 @@ jobs:
                   port: ${{ secrets.PORT }}
                   timeout: 1000s
                   script: |
-                      cd /var/www/web
+                      cd /var/www/web/packages/web
                       npm ci
                       npm run build
 
