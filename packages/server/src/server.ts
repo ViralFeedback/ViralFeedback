@@ -26,7 +26,7 @@ app.use(compression());
 
 server.applyMiddleware({ app, path: '/graphql' });
 
-let proxy = corsAnywhere.createServer({
+const proxy = corsAnywhere.createServer({
     originWhitelist: [], // Allow all origins
     requireHeaders: [], // Do not require any headers.
     removeHeaders: [] // Do not remove any headers.
