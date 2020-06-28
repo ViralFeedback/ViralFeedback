@@ -74,9 +74,8 @@ jobs:
                   key: ${{ secrets.SSHKEY }}
                   port: ${{ secrets.PORT }}
                   script: |
-                      echo $REACT_APP_PROXY
-                      echo Meow
-                      echo ${{secrets.REACT_APP_PROXY}}
+                      REACT_APP_PROXY=${{secrets.REACT_APP_PROXY}}
+                      REACT_APP_SERVER_URI=${{secrets.REACT_APP_SERVER_URI}}
                       cd /var/www/web/packages/web
                       wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
                       export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
@@ -95,6 +94,7 @@ jobs:
                   port: ${{ secrets.PORT }}
                   key: ${{ secrets.SSHKEY }}
                   script: |
+                      HYPOTHESIS_API_TOKEN=${{secrets.HYPOTHESIS_API_TOKEN}}
                       cd /opt/app/packages/server
                       wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
                       export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
