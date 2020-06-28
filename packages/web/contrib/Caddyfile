@@ -1,5 +1,8 @@
-viralfeedback.org
+viralfeedback.org {
+  root * /var/www/web/packages/web/build
+  file_server
+}
 
-root * /var/www/web/packages/web/build
-reverse_proxy /api/* localhost:8080
-file_server
+api.viralfeedback.org {
+  reverse_proxy /api/* localhost:8080
+}
