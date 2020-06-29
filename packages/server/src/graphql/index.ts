@@ -82,6 +82,7 @@ export type Query = {
 
 
 export type QueryAnnotationsArgs = {
+  _separate_replies?: Maybe<Scalars['Boolean']>;
   any?: Maybe<Scalars['String']>;
   group?: Maybe<Scalars['String']>;
   limit?: Maybe<Scalars['Int']>;

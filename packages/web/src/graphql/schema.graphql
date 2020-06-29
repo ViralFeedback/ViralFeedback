@@ -1,4 +1,5 @@
 query Annotations(
+    $_separate_replies: Boolean
     $any: String
     $group: String
     $limit: Int
@@ -16,6 +17,7 @@ query Annotations(
     $wildcard_uri: String
 ) {
     annotations(
+        _separate_replies: $_separate_replies
         any: $any
         group: $group
         limit: $limit

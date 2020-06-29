@@ -599,6 +599,16 @@
             "description": null,
             "args": [
               {
+                "name": "_separate_replies",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
                 "name": "any",
                 "description": null,
                 "type": {

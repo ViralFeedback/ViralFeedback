@@ -1,6 +1,7 @@
 import { RESTDataSource, RequestOptions } from 'apollo-datasource-rest';
 
 type ISearchAnnotationsQuery = {
+    _separate_replies?: boolean;
     any?: string;
     group?: string;
     limit?: number;

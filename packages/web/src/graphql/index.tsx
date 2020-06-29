@@ -85,6 +85,7 @@ export type Query = {
 
 
 export type QueryAnnotationsArgs = {
+  _separate_replies?: Maybe<Scalars['Boolean']>;
   any?: Maybe<Scalars['String']>;
   group?: Maybe<Scalars['String']>;
   limit?: Maybe<Scalars['Int']>;
@@ -103,6 +104,7 @@ export type QueryAnnotationsArgs = {
 };
 
 export type AnnotationsQueryVariables = {
+  _separate_replies?: Maybe<Scalars['Boolean']>;
   any?: Maybe<Scalars['String']>;
   group?: Maybe<Scalars['String']>;
   limit?: Maybe<Scalars['Int']>;
@@ -149,8 +151,8 @@ export type AnnotationsQuery = (
 
 
 export const AnnotationsDocument = gql`
-    query Annotations($any: String, $group: String, $limit: Int, $offset: Int, $order: String, $quote: String, $references: String, $search_after: String, $sort: String, $tag: String, $tags: [String], $text: String, $uri: String, $user: String, $wildcard_uri: String) {
-  annotations(any: $any, group: $group, limit: $limit, offset: $offset, order: $order, quote: $quote, references: $references, search_after: $search_after, sort: $sort, tag: $tag, tags: $tags, text: $text, uri: $uri, user: $user, wildcard_uri: $wildcard_uri) {
+    query Annotations($_separate_replies: Boolean, $any: String, $group: String, $limit: Int, $offset: Int, $order: String, $quote: String, $references: String, $search_after: String, $sort: String, $tag: String, $tags: [String], $text: String, $uri: String, $user: String, $wildcard_uri: String) {
+  annotations(_separate_replies: $_separate_replies, any: $any, group: $group, limit: $limit, offset: $offset, order: $order, quote: $quote, references: $references, search_after: $search_after, sort: $sort, tag: $tag, tags: $tags, text: $text, uri: $uri, user: $user, wildcard_uri: $wildcard_uri) {
     total
     rows {
       created
@@ -190,6 +192,7 @@ export const AnnotationsDocument = gql`
  * @example
  * const { data, loading, error } = useAnnotationsQuery({
  *   variables: {
+ *      _separate_replies: // value for '_separate_replies'
  *      any: // value for 'any'
  *      group: // value for 'group'
  *      limit: // value for 'limit'

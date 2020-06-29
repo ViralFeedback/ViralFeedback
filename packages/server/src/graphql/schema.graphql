@@ -59,6 +59,7 @@ type APIResponse {
 
 type Query {
     annotations(
+        _separate_replies: Boolean,
         any: String,
         group: String,
         limit: Int,

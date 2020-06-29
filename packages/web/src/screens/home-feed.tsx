@@ -24,6 +24,7 @@ const HomeFeed: FunctionComponent = () => {
     ];
 
     const variables: any = {
+        _separate_replies: true,
         limit: 100,
         group: '2ZpQXmM1',
         offset: 0
