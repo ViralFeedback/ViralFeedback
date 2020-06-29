@@ -48,6 +48,7 @@ type Annotation {
   document: Document
   target: [Target]
   permissions: Permissions
+  references: [String]
   tags: [String]
 }
 

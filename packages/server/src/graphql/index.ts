@@ -65,6 +65,7 @@ export type Annotation = {
   document?: Maybe<Document>;
   target?: Maybe<Array<Maybe<Target>>>;
   permissions?: Maybe<Permissions>;
+  references?: Maybe<Array<Maybe<Scalars['String']>>>;
   tags?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 

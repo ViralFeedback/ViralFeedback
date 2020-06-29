@@ -68,6 +68,7 @@ export type Annotation = {
   document?: Maybe<Document>;
   target?: Maybe<Array<Maybe<Target>>>;
   permissions?: Maybe<Permissions>;
+  references?: Maybe<Array<Maybe<Scalars['String']>>>;
   tags?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
@@ -127,7 +128,7 @@ export type AnnotationsQuery = (
     & Pick<ApiResponse, 'total'>
     & { rows?: Maybe<Array<(
       { __typename?: 'Annotation' }
-      & Pick<Annotation, 'created' | 'updated' | 'text' | 'user' | 'uri' | 'tags'>
+      & Pick<Annotation, 'created' | 'updated' | 'text' | 'user' | 'uri' | 'references' | 'tags'>
       & { user_info?: Maybe<(
         { __typename?: 'UserInfo' }
         & Pick<UserInfo, 'display_name'>
@@ -164,6 +165,7 @@ export const AnnotationsDocument = gql`
         html
         incontext
       }
+      references
       tags
       target {
         source
