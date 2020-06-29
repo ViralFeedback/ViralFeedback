@@ -56,19 +56,21 @@ const Nav: FunctionComponent<any> = () => {
                 <div className="navbar-end">
                     <div className="navbar-item">
                         <div className="field is-grouped">
-                            <p className="control">
-                                <a
-                                    className="bd-tw-button button is-primary"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    href="https://viralfeedback.org"
-                                >
-                                    <span className="icon">
-                                        <i className="fas fa-inbox"></i>
-                                    </span>
-                                    <span>Suggest Article</span>
-                                </a>
-                            </p>
+                            {
+                                // <p className="control">
+                                //     <a
+                                //         className="bd-tw-button button is-primary"
+                                //         target="_blank"
+                                //         rel="noopener noreferrer"
+                                //         href="https://viralfeedback.org"
+                                //     >
+                                //         <span className="icon">
+                                //             <i className="fas fa-inbox"></i>
+                                //         </span>
+                                //         <span>Suggest Article</span>
+                                //     </a>
+                                // </p>
+                            }
                             <p className="control">
                                 <a
                                     className="bd-tw-button button is-info"
@@ -77,7 +79,7 @@ const Nav: FunctionComponent<any> = () => {
                                     data-social-target="https://viralfeedback.org"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    href="https://twitter.com/intent/tweet?text=Viral Feedback&amp;hashtags=factcheck&amp;url=https://viralfeedback.org"
+                                    href="https://twitter.com/intent/tweet?text=Viral Feedback is a community of scientists providing science-based feedback about viral and pandemic topics in service of society.&amp;hashtags=viralfeedback&amp;url=https://viralfeedback.org"
                                 >
                                     <span className="icon">
                                         <i className="fab fa-twitter"></i>
