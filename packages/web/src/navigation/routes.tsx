@@ -1,6 +1,6 @@
-import Home from '../screens/home-feed';
+import Home from '../screens/homeFeed';
 import About from '../screens/about';
-import CommunityGuidelines from '../screens/community-guidelines';
+import HowWeWork from '../screens/howWeWork';
 
 interface IRoute {
     path: string;
@@ -21,8 +21,8 @@ export const Routes: IRoute[] = [
         path: '/about'
     },
     {
-        component: CommunityGuidelines,
-        name: 'Community Guidelines',
-        path: '/community-guidelines'
+        component: HowWeWork,
+        name: 'How We Work',
+        path: '/how-we-work'
     }
 ];

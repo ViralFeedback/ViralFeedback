@@ -67,6 +67,18 @@ $progress-indeterminate-duration: 0.75s;
         }
     }
 
+    .content {
+        .content-image {
+            img {
+                max-width: 90%;
+            }
+        }
+
+        .list-style-type-none {
+            list-style-type: none;
+        }
+    }
+
     .navbar {
         box-shadow: 0 0 25px 0 rgba(171, 167, 191, 0.25);
 

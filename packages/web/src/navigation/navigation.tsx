@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Nav from '../components/nav';
-import NotFoundPage from '../screens/not-found';
+import NotFoundPage from '../screens/notFound';
 import { Routes } from './routes';
 
 export const Navigation: FunctionComponent = () => {
