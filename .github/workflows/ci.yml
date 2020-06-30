@@ -75,6 +75,8 @@ jobs:
                   port: ${{ secrets.PORT }}
                   envs: REACT_APP_PROXY, REACT_APP_SERVER_URI
                   script: |
+                      export REACT_APP_PROXY=$REACT_APP_PROXY
+                      export REACT_APP_SERVER_URI=$REACT_APP_SERVER_URI
                       cd /var/www/web/packages/web
                       wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
                       export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
@@ -94,6 +96,7 @@ jobs:
                   key: ${{ secrets.SSHKEY }}
                   envs: HYPOTHESIS_API_TOKEN
                   script: |
+                      export HYPOTHESIS_API_TOKEN=$HYPOTHESIS_API_TOKEN
                       cd /opt/app/packages/server
                       wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
                       export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
