@@ -26,7 +26,9 @@ const HomeFeed: FunctionComponent = () => {
     const variables: any = {
         _separate_replies: true,
         limit: 100,
-        group: '2ZpQXmM1',
+        group: process.env.REACT_APP_HYPOTHESIS_GROUP_ID
+            ? process.env.REACT_APP_HYPOTHESIS_GROUP_ID
+            : '',
         offset: 0
     };
 
