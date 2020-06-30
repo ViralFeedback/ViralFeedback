@@ -28,9 +28,11 @@ const HomeFeed: FunctionComponent = () => {
         limit: 100,
         group: process.env.REACT_APP_HYPOTHESIS_GROUP_ID
             ? process.env.REACT_APP_HYPOTHESIS_GROUP_ID
-            : '',
+            : '2ZpQXmM1',
         offset: 0
     };
+
+    console.log(variables);
 
     const { data, loading, error, refetch } = useAnnotationsQuery({
         variables,
