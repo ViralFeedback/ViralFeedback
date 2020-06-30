@@ -1,6 +1,5 @@
 viralfeedback.org {
   root * /var/www/web/packages/web/build
-  try_files /index.html
   file_server
 }
 
