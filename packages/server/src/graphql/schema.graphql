@@ -1,79 +1,136 @@
 type UserInfo {
-  display_name: String
+    display_name: String
+}
+
+input UserInfoInput {
+    display_name: String
 }
 
 type Links {
-  html: String
-  incontext: String
-  json: String
+    html: String
+    incontext: String
+    json: String
+}
+
+input LinksInput {
+    html: String
+    incontext: String
+    json: String
 }
 
 type Document {
-  title: [String]
+    title: [String]
+}
+
+input DocumentInput {
+    title: [String]
 }
 
 type Selector {
-  type: String
-  exact: String
-  endOffset: Int
-  startOffset: Int
-  endContainer: String
-  startContainer: String
+    type: String
+    exact: String
+    endOffset: Int
+    startOffset: Int
+    endContainer: String
+    startContainer: String
+}
+
+input SelectorInput {
+    type: String
+    exact: String
+    endOffset: Int
+    startOffset: Int
+    endContainer: String
+    startContainer: String
 }
 
 type Target {
-  source: String
-  selector: [Selector]
+    source: String
+    selector: [Selector]
+}
+
+input TargetInput {
+    source: String
+    selector: [SelectorInput]
 }
 
 type Permissions {
-  delete: [String]
-  update: [String]
-  admin: [String]
-  read: [String]
+    delete: [String]
+    update: [String]
+    admin: [String]
+    read: [String]
+}
+
+input PermissionsInput {
+    delete: [String]
+    update: [String]
+    admin: [String]
+    read: [String]
 }
 
 type Annotation {
-  id: String
-  created: String
-  updated: String
-  user: String
-  uri: String
-  text: String
-  group: String
-  flagged: Boolean
-  hidden: Boolean
-  user_info: UserInfo
-  links: Links
-  document: Document
-  target: [Target]
-  permissions: Permissions
-  references: [String]
-  tags: [String]
+    id: String
+    created: String
+    updated: String
+    user: String
+    uri: String
+    text: String
+    group: String
+    flagged: Boolean
+    hidden: Boolean
+    user_info: UserInfo
+    links: Links
+    document: Document
+    target: [Target]
+    permissions: Permissions
+    references: [String]
+    tags: [String]
 }
 
 type APIResponse {
-  total: Int
-  rows: [Annotation!]
+    total: Int
+    rows: [Annotation!]
 }
 
 type Query {
     annotations(
-        _separate_replies: Boolean,
-        any: String,
-        group: String,
-        limit: Int,
-        offset: Int,
-        order: String,
-        quote: String,
-        references: String,
-        search_after: String,
-        sort: String,
-        tag: String,
-        tags: [String],
-        text: String,
-        uri: String,
-        user: String,
+        _separate_replies: Boolean
+        any: String
+        group: String
+        limit: Int
+        offset: Int
+        order: String
+        quote: String
+        references: String
+        search_after: String
+        sort: String
+        tag: String
+        tags: [String]
+        text: String
+        uri: String
+        user: String
         wildcard_uri: String
     ): APIResponse
+    annotation(id: String): Annotation
+}
+
+type Mutation {
+    createAnnotation(
+        id: String
+        created: String
+        updated: String
+        user: String
+        uri: String
+        text: String
+        group: String
+        flagged: Boolean
+        hidden: Boolean
+        user_info: UserInfoInput
+        links: LinksInput
+        document: DocumentInput
+        target: [TargetInput]
+        permissions: PermissionsInput
+        references: [String]
+        tags: [String]
+    ): Annotation
 }

@@ -5,6 +5,8 @@ import { Routes } from '../navigation/routes';
 interface INav extends RouteComponentProps {}
 
 const Nav: FunctionComponent<any> = () => {
+    const [menuOpen, setMenuOpen] = React.useState(false);
+
     return (
         <nav className="navbar is-transparent is-fixed-top">
             <div className="navbar-brand">
@@ -24,14 +26,22 @@ const Nav: FunctionComponent<any> = () => {
                         height="28"
                     />
                 </a>
-                <div className="navbar-burger burger" data-target="navbar">
+                <div
+                    className={`navbar-burger burger ${
+                        menuOpen ? 'is-active' : ''
+                    }`}
+                    data-target="navbar"
+                    onClick={() => setMenuOpen(!menuOpen)}
+                >
                     <span></span>
                     <span></span>
                     <span></span>
                 </div>
             </div>
-
-            <div id="navbar" className="navbar-menu">
+            <div
+                id="navbar"
+                className={`navbar-menu ${menuOpen ? 'is-active' : ''}`}
+            >
                 <div className="navbar-start">
                     {Routes.map((value, key) => {
                         return (

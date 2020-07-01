@@ -26,13 +26,22 @@ export default class HypothesisAPI extends RESTDataSource {
     }
 
     willSendRequest(request: RequestOptions) {
+        console.log(process.env.HYPOTHESIS_API_TOKEN);
         request.headers.set(
             'Authorization',
             `Bearer ${process.env.HYPOTHESIS_API_TOKEN}`
         );
     }
 
+    async getAnnotation(id: string) {
+        return this.get(`annotations/${id}`);
+    }
+
     async getAnnotations(query: ISearchAnnotationsQuery) {
         return this.get(`search`, query);
+    }
+
+    async createAnnotation(annotation: any) {
+        return this.post('annotations', annotation);
     }
 }
