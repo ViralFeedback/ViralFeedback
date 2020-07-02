@@ -1,3 +1,6 @@
+# State files
+annotation_ids.txt
+
 # Logs
 logs
 *.log

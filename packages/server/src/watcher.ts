@@ -1,21 +1,29 @@
-import HypothesisAPI from './hypothesis-apollo-rest-datasource';
 import fetch from 'node-fetch';
+import fs from 'fs';
 
-// TODO persist to disk or DB
-let ids: string[] = [];
+// Make sure there is a file to read IDs from and save them to
+fs.openSync('./annotation_ids.txt', 'a');
 
 setInterval(async () => {
     // TODO update with group
     const response = await fetch('https://hypothes.is/api/search');
     const annotations = await response.json();
 
-    annotations.rows.map((annotation, key) => {
+    const ids = fs
+        .readFileSync('./annotation_ids.txt')
+        .toString('utf-8')
+        .split('\n');
+
+    annotations.rows.map((annotation: any, key: number) => {
         const tags = annotation.tags;
         if (tags.length > 0) {
-            tags.map(async (tag, index) => {
+            tags.map(async (tag: string, index: number) => {
                 if (tag === 'publish') {
                     if (!ids.includes(annotation.id)) {
-                        ids.push(annotation.id);
+                        fs.appendFileSync(
+                            './annotation_ids.txt',
+                            annotation.id + '\n'
+                        );
                         // TODO figure out author and use their API key
                         const createAnnotationResponse = await fetch(
                             'https://hypothes.is/api/annotations',
@@ -29,7 +37,10 @@ setInterval(async () => {
                             }
                         );
                         const createAnnotationResponseJSON = await createAnnotationResponse.json();
-                        ids.push(createAnnotationResponseJSON.id);
+                        fs.appendFileSync(
+                            './annotation_ids.txt',
+                            createAnnotationResponseJSON.id + '\n'
+                        );
                     }
                 }
             });
