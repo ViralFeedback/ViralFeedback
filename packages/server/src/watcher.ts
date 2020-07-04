@@ -32,15 +32,20 @@ setInterval(async () => {
     annotations.rows.map((annotation: any, key: number) => {
         const tags = annotation.tags;
 
+        console.log(annotation.tags);
+
         if (tags.length > 0) {
             tags.map(async (tag: string, index: number) => {
                 if (tag.toLowerCase() === 'publish') {
                     if (!ids.includes(annotation.id)) {
+                        console.log('Found an annotation to publish!');
                         fs.appendFileSync(
                             './annotation_ids.txt',
                             annotation.id + '\n'
                         );
 
+                        // account_api_keys.txt should be formated:
+                        // username, api_key
                         const accountApiKeys = fs
                             .readFileSync('./account_api_keys.txt')
                             .toString('utf-8')
@@ -53,8 +58,8 @@ setInterval(async () => {
                             .match(/acct:(.*)@hypothes.is/)[1]
                             .toLowerCase();
 
+                        // Get user's API key
                         let apiKey: undefined | null | string;
-
                         for (const index in accountApiKeys) {
                             if (accountApiKeys[index] !== '') {
                                 if (
@@ -74,12 +79,18 @@ setInterval(async () => {
                                 `Publishing annotation ${annotation.id} by ${username}`
                             );
 
-                            console.log(annotation);
-
+                            // Add group
                             annotation.group = process.env
                                 .HYPOTHESIS_PUBLISH_GROUP
                                 ? process.env.HYPOTHESIS_PUBLISH_GROUP
                                 : 'igRizgwB';
+
+                            // Filter out Publish tag
+                            annotation.tags = annotation.tags.filter(
+                                (tag: string) => tag.toLowerCase() !== 'publish'
+                            );
+
+                            console.log(annotation);
 
                             const createAnnotationResponse = await fetch(
                                 'https://hypothes.is/api/annotations',
@@ -99,10 +110,14 @@ setInterval(async () => {
                                 './annotation_ids.txt',
                                 createAnnotationResponseJSON.id + '\n'
                             );
+                        } else {
+                            console.error(
+                                `API key not found for ${username}. Check to make sure it is added to the account_api_keys.txt file in the root of the server folder.`
+                            );
                         }
                     }
                 }
             });
         }
     });
-}, 300000);
+}, 5000);
