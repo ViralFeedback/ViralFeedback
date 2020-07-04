@@ -34,7 +34,7 @@ setInterval(async () => {
 
         if (tags.length > 0) {
             tags.map(async (tag: string, index: number) => {
-                if (tag === 'publish') {
+                if (tag.toLowerCase() === 'publish') {
                     console.log(annotation);
 
                     if (!ids.includes(annotation.id)) {
