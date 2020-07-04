@@ -1,5 +1,6 @@
 # State files
 annotation_ids.txt
+account_api_keys.txt
 
 # Logs
 logs

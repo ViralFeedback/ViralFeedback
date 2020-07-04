@@ -7,7 +7,7 @@ import compression from 'compression';
 import cors from 'cors';
 import schema from './schema';
 import corsAnywhere from 'cors-anywhere';
-// import './watcher';
+import './watcher';
 
 const app = express();
 const server = new ApolloServer({
