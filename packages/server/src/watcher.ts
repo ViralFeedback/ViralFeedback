@@ -32,8 +32,6 @@ setInterval(async () => {
     annotations.rows.map((annotation: any, key: number) => {
         const tags = annotation.tags;
 
-        console.log(annotation.tags);
-
         if (tags.length > 0) {
             tags.map(async (tag: string, index: number) => {
                 if (tag.toLowerCase() === 'publish') {
@@ -79,18 +77,23 @@ setInterval(async () => {
                                 `Publishing annotation ${annotation.id} by ${username}`
                             );
 
+                            // Filter out Publish tag
+                            annotation.tags = annotation.tags.filter(
+                                (tag: string) => tag.toLowerCase() !== 'publish'
+                            );
+
                             // Add group
                             annotation.group = process.env
                                 .HYPOTHESIS_PUBLISH_GROUP
                                 ? process.env.HYPOTHESIS_PUBLISH_GROUP
                                 : 'igRizgwB';
 
-                            // Filter out Publish tag
-                            annotation.tags = annotation.tags.filter(
-                                (tag: string) => tag.toLowerCase() !== 'publish'
-                            );
-
-                            console.log(annotation);
+                            annotation.permissions.read = process.env
+                                .HYPOTHESIS_PUBLISH_GROUP
+                                ? [
+                                      `group:${process.env.HYPOTHESIS_PUBLISH_GROUP}`
+                                  ]
+                                : ['group:igRizgwB'];
 
                             const createAnnotationResponse = await fetch(
                                 'https://hypothes.is/api/annotations',
@@ -105,6 +108,8 @@ setInterval(async () => {
                             );
 
                             const createAnnotationResponseJSON = await createAnnotationResponse.json();
+
+                            console.log(createAnnotationResponseJSON);
 
                             fs.appendFileSync(
                                 './annotation_ids.txt',
