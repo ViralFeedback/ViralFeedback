@@ -35,8 +35,6 @@ setInterval(async () => {
         if (tags.length > 0) {
             tags.map(async (tag: string, index: number) => {
                 if (tag.toLowerCase() === 'publish') {
-                    console.log(annotation);
-
                     if (!ids.includes(annotation.id)) {
                         fs.appendFileSync(
                             './annotation_ids.txt',
@@ -75,6 +73,8 @@ setInterval(async () => {
                             console.log(
                                 `Publishing annotation ${annotation.id} by ${username}`
                             );
+
+                            console.log(annotation);
 
                             annotation.group = process.env
                                 .HYPOTHESIS_PUBLISH_GROUP

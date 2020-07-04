@@ -26,7 +26,6 @@ export default class HypothesisAPI extends RESTDataSource {
     }
 
     willSendRequest(request: RequestOptions) {
-        console.log(process.env.HYPOTHESIS_API_TOKEN);
         request.headers.set(
             'Authorization',
             `Bearer ${process.env.HYPOTHESIS_API_TOKEN}`
