@@ -57,7 +57,7 @@ setInterval(async () => {
 
                         let apiKey: undefined | null | string;
 
-                        for (let index in accountApiKeys) {
+                        for (const index in accountApiKeys) {
                             if (accountApiKeys[index] !== '') {
                                 if (
                                     accountApiKeys[index]
