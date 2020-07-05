@@ -22,6 +22,8 @@ setInterval(async () => {
         }
     );
 
+    console.log(process.env.HYPOTHESIS_API_TOKEN);
+
     const annotations = await response.json();
 
     const ids = fs
@@ -31,6 +33,8 @@ setInterval(async () => {
 
     annotations.rows.map((annotation: any, key: number) => {
         const tags = annotation.tags;
+
+        console.log(annotation);
 
         if (tags.length > 0) {
             tags.map(async (tag: string, index: number) => {
