@@ -22,8 +22,6 @@ setInterval(async () => {
         }
     );
 
-    console.log(process.env.HYPOTHESIS_API_TOKEN);
-
     const annotations = await response.json();
 
     const ids = fs
@@ -31,19 +29,12 @@ setInterval(async () => {
         .toString('utf-8')
         .split('\n');
 
-    console.log(ids);
-
     annotations.rows.map((annotation: any, key: number) => {
         const tags = annotation.tags;
 
-        // console.log(annotation);
-
         if (tags.length > 0) {
-            console.log(annotation.tags);
-
             tags.map(async (tag: string, index: number) => {
                 if (tag.toLowerCase() === 'publish') {
-                    console.log(tag);
                     if (!ids.includes(annotation.id)) {
                         console.log('Found an annotation to publish!');
                         fs.appendFileSync(
