@@ -28,7 +28,7 @@ const HomeFeed: FunctionComponent = () => {
         limit: 100,
         group: process.env.REACT_APP_HYPOTHESIS_GROUP_ID
             ? process.env.REACT_APP_HYPOTHESIS_GROUP_ID
-            : '2ZpQXmM1',
+            : 'igRizgwB',
         offset: 0
     };
 

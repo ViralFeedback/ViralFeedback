@@ -159,19 +159,23 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({ data }) => {
                                 return (
                                     <span
                                         className={`tag  ${
-                                            value === 'Well supported'
+                                            value.toLowerCase() ===
+                                            'well supported'
                                                 ? 'is-success'
                                                 : ''
                                         } ${
-                                            value === 'Additional context'
+                                            value.toLowerCase() ===
+                                            'additional context'
                                                 ? 'is-info'
                                                 : ''
                                         } ${
-                                            value === 'More context needed'
+                                            value.toLowerCase() ===
+                                            'more context needed'
                                                 ? 'is-warning'
                                                 : ''
                                         } ${
-                                            value === 'Poorly supported'
+                                            value.toLowerCase() ===
+                                            'poorly supported'
                                                 ? 'is-danger'
                                                 : ''
                                         }`}
