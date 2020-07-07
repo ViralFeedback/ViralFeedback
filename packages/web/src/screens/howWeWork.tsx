@@ -40,14 +40,13 @@ const CommunityGuidelines: FunctionComponent = () => {
                             <p>
                                 Collectively, these source publications are
                                 targets for our contributors to consider for a
-                                public annotation. Our contributors consider
-                                which publications, according to their
-                                respective expertise, they are qualified to
-                                address. Our contributors then annotate articles
-                                to support debate claims, correct
-                                misinformation, or to add necessary context
-                                using the following evidence standards and
-                                annotation guidance:
+                                public annotation. Our contributors select news
+                                items that they feel qualified to annotate based
+                                on their respective expertise. Our contributors
+                                then annotate articles to support debate claims,
+                                correct misinformation, or to add necessary
+                                context using the following evidence standards
+                                and annotation guidance:
                             </p>
                             <h2 className="title is-6">Evidence standards: </h2>
                             <ul>

@@ -11,7 +11,7 @@ const About: FunctionComponent = () => {
                             Viral Feedback is a community of scientists, health
                             professionals, and associated content experts
                             providing data driven analysis, in the form of
-                            annotations, of SARS-CoV-2 and COVID-19 news
+                            annotations, of SARS-CoV-2 and COVID-19-related news
                             reports, government actions, breaking scientific
                             papers, and other media.
                         </p>
