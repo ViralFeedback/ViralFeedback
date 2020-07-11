@@ -24,6 +24,8 @@
       margin-left: 0.25em; }
     .app .annotation-feed .annotation .username {
       color: #363636; }
+  .app .annotation-feed .margin-top {
+    margin-top: 3em; }
   .app .annotation-feed .search-bar {
     max-width: 670px;
     margin: auto;
@@ -35,11 +37,12 @@
       .app .annotation-feed .search-bar .search-dropdown .title {
         margin-bottom: 10px; }
 
-.app .content .content-image img {
-  max-width: 90%; }
-
-.app .content .list-style-type-none {
-  list-style-type: none; }
+.app .content {
+  max-width: 960px; }
+  .app .content .content-image img {
+    max-width: 90%; }
+  .app .content .list-style-type-none {
+    list-style-type: none; }
 
 .app .navbar {
   box-shadow: 0 0 25px 0 rgba(171, 167, 191, 0.25); }

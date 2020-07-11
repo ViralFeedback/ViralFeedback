@@ -48,6 +48,10 @@ $progress-indeterminate-duration: 0.75s;
             }
         }
 
+        .margin-top {
+            margin-top: 3em;
+        }
+
         .search-bar {
             max-width: 670px;
             margin: auto;
@@ -68,6 +72,8 @@ $progress-indeterminate-duration: 0.75s;
     }
 
     .content {
+        max-width: 960px;
+
         .content-image {
             img {
                 max-width: 90%;

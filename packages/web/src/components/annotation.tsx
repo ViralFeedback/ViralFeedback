@@ -78,6 +78,7 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({ data }) => {
     let quote;
 
     const [showExtendedQuote, setShowExtendedQuote] = React.useState(false);
+    const [showExtendedText, setShowExtendedText] = React.useState(false);
 
     const selector = data.target[0]?.selector;
     if (selector) {

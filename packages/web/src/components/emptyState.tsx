@@ -1,18 +1,20 @@
 import React, { FunctionComponent } from 'react';
 
 interface IEmptyState {
+    className: string;
     iconClass: string;
     subtitle?: string;
     title: string;
 }
 
 const Loading: FunctionComponent<IEmptyState> = ({
+    className,
     iconClass,
     subtitle,
     title
 }) => {
     return (
-        <div className="has-text-centered">
+        <div className={`has-text-centered ${className}`}>
             <span className="icon is-large">
                 <i className={`fa-2x ${iconClass}`} />
             </span>

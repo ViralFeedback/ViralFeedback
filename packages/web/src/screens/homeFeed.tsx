@@ -1,16 +1,25 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import Annotation, { IAnnotation } from 'components/annotation';
 import EmptyState from 'components/emptyState';
 import Loading from 'components/loading';
 import { useAnnotationsQuery } from '../graphql';
 import MultiSelect from 'react-multi-select-component';
+import Select from 'react-select';
 
 const HomeFeed: FunctionComponent = () => {
-    const [isSearchMenuOpen, setSearchMenuOpen] = React.useState(false);
-    const [selected, setSelected] = React.useState([]);
-    const [searchText, setSearchText] = React.useState('');
+    const [isSearchMenuOpen, setSearchMenuOpen] = useState(false);
+    const [selectedTopic, setSelectedTopic] = useState([]);
+    const [searchText, setSearchText] = useState('');
+    const [selectedQuality, setSelectedQuality] = useState([]);
 
-    const filterOptions = [
+    const qualityFilterOptions = [
+        { label: 'Well Supported', value: 'well supported' },
+        { label: 'Poorly Supported', value: 'poorly supported' },
+        { label: 'Additional Context', value: 'additional context' },
+        { label: 'More Context Needed', value: 'more context needed' }
+    ];
+
+    const topicFilterOptions = [
         { label: 'Molecular biology', value: 'molecular biology' },
         { label: 'Molecular diagnostics', value: 'molecular diagnostics' },
         { label: 'Immunology', value: 'immunology' },
@@ -32,8 +41,6 @@ const HomeFeed: FunctionComponent = () => {
         offset: 0
     };
 
-    console.log(variables);
-
     const { data, loading, error, refetch } = useAnnotationsQuery({
         variables,
         pollInterval: 30000
@@ -43,17 +50,22 @@ const HomeFeed: FunctionComponent = () => {
         let newVariables = variables;
         if (searchText !== '') newVariables.any = searchText;
         let tags: string[] = [];
-        if (selected.length > 0) {
-            selected.map((value: any, key) => {
-                return tags.push(value.value);
-            });
+        const topic: any = selectedTopic;
+        const quality: any = selectedQuality;
+        console.log(selectedQuality);
+        if (topic?.value) {
+            tags.push(topic.value);
+        }
+        if (quality?.value) {
+            tags.push(quality.value);
         }
         if (tags.length > 0) newVariables.tags = tags;
         refetch(newVariables);
     };
 
     const handleClearSearch = () => {
-        setSelected([]);
+        setSelectedTopic([]);
+        setSelectedQuality([]);
         setSearchText('');
         setSearchMenuOpen(false);
         refetch(variables);
@@ -114,13 +126,23 @@ const HomeFeed: FunctionComponent = () => {
                                     <h6 className="title is-6">
                                         Filter by topic:
                                     </h6>
-                                    <MultiSelect
-                                        className="multi-select"
-                                        options={filterOptions}
-                                        value={selected}
-                                        onChange={setSelected}
-                                        labelledBy={'Select'}
-                                        hasSelectAll={false}
+                                    <Select
+                                        isClearable
+                                        onChange={setSelectedTopic}
+                                        options={topicFilterOptions}
+                                        value={selectedTopic}
+                                    />
+                                </div>
+                                <hr className="dropdown-divider" />
+                                <div className="dropdown-item">
+                                    <h6 className="title is-6">
+                                        Filter by quality:
+                                    </h6>
+                                    <Select
+                                        isClearable
+                                        onChange={setSelectedQuality}
+                                        options={qualityFilterOptions}
+                                        value={selectedQuality}
                                     />
                                 </div>
                                 <hr className="dropdown-divider" />
@@ -171,78 +193,11 @@ const HomeFeed: FunctionComponent = () => {
                     })
                 ) : (
                     <EmptyState
-                        iconClass="fas fa-virus-slash"
+                        className="margin-top"
+                        iconClass="fas fa-comment-slash"
                         title="No annotations"
                     />
                 )}
-            </div>
-        </div>
-    );
-};
-
-const FilterComponent: FunctionComponent = () => {
-    const [wellSupported, setWellSupported] = React.useState(true);
-    const [additionalContext, setAdditionalContext] = React.useState(true);
-    const [moreContextNeeded, setMoreContextNeeded] = React.useState(true);
-    const [poorlySupported, setPoorlySupported] = React.useState(true);
-
-    return (
-        <div className="dropdown-item">
-            <h6 className="title is-6">Show:</h6>
-            <div className="field">
-                <input
-                    className="is-checkradio has-background-color is-success"
-                    id="well-supported-checkbox"
-                    type="checkbox"
-                    name="well-supported-checkbox"
-                    checked={wellSupported}
-                    onClick={() => setWellSupported(!wellSupported)}
-                />
-                <label htmlFor="well-supported-checkbox">Well supported</label>
-            </div>
-
-            <div className="field">
-                <input
-                    className="is-checkradio has-background-color is-info"
-                    id="additional-context-checkbox"
-                    type="checkbox"
-                    name="additional-context-checkbox"
-                    checked={additionalContext}
-                    onClick={() => setAdditionalContext(!additionalContext)}
-                />
-                <label htmlFor="additional-context-checkbox">
-                    Additional context
-                </label>
-            </div>
-
-            <div className="field">
-                <input
-                    className="is-checkradio has-background-color is-warning"
-                    id="more-context-checkbox"
-                    type="checkbox"
-                    name="more-context-checkbox"
-                    checked={moreContextNeeded}
-                    onClick={() => {
-                        setMoreContextNeeded(!moreContextNeeded);
-                    }}
-                />
-                <label htmlFor="more-context-checkbox">
-                    More context needed
-                </label>
-            </div>
-
-            <div className="field">
-                <input
-                    className="is-checkradio has-background-color is-danger"
-                    id="poorly-supported-checkbox"
-                    type="checkbox"
-                    name="poorly-supported-checkbox"
-                    checked={poorlySupported}
-                    onClick={() => setPoorlySupported(!poorlySupported)}
-                />
-                <label htmlFor="poorly-supported-checkbox">
-                    Poorly supported
-                </label>
             </div>
         </div>
     );
