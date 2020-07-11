@@ -1,11 +1,13 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Routes } from '../navigation/routes';
+import SuggestArticleModal from './suggestArticleModal';
 
 interface INav extends RouteComponentProps {}
 
 const Nav: FunctionComponent<any> = () => {
-    const [menuOpen, setMenuOpen] = React.useState(false);
+    const [menuOpen, setMenuOpen] = useState(false);
+    const [modalOpen, setModalOpen] = useState(false);
 
     return (
         <nav className="navbar is-transparent is-fixed-top">
@@ -66,21 +68,17 @@ const Nav: FunctionComponent<any> = () => {
                 <div className="navbar-end">
                     <div className="navbar-item">
                         <div className="field is-grouped">
-                            {
-                                // <p className="control">
-                                //     <a
-                                //         className="bd-tw-button button is-primary"
-                                //         target="_blank"
-                                //         rel="noopener noreferrer"
-                                //         href="https://viralfeedback.org"
-                                //     >
-                                //         <span className="icon">
-                                //             <i className="fas fa-inbox"></i>
-                                //         </span>
-                                //         <span>Suggest Article</span>
-                                //     </a>
-                                // </p>
-                            }
+                            <p className="control">
+                                <span
+                                    className="bd-tw-button button is-primary"
+                                    onClick={() => setModalOpen(!modalOpen)}
+                                >
+                                    <span className="icon">
+                                        <i className="fas fa-inbox"></i>
+                                    </span>
+                                    <span>Suggest Article</span>
+                                </span>
+                            </p>
                             <p className="control">
                                 <a
                                     className="bd-tw-button button is-info"
@@ -100,6 +98,11 @@ const Nav: FunctionComponent<any> = () => {
                         </div>
                     </div>
                 </div>
+
+                <SuggestArticleModal
+                    open={modalOpen}
+                    handleClose={() => setModalOpen(false)}
+                />
             </div>
         </nav>
     );

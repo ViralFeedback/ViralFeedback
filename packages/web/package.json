@@ -16,6 +16,7 @@
         "apollo-boost": "^0.4.9",
         "bulma": "^0.8.2",
         "bulma-checkradio": "^1.1.1",
+        "bulma-toast": "^2.0.1",
         "bulma-tooltip": "^3.0.2",
         "date-fns": "^2.14.0",
         "graphql": "^15.1.0",

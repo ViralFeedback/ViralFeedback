@@ -13,8 +13,18 @@ export type UserInfo = {
   display_name?: Maybe<Scalars['String']>;
 };
 
+export type UserInfoInput = {
+  display_name?: Maybe<Scalars['String']>;
+};
+
 export type Links = {
    __typename?: 'Links';
+  html?: Maybe<Scalars['String']>;
+  incontext?: Maybe<Scalars['String']>;
+  json?: Maybe<Scalars['String']>;
+};
+
+export type LinksInput = {
   html?: Maybe<Scalars['String']>;
   incontext?: Maybe<Scalars['String']>;
   json?: Maybe<Scalars['String']>;
@@ -25,8 +35,21 @@ export type Document = {
   title?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
+export type DocumentInput = {
+  title?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
 export type Selector = {
    __typename?: 'Selector';
+  type?: Maybe<Scalars['String']>;
+  exact?: Maybe<Scalars['String']>;
+  endOffset?: Maybe<Scalars['Int']>;
+  startOffset?: Maybe<Scalars['Int']>;
+  endContainer?: Maybe<Scalars['String']>;
+  startContainer?: Maybe<Scalars['String']>;
+};
+
+export type SelectorInput = {
   type?: Maybe<Scalars['String']>;
   exact?: Maybe<Scalars['String']>;
   endOffset?: Maybe<Scalars['Int']>;
@@ -41,8 +64,20 @@ export type Target = {
   selector?: Maybe<Array<Maybe<Selector>>>;
 };
 
+export type TargetInput = {
+  source?: Maybe<Scalars['String']>;
+  selector?: Maybe<Array<Maybe<SelectorInput>>>;
+};
+
 export type Permissions = {
    __typename?: 'Permissions';
+  delete?: Maybe<Array<Maybe<Scalars['String']>>>;
+  update?: Maybe<Array<Maybe<Scalars['String']>>>;
+  admin?: Maybe<Array<Maybe<Scalars['String']>>>;
+  read?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+export type PermissionsInput = {
   delete?: Maybe<Array<Maybe<Scalars['String']>>>;
   update?: Maybe<Array<Maybe<Scalars['String']>>>;
   admin?: Maybe<Array<Maybe<Scalars['String']>>>;
@@ -78,6 +113,7 @@ export type ApiResponse = {
 export type Query = {
    __typename?: 'Query';
   annotations?: Maybe<ApiResponse>;
+  annotation?: Maybe<Annotation>;
 };
 
 
@@ -98,4 +134,34 @@ export type QueryAnnotationsArgs = {
   uri?: Maybe<Scalars['String']>;
   user?: Maybe<Scalars['String']>;
   wildcard_uri?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryAnnotationArgs = {
+  id?: Maybe<Scalars['String']>;
+};
+
+export type Mutation = {
+   __typename?: 'Mutation';
+  createAnnotation?: Maybe<Annotation>;
+};
+
+
+export type MutationCreateAnnotationArgs = {
+  id?: Maybe<Scalars['String']>;
+  created?: Maybe<Scalars['String']>;
+  updated?: Maybe<Scalars['String']>;
+  user?: Maybe<Scalars['String']>;
+  uri?: Maybe<Scalars['String']>;
+  text?: Maybe<Scalars['String']>;
+  group?: Maybe<Scalars['String']>;
+  flagged?: Maybe<Scalars['Boolean']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  user_info?: Maybe<UserInfoInput>;
+  links?: Maybe<LinksInput>;
+  document?: Maybe<DocumentInput>;
+  target?: Maybe<Array<Maybe<TargetInput>>>;
+  permissions?: Maybe<PermissionsInput>;
+  references?: Maybe<Array<Maybe<Scalars['String']>>>;
+  tags?: Maybe<Array<Maybe<Scalars['String']>>>;
 };

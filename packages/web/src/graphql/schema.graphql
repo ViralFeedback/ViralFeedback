@@ -59,3 +59,43 @@ query Annotations(
         }
     }
 }
+
+mutation CreateAnnotation(
+    $id: String
+    $created: String
+    $updated: String
+    $user: String
+    $uri: String
+    $text: String
+    $group: String
+    $flagged: Boolean
+    $hidden: Boolean
+    $user_info: UserInfoInput
+    $links: LinksInput
+    $document: DocumentInput
+    $target: [TargetInput]
+    $permissions: PermissionsInput
+    $references: [String]
+    $tags: [String]
+) {
+    createAnnotation(
+        id: $id
+        created: $created
+        updated: $updated
+        user: $user
+        uri: $uri
+        text: $text
+        group: $group
+        flagged: $flagged
+        hidden: $hidden
+        user_info: $user_info
+        links: $links
+        document: $document
+        target: $target
+        permissions: $permissions
+        references: $references
+        tags: $tags
+    ) {
+        id
+    }
+}

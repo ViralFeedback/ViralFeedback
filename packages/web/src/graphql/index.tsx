@@ -16,8 +16,18 @@ export type UserInfo = {
   display_name?: Maybe<Scalars['String']>;
 };
 
+export type UserInfoInput = {
+  display_name?: Maybe<Scalars['String']>;
+};
+
 export type Links = {
    __typename?: 'Links';
+  html?: Maybe<Scalars['String']>;
+  incontext?: Maybe<Scalars['String']>;
+  json?: Maybe<Scalars['String']>;
+};
+
+export type LinksInput = {
   html?: Maybe<Scalars['String']>;
   incontext?: Maybe<Scalars['String']>;
   json?: Maybe<Scalars['String']>;
@@ -28,8 +38,21 @@ export type Document = {
   title?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
+export type DocumentInput = {
+  title?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
 export type Selector = {
    __typename?: 'Selector';
+  type?: Maybe<Scalars['String']>;
+  exact?: Maybe<Scalars['String']>;
+  endOffset?: Maybe<Scalars['Int']>;
+  startOffset?: Maybe<Scalars['Int']>;
+  endContainer?: Maybe<Scalars['String']>;
+  startContainer?: Maybe<Scalars['String']>;
+};
+
+export type SelectorInput = {
   type?: Maybe<Scalars['String']>;
   exact?: Maybe<Scalars['String']>;
   endOffset?: Maybe<Scalars['Int']>;
@@ -44,8 +67,20 @@ export type Target = {
   selector?: Maybe<Array<Maybe<Selector>>>;
 };
 
+export type TargetInput = {
+  source?: Maybe<Scalars['String']>;
+  selector?: Maybe<Array<Maybe<SelectorInput>>>;
+};
+
 export type Permissions = {
    __typename?: 'Permissions';
+  delete?: Maybe<Array<Maybe<Scalars['String']>>>;
+  update?: Maybe<Array<Maybe<Scalars['String']>>>;
+  admin?: Maybe<Array<Maybe<Scalars['String']>>>;
+  read?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+export type PermissionsInput = {
   delete?: Maybe<Array<Maybe<Scalars['String']>>>;
   update?: Maybe<Array<Maybe<Scalars['String']>>>;
   admin?: Maybe<Array<Maybe<Scalars['String']>>>;
@@ -81,6 +116,7 @@ export type ApiResponse = {
 export type Query = {
    __typename?: 'Query';
   annotations?: Maybe<ApiResponse>;
+  annotation?: Maybe<Annotation>;
 };
 
 
@@ -101,6 +137,36 @@ export type QueryAnnotationsArgs = {
   uri?: Maybe<Scalars['String']>;
   user?: Maybe<Scalars['String']>;
   wildcard_uri?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryAnnotationArgs = {
+  id?: Maybe<Scalars['String']>;
+};
+
+export type Mutation = {
+   __typename?: 'Mutation';
+  createAnnotation?: Maybe<Annotation>;
+};
+
+
+export type MutationCreateAnnotationArgs = {
+  id?: Maybe<Scalars['String']>;
+  created?: Maybe<Scalars['String']>;
+  updated?: Maybe<Scalars['String']>;
+  user?: Maybe<Scalars['String']>;
+  uri?: Maybe<Scalars['String']>;
+  text?: Maybe<Scalars['String']>;
+  group?: Maybe<Scalars['String']>;
+  flagged?: Maybe<Scalars['Boolean']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  user_info?: Maybe<UserInfoInput>;
+  links?: Maybe<LinksInput>;
+  document?: Maybe<DocumentInput>;
+  target?: Maybe<Array<Maybe<TargetInput>>>;
+  permissions?: Maybe<PermissionsInput>;
+  references?: Maybe<Array<Maybe<Scalars['String']>>>;
+  tags?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
 export type AnnotationsQueryVariables = {
@@ -146,6 +212,34 @@ export type AnnotationsQuery = (
         )>>> }
       )>>> }
     )>> }
+  )> }
+);
+
+export type CreateAnnotationMutationVariables = {
+  id?: Maybe<Scalars['String']>;
+  created?: Maybe<Scalars['String']>;
+  updated?: Maybe<Scalars['String']>;
+  user?: Maybe<Scalars['String']>;
+  uri?: Maybe<Scalars['String']>;
+  text?: Maybe<Scalars['String']>;
+  group?: Maybe<Scalars['String']>;
+  flagged?: Maybe<Scalars['Boolean']>;
+  hidden?: Maybe<Scalars['Boolean']>;
+  user_info?: Maybe<UserInfoInput>;
+  links?: Maybe<LinksInput>;
+  document?: Maybe<DocumentInput>;
+  target?: Maybe<Array<Maybe<TargetInput>>>;
+  permissions?: Maybe<PermissionsInput>;
+  references?: Maybe<Array<Maybe<Scalars['String']>>>;
+  tags?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+export type CreateAnnotationMutation = (
+  { __typename?: 'Mutation' }
+  & { createAnnotation?: Maybe<(
+    { __typename?: 'Annotation' }
+    & Pick<Annotation, 'id'>
   )> }
 );
 
@@ -220,3 +314,50 @@ export function useAnnotationsLazyQuery(baseOptions?: ApolloReactHooks.LazyQuery
 export type AnnotationsQueryHookResult = ReturnType<typeof useAnnotationsQuery>;
 export type AnnotationsLazyQueryHookResult = ReturnType<typeof useAnnotationsLazyQuery>;
 export type AnnotationsQueryResult = ApolloReactCommon.QueryResult<AnnotationsQuery, AnnotationsQueryVariables>;
+export const CreateAnnotationDocument = gql`
+    mutation CreateAnnotation($id: String, $created: String, $updated: String, $user: String, $uri: String, $text: String, $group: String, $flagged: Boolean, $hidden: Boolean, $user_info: UserInfoInput, $links: LinksInput, $document: DocumentInput, $target: [TargetInput], $permissions: PermissionsInput, $references: [String], $tags: [String]) {
+  createAnnotation(id: $id, created: $created, updated: $updated, user: $user, uri: $uri, text: $text, group: $group, flagged: $flagged, hidden: $hidden, user_info: $user_info, links: $links, document: $document, target: $target, permissions: $permissions, references: $references, tags: $tags) {
+    id
+  }
+}
+    `;
+export type CreateAnnotationMutationFn = ApolloReactCommon.MutationFunction<CreateAnnotationMutation, CreateAnnotationMutationVariables>;
+
+/**
+ * __useCreateAnnotationMutation__
+ *
+ * To run a mutation, you first call `useCreateAnnotationMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateAnnotationMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createAnnotationMutation, { data, loading, error }] = useCreateAnnotationMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      created: // value for 'created'
+ *      updated: // value for 'updated'
+ *      user: // value for 'user'
+ *      uri: // value for 'uri'
+ *      text: // value for 'text'
+ *      group: // value for 'group'
+ *      flagged: // value for 'flagged'
+ *      hidden: // value for 'hidden'
+ *      user_info: // value for 'user_info'
+ *      links: // value for 'links'
+ *      document: // value for 'document'
+ *      target: // value for 'target'
+ *      permissions: // value for 'permissions'
+ *      references: // value for 'references'
+ *      tags: // value for 'tags'
+ *   },
+ * });
+ */
+export function useCreateAnnotationMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreateAnnotationMutation, CreateAnnotationMutationVariables>) {
+        return ApolloReactHooks.useMutation<CreateAnnotationMutation, CreateAnnotationMutationVariables>(CreateAnnotationDocument, baseOptions);
+      }
+export type CreateAnnotationMutationHookResult = ReturnType<typeof useCreateAnnotationMutation>;
+export type CreateAnnotationMutationResult = ApolloReactCommon.MutationResult<CreateAnnotationMutation>;
+export type CreateAnnotationMutationOptions = ApolloReactCommon.BaseMutationOptions<CreateAnnotationMutation, CreateAnnotationMutationVariables>;
