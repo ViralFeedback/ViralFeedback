@@ -6,7 +6,6 @@ fs.openSync('./annotation_ids.txt', 'a');
 fs.openSync('./account_api_keys.txt', 'a');
 
 setInterval(async () => {
-    // TODO update with group
     const response = await fetch(
         `https://hypothes.is/api/search?group=${
             process.env.HYPOTHESIS_DRAFT_GROUP

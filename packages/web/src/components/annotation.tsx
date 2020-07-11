@@ -136,7 +136,7 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({ data }) => {
                                     text={quote}
                                     textTruncateChild={
                                         <span
-                                            className="has-text-link read-more"
+                                            className="read-more-quote"
                                             onClick={() =>
                                                 setShowExtendedQuote(
                                                     !showExtendedQuote
@@ -149,7 +149,25 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({ data }) => {
                                 />
                             </blockquote>
                         ) : null}
-                        <ReactMarkdown>{data.text}</ReactMarkdown>
+                        <ReactMarkdown
+                            className={`${
+                                !showExtendedText ? 'truncate-overflow' : ''
+                            }`}
+                        >
+                            {data.text}
+                        </ReactMarkdown>
+                        <span
+                            className="read-more-text"
+                            onClick={() =>
+                                setShowExtendedText(!showExtendedText)
+                            }
+                        >
+                            {showExtendedText ? (
+                                <span className="less">[Less]</span>
+                            ) : (
+                                '... Read More'
+                            )}
+                        </span>
                     </div>
                 </div>
 

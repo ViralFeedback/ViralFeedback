@@ -34,13 +34,49 @@ $progress-indeterminate-duration: 0.75s;
                 box-shadow: none;
             }
 
-            .read-more {
+            .read-more-quote {
                 cursor: pointer;
+                color: #b5b5b5;
+            }
+
+            .read-more-text {
+                color: #b5b5b5;
+                cursor: pointer;
+                position: absolute;
+                right: 20px;
+                bottom: 56px;
+
+                .less {
+                    bottom: 59px;
+                }
             }
 
             .timestamp {
                 opacity: 0.7;
                 margin-left: 0.25em;
+            }
+
+            .truncate-overflow {
+                --lh: 1.5rem;
+                --max-lines: 3;
+                position: relative;
+                max-height: calc(var(--lh) * var(--max-lines));
+                overflow: hidden;
+            }
+
+            .truncate-overflow::after {
+                content: '';
+                text-align: right;
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                width: 31%;
+                height: 1.2em;
+                background: linear-gradient(
+                    to right,
+                    rgba(255, 255, 255, 0),
+                    rgba(255, 255, 255, 1) 50%
+                );
             }
 
             .username {
@@ -72,7 +108,7 @@ $progress-indeterminate-duration: 0.75s;
     }
 
     .content {
-        max-width: 960px;
+        max-width: 900px;
 
         .content-image {
             img {
