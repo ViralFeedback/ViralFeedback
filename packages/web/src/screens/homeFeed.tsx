@@ -3,7 +3,6 @@ import Annotation, { IAnnotation } from 'components/annotation';
 import EmptyState from 'components/emptyState';
 import Loading from 'components/loading';
 import { useAnnotationsQuery } from '../graphql';
-import MultiSelect from 'react-multi-select-component';
 import Select from 'react-select';
 
 const HomeFeed: FunctionComponent = () => {
