@@ -5,7 +5,8 @@
     margin: auto;
     margin-bottom: 30px;
     padding: 20px;
-    border: none; }
+    border: none;
+    overflow: hidden; }
     .app .annotation-feed .annotation .content .annotation-content {
       margin-top: 0.5em; }
     .app .annotation-feed .annotation .content blockquote {
@@ -43,7 +44,7 @@
       position: absolute;
       bottom: 0;
       right: 0;
-      width: 31%;
+      width: 39%;
       height: 1.2em;
       background: linear-gradient(to right, rgba(255, 255, 255, 0), white 50%); }
     .app .annotation-feed .annotation .username {

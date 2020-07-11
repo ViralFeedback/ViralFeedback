@@ -14,6 +14,7 @@ $progress-indeterminate-duration: 0.75s;
             margin-bottom: 30px;
             padding: 20px;
             border: none;
+            overflow: hidden;
 
             .content {
                 .annotation-content {
@@ -70,7 +71,7 @@ $progress-indeterminate-duration: 0.75s;
                 position: absolute;
                 bottom: 0;
                 right: 0;
-                width: 31%;
+                width: 39%;
                 height: 1.2em;
                 background: linear-gradient(
                     to right,
