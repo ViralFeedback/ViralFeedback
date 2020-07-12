@@ -1,5 +1,5 @@
 import { formatRelative } from 'date-fns';
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { ReactTinyLink } from 'react-tiny-link';
 import TextTruncate from 'react-text-truncate';
@@ -72,13 +72,18 @@ export interface IAnnotation {
 
 export interface IAnnotationDataObject {
     data: IAnnotation;
+    compact: boolean;
 }
 
-const Annotation: FunctionComponent<IAnnotationDataObject> = ({ data }) => {
+const Annotation: FunctionComponent<IAnnotationDataObject> = ({
+    data,
+    compact
+}) => {
     let quote;
 
-    const [showExtendedQuote, setShowExtendedQuote] = React.useState(false);
-    const [showExtendedText, setShowExtendedText] = React.useState(false);
+    const [visible, setVisible] = useState(false);
+    const [showExtendedQuote, setShowExtendedQuote] = useState(false);
+    const [showExtendedText, setShowExtendedText] = useState(false);
 
     const selector = data.target[0]?.selector;
     if (selector) {
@@ -94,7 +99,10 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({ data }) => {
     );
 
     return (
-        <article className="media annotation card">
+        <article
+            className="media annotation card"
+            onClick={() => setVisible(!visible)}
+        >
             <div className="media-content">
                 <div className="content">
                     <ReactTinyLink
@@ -126,48 +134,54 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({ data }) => {
                         <small className="timestamp">
                             {annotationPublishedDate}
                         </small>
-                        <br />
-                        {quote ? (
-                            <blockquote>
-                                <TextTruncate
-                                    line={showExtendedQuote ? 0 : 3}
-                                    element="span"
-                                    truncateText="…"
-                                    text={quote}
-                                    textTruncateChild={
-                                        <span
-                                            className="read-more-quote"
-                                            onClick={() =>
-                                                setShowExtendedQuote(
-                                                    !showExtendedQuote
-                                                )
+                        {!compact || visible ? (
+                            <>
+                                <br />
+                                {quote ? (
+                                    <blockquote>
+                                        <TextTruncate
+                                            line={showExtendedQuote ? 0 : 3}
+                                            element="span"
+                                            truncateText="…"
+                                            text={quote}
+                                            textTruncateChild={
+                                                <span
+                                                    className="read-more-quote"
+                                                    onClick={() =>
+                                                        setShowExtendedQuote(
+                                                            !showExtendedQuote
+                                                        )
+                                                    }
+                                                >
+                                                    Read on
+                                                </span>
                                             }
-                                        >
-                                            Read on
-                                        </span>
+                                        />
+                                    </blockquote>
+                                ) : null}
+                                <ReactMarkdown
+                                    className={`${
+                                        !showExtendedText
+                                            ? 'truncate-overflow'
+                                            : ''
+                                    }`}
+                                >
+                                    {data.text}
+                                </ReactMarkdown>
+                                <span
+                                    className="read-more-text"
+                                    onClick={() =>
+                                        setShowExtendedText(!showExtendedText)
                                     }
-                                />
-                            </blockquote>
+                                >
+                                    {showExtendedText ? (
+                                        <span className="less">[Less]</span>
+                                    ) : (
+                                        '... Read More'
+                                    )}
+                                </span>
+                            </>
                         ) : null}
-                        <ReactMarkdown
-                            className={`${
-                                !showExtendedText ? 'truncate-overflow' : ''
-                            }`}
-                        >
-                            {data.text}
-                        </ReactMarkdown>
-                        <span
-                            className="read-more-text"
-                            onClick={() =>
-                                setShowExtendedText(!showExtendedText)
-                            }
-                        >
-                            {showExtendedText ? (
-                                <span className="less">[Less]</span>
-                            ) : (
-                                '... Read More'
-                            )}
-                        </span>
                     </div>
                 </div>
 

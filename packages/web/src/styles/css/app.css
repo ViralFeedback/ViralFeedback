@@ -55,6 +55,8 @@
       color: #363636; }
   .app .annotation-feed .margin-top {
     margin-top: 3em; }
+  .app .annotation-feed .results {
+    margin-bottom: 0; }
   .app .annotation-feed .search-bar {
     max-width: 670px;
     margin: auto;

@@ -10,6 +10,7 @@ const HomeFeed: FunctionComponent = () => {
     const [selectedTopic, setSelectedTopic] = useState([]);
     const [searchText, setSearchText] = useState('');
     const [selectedQuality, setSelectedQuality] = useState([]);
+    const [compactView, setCompactView] = useState(false);
 
     const qualityFilterOptions = [
         { label: 'Well Supported', value: 'well supported' },
@@ -82,9 +83,37 @@ const HomeFeed: FunctionComponent = () => {
         <div className="annotation-feed container">
             <div className="level search-bar">
                 <div className="level-left">
-                    <div className="level-item subtitle is-5">
+                    <div className="level-item subtitle is-5 results">
                         <strong>{total ? total : 0}</strong>
                         <span style={{ paddingLeft: 7 }}>results</span>
+                    </div>
+                    <div className="level-item field has-addons">
+                        <p className="control">
+                            <button
+                                className={`button ${
+                                    !compactView ? 'is-selected is-success' : ''
+                                } has-tooltip-bottom`}
+                                data-tooltip="Expanded View"
+                                onClick={() => setCompactView(!compactView)}
+                            >
+                                <span className="icon is-small">
+                                    <i className="fas fa-comment-alt"></i>
+                                </span>
+                            </button>
+                        </p>
+                        <p className="control">
+                            <button
+                                className={`button ${
+                                    compactView ? 'is-selected is-success' : ''
+                                } has-tooltip-bottom`}
+                                data-tooltip="List View"
+                                onClick={() => setCompactView(!compactView)}
+                            >
+                                <span className="icon is-small">
+                                    <i className="fas fa-list"></i>
+                                </span>
+                            </button>
+                        </p>
                     </div>
                 </div>
                 <div className="level-right">
@@ -188,7 +217,13 @@ const HomeFeed: FunctionComponent = () => {
             <div className="has-text-centered">
                 {annotations && annotations.length !== 0 ? (
                     annotations.map((value, key) => {
-                        return <Annotation data={value} key={key} />;
+                        return (
+                            <Annotation
+                                compact={compactView}
+                                data={value}
+                                key={key}
+                            />
+                        );
                     })
                 ) : (
                     <EmptyState
