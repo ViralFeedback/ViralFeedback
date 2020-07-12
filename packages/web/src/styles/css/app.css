@@ -83,6 +83,13 @@
 .app .page-content {
   margin-top: 56px; }
 
+@media (max-width: 400px) {
+  .app .annotation-feed .annotation .truncate-overflow::after {
+    width: 60%; }
+  .app .annotation-feed .search-bar {
+    padding-left: 10px;
+    padding-right: 10px; } }
+
 /*! bulma.io v0.8.2 | MIT License | github.com/jgthms/bulma */
 @keyframes spinAround {
   from {

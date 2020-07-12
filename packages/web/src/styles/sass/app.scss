@@ -145,6 +145,24 @@ $progress-indeterminate-duration: 0.75s;
     }
 }
 
+// Mobile stylngs
+@media (max-width: 400px) {
+    .app {
+        .annotation-feed {
+            .annotation {
+                .truncate-overflow::after {
+                    width: 60%;
+                }
+            }
+
+            .search-bar {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+        }
+    }
+}
+
 // Vendor
 @import '../../../node_modules/bulma/bulma.sass';
 @import '../../../node_modules/bulma-tooltip/src/sass/index.sass';

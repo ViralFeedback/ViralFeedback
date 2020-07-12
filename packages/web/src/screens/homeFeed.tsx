@@ -81,7 +81,7 @@ const HomeFeed: FunctionComponent = () => {
 
     return (
         <div className="annotation-feed container">
-            <div className="level search-bar">
+            <div className="level search-bar is-mobile">
                 <div className="level-left">
                     <div className="level-item subtitle is-5 results">
                         <strong>{total ? total : 0}</strong>
