@@ -7,8 +7,7 @@ import compression from 'compression';
 import cors from 'cors';
 import schema from './schema';
 import corsAnywhere from 'cors-anywhere';
-// // TODO uncomment to enable bot
-// import './watcher';
+import './watcher';
 
 const app = express();
 const server = new ApolloServer({
