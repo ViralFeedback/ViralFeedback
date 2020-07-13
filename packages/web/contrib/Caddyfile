@@ -1,4 +1,4 @@
-viralfeedback.org {
+167.172.114.39, www.viralfeedback.org, viralfeedback.org {
   root * /var/www/web/packages/web/build
   file_server
 }
