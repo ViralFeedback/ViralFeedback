@@ -1,6 +1,5 @@
 import React, { FunctionComponent, useState } from 'react';
 import * as bulmaToast from 'bulma-toast';
-import { isValid } from 'date-fns';
 import { useCreateAnnotationMutation } from '../graphql';
 
 interface ISuggestArticleModal {
@@ -15,7 +14,7 @@ const SuggestArticleModal: FunctionComponent<ISuggestArticleModal> = ({
     open,
     handleClose
 }) => {
-    const [createAnnotation, {}] = useCreateAnnotationMutation();
+    const [createAnnotation] = useCreateAnnotationMutation();
     const [url, setUrl] = useState('');
     const [message, setMessage] = useState('');
     const [validUrl, setValidUrl] = useState(false);

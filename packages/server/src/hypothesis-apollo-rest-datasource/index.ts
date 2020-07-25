@@ -32,8 +32,8 @@ export default class HypothesisAPI extends RESTDataSource {
         );
     }
 
-    async getAnnotation(id: string) {
-        return this.get(`annotations/${id}`);
+    async getAnnotation(id) {
+        return this.get(`annotations/${id.id}`);
     }
 
     async getAnnotations(query: ISearchAnnotationsQuery) {

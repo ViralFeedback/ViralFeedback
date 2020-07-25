@@ -20,7 +20,8 @@
       overflow: hidden; }
     .app .annotation-feed .annotation .react_tinylink_card {
       border: none;
-      box-shadow: none; }
+      box-shadow: none;
+      background-color: transparent; }
     .app .annotation-feed .annotation .read-more-quote {
       cursor: pointer;
       color: #b5b5b5; }

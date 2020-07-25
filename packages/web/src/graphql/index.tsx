@@ -196,7 +196,7 @@ export type AnnotationsQuery = (
     & Pick<ApiResponse, 'total'>
     & { rows?: Maybe<Array<(
       { __typename?: 'Annotation' }
-      & Pick<Annotation, 'created' | 'updated' | 'text' | 'user' | 'uri' | 'references' | 'tags'>
+      & Pick<Annotation, 'id' | 'created' | 'updated' | 'text' | 'user' | 'uri' | 'references' | 'tags'>
       & { user_info?: Maybe<(
         { __typename?: 'UserInfo' }
         & Pick<UserInfo, 'display_name'>
@@ -212,6 +212,33 @@ export type AnnotationsQuery = (
         )>>> }
       )>>> }
     )>> }
+  )> }
+);
+
+export type AnnotationQueryVariables = {
+  id?: Maybe<Scalars['String']>;
+};
+
+
+export type AnnotationQuery = (
+  { __typename?: 'Query' }
+  & { annotation?: Maybe<(
+    { __typename?: 'Annotation' }
+    & Pick<Annotation, 'id' | 'created' | 'updated' | 'text' | 'user' | 'uri' | 'references' | 'tags'>
+    & { user_info?: Maybe<(
+      { __typename?: 'UserInfo' }
+      & Pick<UserInfo, 'display_name'>
+    )>, links?: Maybe<(
+      { __typename?: 'Links' }
+      & Pick<Links, 'html' | 'incontext'>
+    )>, target?: Maybe<Array<Maybe<(
+      { __typename?: 'Target' }
+      & Pick<Target, 'source'>
+      & { selector?: Maybe<Array<Maybe<(
+        { __typename?: 'Selector' }
+        & Pick<Selector, 'exact'>
+      )>>> }
+    )>>> }
   )> }
 );
 
@@ -249,6 +276,7 @@ export const AnnotationsDocument = gql`
   annotations(_separate_replies: $_separate_replies, any: $any, group: $group, limit: $limit, offset: $offset, order: $order, quote: $quote, references: $references, search_after: $search_after, sort: $sort, tag: $tag, tags: $tags, text: $text, uri: $uri, user: $user, wildcard_uri: $wildcard_uri) {
     total
     rows {
+      id
       created
       updated
       text
@@ -314,6 +342,59 @@ export function useAnnotationsLazyQuery(baseOptions?: ApolloReactHooks.LazyQuery
 export type AnnotationsQueryHookResult = ReturnType<typeof useAnnotationsQuery>;
 export type AnnotationsLazyQueryHookResult = ReturnType<typeof useAnnotationsLazyQuery>;
 export type AnnotationsQueryResult = ApolloReactCommon.QueryResult<AnnotationsQuery, AnnotationsQueryVariables>;
+export const AnnotationDocument = gql`
+    query Annotation($id: String) {
+  annotation(id: $id) {
+    id
+    created
+    updated
+    text
+    user
+    user_info {
+      display_name
+    }
+    uri
+    links {
+      html
+      incontext
+    }
+    references
+    tags
+    target {
+      source
+      selector {
+        exact
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useAnnotationQuery__
+ *
+ * To run a query within a React component, call `useAnnotationQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAnnotationQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useAnnotationQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useAnnotationQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<AnnotationQuery, AnnotationQueryVariables>) {
+        return ApolloReactHooks.useQuery<AnnotationQuery, AnnotationQueryVariables>(AnnotationDocument, baseOptions);
+      }
+export function useAnnotationLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<AnnotationQuery, AnnotationQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<AnnotationQuery, AnnotationQueryVariables>(AnnotationDocument, baseOptions);
+        }
+export type AnnotationQueryHookResult = ReturnType<typeof useAnnotationQuery>;
+export type AnnotationLazyQueryHookResult = ReturnType<typeof useAnnotationLazyQuery>;
+export type AnnotationQueryResult = ApolloReactCommon.QueryResult<AnnotationQuery, AnnotationQueryVariables>;
 export const CreateAnnotationDocument = gql`
     mutation CreateAnnotation($id: String, $created: String, $updated: String, $user: String, $uri: String, $text: String, $group: String, $flagged: Boolean, $hidden: Boolean, $user_info: UserInfoInput, $links: LinksInput, $document: DocumentInput, $target: [TargetInput], $permissions: PermissionsInput, $references: [String], $tags: [String]) {
   createAnnotation(id: $id, created: $created, updated: $updated, user: $user, uri: $uri, text: $text, group: $group, flagged: $flagged, hidden: $hidden, user_info: $user_info, links: $links, document: $document, target: $target, permissions: $permissions, references: $references, tags: $tags) {

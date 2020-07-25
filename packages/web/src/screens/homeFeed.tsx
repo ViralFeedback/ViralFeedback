@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useState } from 'react';
-import Annotation, { IAnnotation } from 'components/annotation';
+import Annotation from 'components/annotation';
 import EmptyState from 'components/emptyState';
 import Loading from 'components/loading';
 import { useAnnotationsQuery } from '../graphql';

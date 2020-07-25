@@ -36,6 +36,7 @@ query Annotations(
     ) {
         total
         rows {
+            id
             created
             updated
             text
@@ -55,6 +56,32 @@ query Annotations(
                 selector {
                     exact
                 }
+            }
+        }
+    }
+}
+
+query Annotation($id: String) {
+    annotation(id: $id) {
+        id
+        created
+        updated
+        text
+        user
+        user_info {
+            display_name
+        }
+        uri
+        links {
+            html
+            incontext
+        }
+        references
+        tags
+        target {
+            source
+            selector {
+                exact
             }
         }
     }

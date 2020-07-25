@@ -3,6 +3,7 @@ import React, { FunctionComponent, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { ReactTinyLink } from 'react-tiny-link';
 import TextTruncate from 'react-text-truncate';
+import { Link } from 'react-router-dom';
 
 export interface Range {
     endOffset: number;
@@ -51,27 +52,27 @@ export interface UserInfo {
 }
 
 export interface IAnnotation {
-    ranges: Range[];
-    consumer: string;
-    id: string;
+    ranges?: Range[];
+    consumer?: string;
+    id?: string;
     created: Date;
     updated: Date;
     user: string;
     uri: string;
     text: string;
     tags: string[];
-    group: string;
-    permissions: Permissions;
+    group?: string;
+    permissions?: Permissions;
     target: Target[];
-    document: Document;
+    document?: Document;
     links: Links;
-    flagged: boolean;
+    flagged?: boolean;
     hidden: boolean;
     user_info: UserInfo;
 }
 
 export interface IAnnotationDataObject {
-    data: IAnnotation;
+    data: any;
     compact: boolean;
 }
 
@@ -123,6 +124,7 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({
                 array_move(tags, key, 0);
             }
         }
+        return null;
         // // TODO change card color based on type
         // if (value.toLowerCase() === 'well supported') color = 'is-success';
         // if (value.toLowerCase() === 'additional context') color = 'is-info';
@@ -263,15 +265,15 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({
                                 <i className="fas fa-external-link-square-alt"></i>
                             </span>
                         </a>
-                        <a
+                        <Link
                             className="level-item"
                             data-tooltip="Share this annotation"
-                            href={data.links.html}
+                            to={`/annotation/${data.id}`}
                         >
                             <span className="icon is-small">
                                 <i className="fas fa-share-alt"></i>
                             </span>
-                        </a>
+                        </Link>
                     </div>
                 </nav>
             </div>

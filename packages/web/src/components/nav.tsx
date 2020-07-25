@@ -15,7 +15,7 @@ const Nav: FunctionComponent<any> = () => {
                 <div className="navbar-brand">
                     <a className="navbar-item logo" href="/">
                         <img
-                            src="virus.png"
+                            src="/virus.png"
                             alt="Virus <Logo></Logo>"
                             width="28"
                             height="28"
@@ -23,7 +23,7 @@ const Nav: FunctionComponent<any> = () => {
                     </a>
                     <a className="navbar-item" href="/">
                         <img
-                            src="title.png"
+                            src="/title.png"
                             alt="Viral Feedback"
                             width="200"
                             height="28"
@@ -47,6 +47,7 @@ const Nav: FunctionComponent<any> = () => {
                 >
                     <div className="navbar-start">
                         {Routes.map((value, key) => {
+                            if (value.hidden) return null;
                             return (
                                 <Link
                                     to={value.path}

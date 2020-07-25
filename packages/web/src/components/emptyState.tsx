@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 
 interface IEmptyState {
-    className: string;
+    className?: string;
     iconClass: string;
     subtitle?: string;
     title: string;
