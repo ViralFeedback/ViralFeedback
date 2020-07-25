@@ -80,160 +80,177 @@ const HomeFeed: FunctionComponent = () => {
     const total = data?.annotations?.total;
 
     return (
-        <div className="annotation-feed container">
-            <div className="level search-bar is-mobile">
-                <div className="level-left">
-                    <div className="level-item subtitle is-5 results">
-                        <strong>{total ? total : 0}</strong>
-                        <span style={{ paddingLeft: 7 }}>results</span>
-                    </div>
-                    <div className="level-item field has-addons">
-                        <p className="control">
-                            <button
-                                className={`button ${
-                                    !compactView ? 'is-selected is-success' : ''
-                                } has-tooltip-bottom`}
-                                data-tooltip="Expanded View"
-                                onClick={() => setCompactView(!compactView)}
-                            >
-                                <span className="icon is-small">
-                                    <i className="fas fa-comment-alt"></i>
-                                </span>
-                            </button>
-                        </p>
-                        <p className="control">
-                            <button
-                                className={`button ${
-                                    compactView ? 'is-selected is-success' : ''
-                                } has-tooltip-bottom`}
-                                data-tooltip="List View"
-                                onClick={() => setCompactView(!compactView)}
-                            >
-                                <span className="icon is-small">
-                                    <i className="fas fa-list"></i>
-                                </span>
-                            </button>
-                        </p>
-                    </div>
-                </div>
-                <div className="level-right">
-                    <div
-                        className={`dropdown level-item is-right  ${
-                            isSearchMenuOpen ? 'is-active' : ''
-                        }`}
-                    >
-                        <div className="dropdown-trigger">
-                            <button
-                                className="button"
-                                aria-haspopup="true"
-                                aria-controls="dropdown-menu2"
-                                onClick={() => {
-                                    setSearchMenuOpen(!isSearchMenuOpen);
-                                }}
-                            >
-                                <span>
-                                    <i className="fas fa-search"></i>
-                                    {'  '}
-                                    Search options
-                                </span>
-                                <span className="icon is-small">
-                                    <i
-                                        className="fas fa-angle-down"
-                                        aria-hidden="true"
-                                    ></i>
-                                </span>
-                            </button>
+        <>
+            <div className="annotation-feed container">
+                <section className="hero">
+                    <div className="hero-body">
+                        <div className="container has-text-centered">
+                            <h2 className="title is-5">
+                                Providing scientific perspectives on public
+                                information regarding COVID-19... one annotation
+                                at a time.{' '}
+                            </h2>
                         </div>
+                    </div>
+                </section>
+                <div className="level search-bar is-mobile">
+                    <div className="level-left">
+                        <div className="level-item subtitle is-5 results">
+                            <strong>{total ? total : 0}</strong>
+                            <span style={{ paddingLeft: 7 }}>results</span>
+                        </div>
+                        <div className="level-item field has-addons">
+                            <p className="control">
+                                <button
+                                    className={`button ${
+                                        !compactView
+                                            ? 'is-selected is-success'
+                                            : ''
+                                    } has-tooltip-bottom`}
+                                    data-tooltip="Expanded View"
+                                    onClick={() => setCompactView(!compactView)}
+                                >
+                                    <span className="icon is-small">
+                                        <i className="fas fa-comment-alt"></i>
+                                    </span>
+                                </button>
+                            </p>
+                            <p className="control">
+                                <button
+                                    className={`button ${
+                                        compactView
+                                            ? 'is-selected is-success'
+                                            : ''
+                                    } has-tooltip-bottom`}
+                                    data-tooltip="List View"
+                                    onClick={() => setCompactView(!compactView)}
+                                >
+                                    <span className="icon is-small">
+                                        <i className="fas fa-list"></i>
+                                    </span>
+                                </button>
+                            </p>
+                        </div>
+                    </div>
+                    <div className="level-right">
                         <div
-                            className="dropdown-menu search-dropdown"
-                            id="dropdown-menu2"
-                            role="menu"
+                            className={`dropdown level-item is-right  ${
+                                isSearchMenuOpen ? 'is-active' : ''
+                            }`}
                         >
-                            <div className="dropdown-content">
-                                <div className="filter-by-topic">
-                                    <h6 className="title is-6">
-                                        Filter by topic:
-                                    </h6>
-                                    <Select
-                                        isClearable
-                                        onChange={setSelectedTopic}
-                                        options={topicFilterOptions}
-                                        value={selectedTopic}
-                                    />
-                                </div>
-                                <hr className="dropdown-divider" />
-                                <div className="dropdown-item">
-                                    <h6 className="title is-6">
-                                        Filter by quality:
-                                    </h6>
-                                    <Select
-                                        isClearable
-                                        onChange={setSelectedQuality}
-                                        options={qualityFilterOptions}
-                                        value={selectedQuality}
-                                    />
-                                </div>
-                                <hr className="dropdown-divider" />
-                                <div className="dropdown-item">
-                                    <div className="field">
+                            <div className="dropdown-trigger">
+                                <button
+                                    className="button"
+                                    aria-haspopup="true"
+                                    aria-controls="dropdown-menu2"
+                                    onClick={() => {
+                                        setSearchMenuOpen(!isSearchMenuOpen);
+                                    }}
+                                >
+                                    <span>
+                                        <i className="fas fa-search"></i>
+                                        {'  '}
+                                        Search options
+                                    </span>
+                                    <span className="icon is-small">
+                                        <i
+                                            className="fas fa-angle-down"
+                                            aria-hidden="true"
+                                        ></i>
+                                    </span>
+                                </button>
+                            </div>
+                            <div
+                                className="dropdown-menu search-dropdown"
+                                id="dropdown-menu2"
+                                role="menu"
+                            >
+                                <div className="dropdown-content">
+                                    <div className="dropdown-item">
                                         <h6 className="title is-6">
-                                            Search text:
+                                            Filter by quality:
                                         </h6>
-                                        <p className="control">
-                                            <input
-                                                className="input"
-                                                type="text"
-                                                placeholder="Search for a topic"
-                                                value={searchText}
-                                                onChange={(e) =>
-                                                    setSearchText(
-                                                        e.target.value
-                                                    )
-                                                }
-                                            />
-                                        </p>
+                                        <Select
+                                            isClearable
+                                            onChange={setSelectedQuality}
+                                            options={qualityFilterOptions}
+                                            value={selectedQuality}
+                                        />
                                     </div>
-                                </div>
-                                <hr className="dropdown-divider" />
-                                <div className="dropdown-item buttons">
-                                    <button
-                                        className="button is-primary"
-                                        onClick={handleSearchSubmit}
-                                    >
-                                        Search
-                                    </button>
-                                    <button
-                                        className="button"
-                                        onClick={handleClearSearch}
-                                    >
-                                        Clear
-                                    </button>
+                                    <hr className="dropdown-divider" />
+                                    <div className="filter-by-topic">
+                                        <h6 className="title is-6">
+                                            Filter by topic:
+                                        </h6>
+                                        <Select
+                                            isClearable
+                                            onChange={setSelectedTopic}
+                                            options={topicFilterOptions}
+                                            value={selectedTopic}
+                                        />
+                                    </div>
+                                    <hr className="dropdown-divider" />
+                                    <div className="dropdown-item">
+                                        <div className="field">
+                                            <h6 className="title is-6">
+                                                Search text:
+                                            </h6>
+                                            <p className="control">
+                                                <input
+                                                    className="input"
+                                                    type="text"
+                                                    placeholder="Search for a topic"
+                                                    value={searchText}
+                                                    onChange={(e) =>
+                                                        setSearchText(
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                />
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <hr className="dropdown-divider" />
+                                    <div className="dropdown-item buttons">
+                                        <button
+                                            className="button is-primary"
+                                            onClick={handleSearchSubmit}
+                                        >
+                                            Search
+                                        </button>
+                                        <button
+                                            className="button"
+                                            onClick={handleClearSearch}
+                                        >
+                                            Clear
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div className="has-text-centered">
+                    {annotations && annotations.length !== 0 ? (
+                        annotations.map((value, key) => {
+                            return (
+                                <Annotation
+                                    compact={compactView}
+                                    data={value}
+                                    key={key}
+                                />
+                            );
+                        })
+                    ) : (
+                        <EmptyState
+                            className="margin-top"
+                            iconClass="fas fa-comment-slash"
+                            title="No annotations"
+                        />
+                    )}
+                </div>
             </div>
-            <div className="has-text-centered">
-                {annotations && annotations.length !== 0 ? (
-                    annotations.map((value, key) => {
-                        return (
-                            <Annotation
-                                compact={compactView}
-                                data={value}
-                                key={key}
-                            />
-                        );
-                    })
-                ) : (
-                    <EmptyState
-                        className="margin-top"
-                        iconClass="fas fa-comment-slash"
-                        title="No annotations"
-                    />
-                )}
-            </div>
-        </div>
+        </>
     );
 };
 

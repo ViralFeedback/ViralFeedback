@@ -75,13 +75,11 @@
   .app .content .list-style-type-none {
     list-style-type: none; }
 
-.app .navbar {
-  box-shadow: 0 0 25px 0 rgba(171, 167, 191, 0.25); }
-  .app .navbar .logo {
-    margin-right: -1.5em; }
+.app .navbar .logo {
+  margin-right: -1.5em; }
 
 .app .page-content {
-  margin-top: 56px; }
+  margin-top: 36px; }
 
 @media (max-width: 400px) {
   .app .annotation-feed .annotation .truncate-overflow::after {

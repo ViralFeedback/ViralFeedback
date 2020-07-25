@@ -75,6 +75,17 @@ export interface IAnnotationDataObject {
     compact: boolean;
 }
 
+function array_move(arr, old_index, new_index) {
+    if (new_index >= arr.length) {
+        var k = new_index - arr.length + 1;
+        while (k--) {
+            arr.push(undefined);
+        }
+    }
+    arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
+    return arr; // for testing
+}
+
 const Annotation: FunctionComponent<IAnnotationDataObject> = ({
     data,
     compact
@@ -98,45 +109,65 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({
         new Date()
     );
 
+    const tags = data.tags;
+    let color = '';
+    data.tags.map((value, key) => {
+        if (
+            value.toLowerCase() === 'well supported' ||
+            value.toLowerCase() === 'additional context' ||
+            value.toLowerCase() === 'more context needed' ||
+            value.toLowerCase() === 'needs more context' ||
+            value.toLowerCase() === 'poorly supported'
+        ) {
+            if (key !== 0) {
+                array_move(tags, key, 0);
+            }
+        }
+        // // TODO change card color based on type
+        // if (value.toLowerCase() === 'well supported') color = 'is-success';
+        // if (value.toLowerCase() === 'additional context') color = 'is-info';
+        // if (value.toLowerCase() === 'more context needed') color = 'is-warning';
+        // if (value.toLowerCase() === 'needs more context') color = 'is-warning';
+        // if (value.toLowerCase() === 'poorly supported') color = 'is-danger';
+    });
+
     return (
         <article
-            className="media annotation card"
+            className={`media annotation card ${color}`}
             onClick={() => setVisible(!visible)}
         >
             <div className="media-content">
                 <div className="content">
-                    <ReactTinyLink
-                        cardSize="small"
-                        loadSecureUrl={true}
-                        maxLine={2}
-                        minLine={1}
-                        proxyUrl={
-                            process.env.REACT_APP_PROXY
-                                ? process.env.REACT_APP_PROXY
-                                : 'http://localhost:8080/proxy'
-                        }
-                        showGraphic={true}
-                        url={data.target[0].source}
-                    />
-
+                    <a
+                        href={`https://hypothes.is/users/${parseUserName(
+                            data.user
+                        )}`}
+                    >
+                        <strong className="username">
+                            {data.user_info.display_name
+                                ? data.user_info.display_name
+                                : parseUserName(data.user)}
+                        </strong>
+                    </a>{' '}
+                    <small className="timestamp">
+                        {annotationPublishedDate}
+                    </small>
                     <div className="annotation-content">
-                        <a
-                            href={`https://hypothes.is/users/${parseUserName(
-                                data.user
-                            )}`}
-                        >
-                            <strong className="username">
-                                {data.user_info.display_name
-                                    ? data.user_info.display_name
-                                    : parseUserName(data.user)}
-                            </strong>
-                        </a>{' '}
-                        <small className="timestamp">
-                            {annotationPublishedDate}
-                        </small>
+                        <ReactTinyLink
+                            cardSize="small"
+                            loadSecureUrl={true}
+                            maxLine={2}
+                            minLine={1}
+                            proxyUrl={
+                                process.env.REACT_APP_PROXY
+                                    ? process.env.REACT_APP_PROXY
+                                    : 'http://localhost:8080/proxy'
+                            }
+                            showGraphic={true}
+                            url={data.target[0].source}
+                        />
                         {!compact || visible ? (
                             <>
-                                <br />
                                 {quote ? (
                                     <blockquote>
                                         <TextTruncate
@@ -203,7 +234,9 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({
                                                 : ''
                                         } ${
                                             value.toLowerCase() ===
-                                            'more context needed'
+                                                'more context needed' ||
+                                            value.toLowerCase() ===
+                                                'needs more context'
                                                 ? 'is-warning'
                                                 : ''
                                         } ${
