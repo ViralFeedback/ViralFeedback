@@ -192,27 +192,31 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({
                                         />
                                     </blockquote>
                                 ) : null}
-                                <ReactMarkdown
-                                    className={`${
-                                        !showExtendedText
-                                            ? 'truncate-overflow'
-                                            : ''
-                                    }`}
-                                >
-                                    {data.text}
-                                </ReactMarkdown>
-                                <span
-                                    className="read-more-text"
-                                    onClick={() =>
-                                        setShowExtendedText(!showExtendedText)
-                                    }
-                                >
-                                    {showExtendedText ? (
-                                        <span className="less">[Less]</span>
-                                    ) : (
-                                        '... Read More'
-                                    )}
-                                </span>
+                                <div className="text">
+                                    <ReactMarkdown
+                                        className={`${
+                                            !showExtendedText
+                                                ? 'truncate-overflow'
+                                                : ''
+                                        }`}
+                                    >
+                                        {data.text}
+                                    </ReactMarkdown>
+                                    <span
+                                        className="read-more-text"
+                                        onClick={() =>
+                                            setShowExtendedText(
+                                                !showExtendedText
+                                            )
+                                        }
+                                    >
+                                        {showExtendedText ? (
+                                            <span className="less">[Less]</span>
+                                        ) : (
+                                            '... Read More'
+                                        )}
+                                    </span>
+                                </div>
                             </>
                         ) : null}
                     </div>
@@ -257,7 +261,7 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({
                     </div>
                     <div className="level-right">
                         <a
-                            className="level-item"
+                            className="level-item has-tooltip-left"
                             data-tooltip="View in context"
                             href={data.links.incontext}
                         >
@@ -266,7 +270,7 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({
                             </span>
                         </a>
                         <Link
-                            className="level-item"
+                            className="level-item has-tooltip-left"
                             data-tooltip="Share this annotation"
                             to={`/annotation/${data.id}`}
                         >

@@ -28,6 +28,16 @@ $progress-indeterminate-duration: 0.75s;
                     max-width: 630px;
                     overflow-wrap: break-word;
                 }
+
+                .text {
+                    position: relative;
+                }
+            }
+
+            .level {
+                .level-left {
+                    max-width: 80%;
+                }
             }
 
             .media-content {
@@ -50,12 +60,12 @@ $progress-indeterminate-duration: 0.75s;
                 color: #b5b5b5;
                 cursor: pointer;
                 position: absolute;
-                right: 20px;
-                bottom: 56px;
+                right: 0px;
+                bottom: 0px;
 
                 .less {
                     position: relative;
-                    bottom: 2px;
+                    bottom: 0px;
                 }
             }
 
