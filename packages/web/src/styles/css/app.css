@@ -87,6 +87,10 @@
   margin-top: 36px; }
 
 @media (max-width: 400px) {
+  .app .hero .title {
+    font-size: 1.1em; }
+  .app .annotation-feed .annotation .truncate-overflow {
+    --max-lines: 5; }
   .app .annotation-feed .annotation .truncate-overflow::after {
     width: 60%; }
   .app .annotation-feed .search-bar {

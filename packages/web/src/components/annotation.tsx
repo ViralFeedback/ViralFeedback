@@ -133,6 +133,8 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({
         // if (value.toLowerCase() === 'poorly supported') color = 'is-danger';
     });
 
+    const quoteLines = window.innerWidth > 520 ? 3 : 5;
+
     return (
         <article
             className={`media annotation card ${color}`}
@@ -173,7 +175,11 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({
                                 {quote ? (
                                     <blockquote>
                                         <TextTruncate
-                                            line={showExtendedQuote ? 0 : 3}
+                                            line={
+                                                showExtendedQuote
+                                                    ? 0
+                                                    : quoteLines
+                                            }
                                             element="span"
                                             truncateText="…"
                                             text={quote}

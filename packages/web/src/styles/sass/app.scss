@@ -157,8 +157,18 @@ $progress-indeterminate-duration: 0.75s;
 // Mobile stylngs
 @media (max-width: 400px) {
     .app {
+        .hero {
+            .title {
+                font-size: 1.1em;
+            }
+        }
+
         .annotation-feed {
             .annotation {
+                .truncate-overflow {
+                    --max-lines: 5;
+                }
+
                 .truncate-overflow::after {
                     width: 60%;
                 }
