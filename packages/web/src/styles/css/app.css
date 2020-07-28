@@ -80,8 +80,10 @@
   .app .content .list-style-type-none {
     list-style-type: none; }
 
-.app .navbar .logo {
-  margin-right: -1.5em; }
+.app .navbar {
+  box-shadow: 0 1px 3px #0000000f; }
+  .app .navbar .logo {
+    margin-right: -1.5em; }
 
 .app .page-content {
   margin-top: 36px; }
