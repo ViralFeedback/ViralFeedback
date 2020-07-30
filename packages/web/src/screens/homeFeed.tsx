@@ -238,6 +238,7 @@ const HomeFeed: FunctionComponent = () => {
                                     compact={compactView}
                                     data={value}
                                     key={key}
+                                    expanded={false}
                                 />
                             );
                         })

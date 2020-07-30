@@ -74,6 +74,7 @@ export interface IAnnotation {
 export interface IAnnotationDataObject {
     data: any;
     compact: boolean;
+    expanded: boolean;
 }
 
 function array_move(arr, old_index, new_index) {
@@ -89,13 +90,14 @@ function array_move(arr, old_index, new_index) {
 
 const Annotation: FunctionComponent<IAnnotationDataObject> = ({
     data,
-    compact
+    compact,
+    expanded
 }) => {
     let quote;
 
     const [visible, setVisible] = useState(false);
-    const [showExtendedQuote, setShowExtendedQuote] = useState(false);
-    const [showExtendedText, setShowExtendedText] = useState(false);
+    const [showExtendedQuote, setShowExtendedQuote] = useState(expanded);
+    const [showExtendedText, setShowExtendedText] = useState(expanded);
 
     const selector = data.target[0]?.selector;
     if (selector) {

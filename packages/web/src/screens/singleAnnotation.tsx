@@ -34,7 +34,11 @@ const SingleAnnotation: FunctionComponent = () => {
                         />
                         <meta property="og:image" content="/virus.png" />
                     </Helmet>
-                    <Annotation compact={false} data={data.annotation} />
+                    <Annotation
+                        compact={false}
+                        data={data.annotation}
+                        expanded={true}
+                    />
                 </>
             ) : (
                 <EmptyState
