@@ -161,6 +161,10 @@ const GetInvolved: FunctionComponent = () => {
                                 annotation at a time.
                             </strong>
                         </p>
+                        <p>
+                            Questions? Comments? Reach out to{' '}
+                            <em>inbox@viralfeedback.org</em>.
+                        </p>
                     </div>
                 </div>
             </section>
