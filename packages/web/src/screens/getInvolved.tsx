@@ -140,7 +140,9 @@ const GetInvolved: FunctionComponent = () => {
                             expertise in virology, molecular biology,
                             epidemiology, statistics, health policy, or related
                             fields. Grant support is available to support up to
-                            50% FTE.
+                            50% FTE. To apply for the Senior Moderator, please
+                            submit CV + Cover Letter to{' '}
+                            <em>inbox@viralfeedback.org</em>.
                         </p>
                         <p>
                             If you would like to participate in Viral Feedback,
