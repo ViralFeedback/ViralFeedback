@@ -95,3 +95,18 @@ jobs:
                       npm ci
                       npm run build
                       systemctl restart viral
+
+            - name: Executing remote command
+              uses: appleboy/ssh-action@master
+              env:
+                  REACT_APP_HYPOTHESIS_GROUP_ID: ${{ secrets.REACT_APP_HYPOTHESIS_GROUP_ID }}
+              with:
+                  host: ${{ secrets.HOST }}
+                  username: ${{ secrets.USERNAME }}
+                  port: ${{ secrets.PORT }}
+                  key: ${{ secrets.SSHKEY }}
+                  envs: HYPOTHESIS_API_TOKEN
+                  script: |
+                      export REACT_APP_HYPOTHESIS_GROUP_ID=$REACT_APP_HYPOTHESIS_GROUP_ID
+                      echo $REACT_APP_HYPOTHESIS_GROUP_ID
+                      ls
