@@ -73,6 +73,4 @@ npm test
 
 Deploying to a Digital Ocean droplet is handled by a Github action. You will need to add secrets for your instance. See `.github/workflows/ci.yml` for more info.
 
-In each package (server and web app), there is a `contrib` folder containing example systemd services.
-
-Additionally, in `packages/web` there is a `Caddyfile` used for configuring a [caddy server](https://caddyserver.com/) for serving static assets and serving as a reverse proxy for the API.
+The `contrib` folder containing example systemd services. Additionally, there is a `Caddyfile` used for configuring a [caddy server](https://caddyserver.com/) for serving static assets and serving as a reverse proxy for the API.

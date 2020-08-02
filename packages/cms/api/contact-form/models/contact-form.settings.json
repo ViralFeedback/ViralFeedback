@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "contact_forms",
+  "info": {
+    "name": "Contact Form"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "Email": {
+      "type": "email"
+    },
+    "Message": {
+      "type": "text"
+    }
+  }
+}

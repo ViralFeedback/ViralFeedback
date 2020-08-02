@@ -8,12 +8,14 @@
         "build": "tsc -p . && ncp src/graphql/schema.graphql dist/graphql/schema.graphql",
         "start:dev": "npm run build:dev",
         "build:dev": "dotenv -e .env nodemon 'src/server.ts' --exec 'ts-node' src/server.ts -e ts,graphql",
+        "build:gateway": "dotenv -e .env nodemon 'src/gateway.ts' --exec 'ts-node' src/gateway.ts -e ts,graphql",
         "test": "npm run build && (timeout 10s npm run start; exit 0)"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "@apollo/gateway": "^0.19.0",
         "apollo-datasource-rest": "^0.9.2",
         "apollo-server": "^2.15.0",
         "apollo-server-express": "^2.15.0",
