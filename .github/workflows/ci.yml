@@ -48,7 +48,7 @@ jobs:
                   key: ${{ secrets.SSHKEY }}
                   port: ${{ secrets.PORT }}
                   timeout: 1000s
-                  source: '/'
+                  source: './'
                   target: '/var/www/web/viralfeedback'
 
             - name: Build web and start static file server
