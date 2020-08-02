@@ -1,34 +1,32 @@
 import React, { FunctionComponent } from 'react';
 import EmptyState from 'components/emptyState';
 import Loading from 'components/loading';
-import Post from 'components/post';
-import { usePostsQuery } from '../graphql';
+import Job from 'components/job';
+import { useJobsQuery } from '../graphql';
 
-const About: FunctionComponent = () => {
-    const { data, loading } = usePostsQuery();
+const Jobs: FunctionComponent = () => {
+    const { data, loading } = useJobsQuery();
 
     if (loading) return <Loading />;
 
-    const posts = data?.posts;
+    const jobs = data?.jobs;
 
     return (
         <div>
             <section className="hero is-bold">
                 <div className="hero-body">
-                    {posts && posts.length > 0 ? (
+                    {jobs && jobs.length > 0 ? (
                         <div className="container content">
                             <h1 className="title">Blog</h1>
-                            {posts.map((value, key) => {
-                                const published = value?.published;
-                                if (!published) return null;
-                                return <Post data={value} key={key} />;
+                            {jobs.map((value, key) => {
+                                return <Job data={value} key={key} />;
                             })}
                         </div>
                     ) : (
                         <EmptyState
                             className="margin-top"
-                            iconClass="fas fa-comment-slash"
-                            title="No posts"
+                            iconClass="fas fa-work"
+                            title="No jobs currently"
                         />
                     )}
                 </div>
@@ -37,4 +35,4 @@ const About: FunctionComponent = () => {
     );
 };
 
-export default About;
+export default Jobs;

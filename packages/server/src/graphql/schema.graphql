@@ -107,17 +107,26 @@ type ContactForm {
     updated_at: DateTime!
     Email: String
     Message: String
-    # created_by: AdminUser
-    # updated_by: AdminUser
 }
 
 type Post {
     id: ID!
     created_at: DateTime!
     updated_at: DateTime!
-    Text: String
-    Title: String
-    Media: UploadFile
+    content: String
+    title: String
+    image: UploadFile
+    categories: [Category]
+    published: Boolean
+}
+
+type Category {
+    name: String
+}
+
+type Job {
+    title: String
+    description: String
 }
 
 type UploadFile {
@@ -138,8 +147,6 @@ type UploadFile {
     previewUrl: String
     provider: String!
     provider_metadata: JSON
-    # created_by: AdminUser
-    # updated_by: AdminUser
 }
 
 type Query {
@@ -162,6 +169,7 @@ type Query {
         wildcard_uri: String
     ): APIResponse
     annotation(id: String): Annotation
+    jobs: [Job]
     post(id: String): Post
     posts: [Post]
 }

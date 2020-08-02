@@ -9,6 +9,9 @@ const resolverMap: IResolvers = {
         async annotations(_: void, args: void, ctx: any): Promise<ApiResponse> {
             return await ctx.dataSources.HypothesisAPI.getAnnotations(args);
         },
+        async jobs(_: void, args: void, ctx: any): Promise<any> {
+            return await ctx.dataSources.CMS_API.getJobs(args);
+        },
         async post(_: void, args: void, ctx: any): Promise<any> {
             return await ctx.dataSources.CMS_API.getPost(args);
         },

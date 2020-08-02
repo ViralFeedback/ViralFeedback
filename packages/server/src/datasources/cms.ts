@@ -6,6 +6,10 @@ export default class CMS_API extends RESTDataSource {
         this.baseURL = 'http://localhost:1337';
     }
 
+    async getJobs() {
+        return this.get(`jobs`);
+    }
+
     async getPost(id) {
         return this.get(`posts/${id.id}`);
     }

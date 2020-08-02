@@ -1,22 +1,25 @@
 overwrite: true
 schema: 'http://localhost:8080/graphql'
-documents: './**/*.graphql'
+documents:
+    - './packages/server/src/graphql/*.graphql'
+    - './packages/web/src/graphql/*.graphql'
+
 generates:
-  ./packages/web/src/graphql/index.tsx:
-    plugins:
-      - 'typescript'
-      - 'typescript-operations'
-      - 'typescript-react-apollo'
-    config:
-      withHooks: true
-      withHOC: false
-      withComponent: false
-      withResultType: true
-      scalars:
-        Time: Date
-  ./packages/web/src/graphql/graphql.schema.json:
-    plugins:
-      - 'introspection'
-  ./packages/server/src/graphql/index.ts:
-    plugins:
-      - 'typescript'
+    ./packages/web/src/graphql/index.tsx:
+        plugins:
+            - 'typescript'
+            - 'typescript-operations'
+            - 'typescript-react-apollo'
+        config:
+            withHooks: true
+            withHOC: false
+            withComponent: false
+            withResultType: true
+            scalars:
+                Time: Date
+    ./packages/web/src/graphql/graphql.schema.json:
+        plugins:
+            - 'introspection'
+    ./packages/server/src/graphql/index.ts:
+        plugins:
+            - 'typescript'

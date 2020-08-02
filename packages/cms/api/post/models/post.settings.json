@@ -9,13 +9,15 @@
     "timestamps": true
   },
   "attributes": {
-    "Text": {
-      "type": "richtext"
+    "content": {
+      "type": "richtext",
+      "required": true
     },
-    "Title": {
-      "type": "string"
+    "title": {
+      "type": "string",
+      "required": true
     },
-    "Media": {
+    "image": {
       "model": "file",
       "via": "related",
       "allowedTypes": [
@@ -26,10 +28,12 @@
       "plugin": "upload",
       "required": false
     },
-    "user": {
-      "plugin": "users-permissions",
-      "model": "user",
-      "via": "posts"
+    "published": {
+      "type": "boolean"
+    },
+    "categories": {
+      "via": "posts",
+      "collection": "categories"
     }
   }
 }

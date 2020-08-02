@@ -87,6 +87,47 @@ query Annotation($id: String) {
     }
 }
 
+query Post($id: String) {
+    post(id: $id) {
+        title
+        content
+        image {
+            url
+        }
+        id
+        created_at
+        updated_at
+        categories {
+            name
+        }
+        published
+    }
+}
+
+query Posts {
+    posts {
+        title
+        content
+        image {
+            url
+        }
+        id
+        created_at
+        updated_at
+        categories {
+            name
+        }
+        published
+    }
+}
+
+query Jobs {
+    jobs {
+        title
+        description
+    }
+}
+
 mutation CreateAnnotation(
     $id: String
     $created: String
@@ -123,6 +164,12 @@ mutation CreateAnnotation(
         references: $references
         tags: $tags
     ) {
+        id
+    }
+}
+
+mutation SubmitContactForm($email: String, $message: String) {
+    submitContactForm(email: $email, message: $message) {
         id
     }
 }
