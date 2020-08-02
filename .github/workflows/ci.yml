@@ -30,25 +30,13 @@ jobs:
 
     deploy:
         needs: [build-lint-test]
+        if: github.ref == 'refs/heads/master'
         # The type of runner that the job will run on
         runs-on: ubuntu-latest
         # Steps represent a sequence of tasks that will be executed as part of the job
         steps:
             # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
             - uses: actions/checkout@v2
-
-            - name: Copy server files via scp
-              uses: appleboy/scp-action@master
-              env:
-                  HYPOTHESIS_API_TOKEN: ${{ secrets.HYPOTHESIS_API_TOKEN }}
-              with:
-                  host: ${{ secrets.HOST }}
-                  username: ${{ secrets.USERNAME }}
-                  key: ${{ secrets.SSHKEY }}
-                  port: ${{ secrets.PORT }}
-                  timeout: 1000s
-                  source: 'packages/server'
-                  target: '/opt/app'
 
             - name: Copy web files via scp
               uses: appleboy/scp-action@master
@@ -60,8 +48,8 @@ jobs:
                   key: ${{ secrets.SSHKEY }}
                   port: ${{ secrets.PORT }}
                   timeout: 1000s
-                  source: 'packages/web'
-                  target: '/var/www/web/'
+                  source: '/'
+                  target: '/var/www/web/viralfeedback'
 
             - name: Build web and start static file server
               uses: appleboy/ssh-action@master
@@ -79,7 +67,7 @@ jobs:
                       export REACT_APP_PROXY=$REACT_APP_PROXY
                       export REACT_APP_SERVER_URI=$REACT_APP_SERVER_URI
                       export REACT_APP_HYPOTHESIS_GROUP_ID=$REACT_APP_HYPOTHESIS_GROUP_ID
-                      cd /var/www/web/packages/web
+                      cd /var/www/web/viralfeedback/packages/web
                       wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
                       export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
                       [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
@@ -99,7 +87,7 @@ jobs:
                   envs: HYPOTHESIS_API_TOKEN
                   script: |
                       export HYPOTHESIS_API_TOKEN=$HYPOTHESIS_API_TOKEN
-                      cd /opt/app/packages/server
+                      cd /var/www/web/viralfeedback/packages/server
                       wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
                       export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
                       [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
@@ -107,3 +95,18 @@ jobs:
                       npm ci
                       npm run build
                       systemctl restart viral
+
+            - name: Executing remote command
+              uses: appleboy/ssh-action@master
+              env:
+                  REACT_APP_HYPOTHESIS_GROUP_ID: ${{ secrets.REACT_APP_HYPOTHESIS_GROUP_ID }}
+              with:
+                  host: ${{ secrets.HOST }}
+                  username: ${{ secrets.USERNAME }}
+                  port: ${{ secrets.PORT }}
+                  key: ${{ secrets.SSHKEY }}
+                  envs: HYPOTHESIS_API_TOKEN
+                  script: |
+                      export REACT_APP_HYPOTHESIS_GROUP_ID=$REACT_APP_HYPOTHESIS_GROUP_ID
+                      echo $REACT_APP_HYPOTHESIS_GROUP_ID
+                      ls

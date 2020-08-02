@@ -2,7 +2,8 @@ import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import depthLimit from 'graphql-depth-limit';
 import { createServer } from 'http';
-import HypothesisAPI from './hypothesis-apollo-rest-datasource';
+import HypothesisAPI from './datasources/hypothesis';
+import CMS_API from './datasources/cms';
 import compression from 'compression';
 import cors from 'cors';
 import schema from './schema';
@@ -14,7 +15,8 @@ const server = new ApolloServer({
     schema,
     dataSources: () => {
         return {
-            HypothesisAPI: new HypothesisAPI()
+            HypothesisAPI: new HypothesisAPI(),
+            CMS_API: new CMS_API()
         };
     },
     introspection: true,

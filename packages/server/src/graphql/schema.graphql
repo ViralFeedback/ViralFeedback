@@ -1,9 +1,39 @@
-type UserInfo {
-    display_name: String
+scalar DateTime
+scalar JSON
+
+###
+# Hypothes.is API
+###
+type Annotation {
+    id: String
+    created: String
+    updated: String
+    user: String
+    uri: String
+    text: String
+    group: String
+    flagged: Boolean
+    hidden: Boolean
+    user_info: UserInfo
+    links: Links
+    document: Document
+    target: [Target]
+    permissions: Permissions
+    references: [String]
+    tags: [String]
 }
 
-input UserInfoInput {
-    display_name: String
+type APIResponse {
+    total: Int
+    rows: [Annotation!]
+}
+
+type Document {
+    title: [String]
+}
+
+input DocumentInput {
+    title: [String]
 }
 
 type Links {
@@ -18,12 +48,18 @@ input LinksInput {
     json: String
 }
 
-type Document {
-    title: [String]
+type Permissions {
+    delete: [String]
+    update: [String]
+    admin: [String]
+    read: [String]
 }
 
-input DocumentInput {
-    title: [String]
+input PermissionsInput {
+    delete: [String]
+    update: [String]
+    admin: [String]
+    read: [String]
 }
 
 type Selector {
@@ -54,42 +90,63 @@ input TargetInput {
     selector: [SelectorInput]
 }
 
-type Permissions {
-    delete: [String]
-    update: [String]
-    admin: [String]
-    read: [String]
+type UserInfo {
+    display_name: String
 }
 
-input PermissionsInput {
-    delete: [String]
-    update: [String]
-    admin: [String]
-    read: [String]
+input UserInfoInput {
+    display_name: String
 }
 
-type Annotation {
-    id: String
-    created: String
-    updated: String
-    user: String
-    uri: String
-    text: String
-    group: String
-    flagged: Boolean
-    hidden: Boolean
-    user_info: UserInfo
-    links: Links
-    document: Document
-    target: [Target]
-    permissions: Permissions
-    references: [String]
-    tags: [String]
+###
+# CMS
+###
+type ContactForm {
+    id: ID!
+    created_at: DateTime!
+    updated_at: DateTime!
+    Email: String
+    Message: String
 }
 
-type APIResponse {
-    total: Int
-    rows: [Annotation!]
+type Post {
+    id: ID!
+    created_at: DateTime!
+    updated_at: DateTime!
+    content: String
+    title: String
+    image: UploadFile
+    categories: [Category]
+    published: Boolean
+}
+
+type Category {
+    name: String
+}
+
+type Job {
+    title: String
+    description: String
+}
+
+type UploadFile {
+    id: ID!
+    created_at: DateTime!
+    updated_at: DateTime!
+    name: String!
+    alternativeText: String
+    caption: String
+    width: Int
+    height: Int
+    formats: JSON
+    hash: String!
+    ext: String
+    mime: String!
+    size: Float!
+    url: String!
+    previewUrl: String
+    provider: String!
+    provider_metadata: JSON
 }
 
 type Query {
@@ -112,6 +169,9 @@ type Query {
         wildcard_uri: String
     ): APIResponse
     annotation(id: String): Annotation
+    jobs: [Job]
+    post(id: String): Post
+    posts: [Post]
 }
 
 type Mutation {
@@ -133,4 +193,5 @@ type Mutation {
         references: [String]
         tags: [String]
     ): Annotation
+    submitContactForm(email: String, message: String): ContactForm
 }

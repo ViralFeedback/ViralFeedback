@@ -1,0 +1,15 @@
+[Unit]
+Description=Viral Feedback service
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=root
+ExecStart=/root/.nvm/versions/node/v14.4.0/bin/node /var/www/web/viralfeedback/packages/server/dist/server.js
+Environment="HYPOTHESIS_API_TOKEN=<your token here>"
+
+[Install]
+WantedBy=multi-user.target

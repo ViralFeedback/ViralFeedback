@@ -1,5 +1,10 @@
 import React, { FunctionComponent, useState } from 'react';
-import { Link, RouteComponentProps } from 'react-router-dom';
+import {
+    Link,
+    RouteComponentProps,
+    matchPath,
+    useLocation
+} from 'react-router-dom';
 import { Routes } from '../navigation/routes';
 import SuggestArticleModal from './suggestArticleModal';
 
@@ -8,6 +13,8 @@ interface INav extends RouteComponentProps {}
 const Nav: FunctionComponent<any> = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const [modalOpen, setModalOpen] = useState(false);
+
+    const location = useLocation();
 
     return (
         <>
@@ -52,7 +59,14 @@ const Nav: FunctionComponent<any> = () => {
                                 <Link
                                     to={value.path}
                                     key={key}
-                                    className="navbar-item"
+                                    className={`navbar-item ${
+                                        !!matchPath(
+                                            location.pathname,
+                                            value.path
+                                        )
+                                            ? 'is-active'
+                                            : ''
+                                    }`}
                                 >
                                     {value.iconClassName ? (
                                         <i
