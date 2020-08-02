@@ -1,6 +1,6 @@
 import { RESTDataSource, RequestOptions } from 'apollo-datasource-rest';
 
-export default class CMS_API extends RESTDataSource {
+export default class CmsAPI extends RESTDataSource {
     constructor() {
         super();
         this.baseURL = 'http://localhost:1337';
