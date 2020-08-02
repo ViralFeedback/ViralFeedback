@@ -21,8 +21,7 @@ const server = new ApolloServer({
     },
     introspection: true,
     playground: true,
-    validationRules: [depthLimit(7)],
-    subscriptions: false
+    validationRules: [depthLimit(7)]
 });
 
 app.use('*', cors({ origin: '*' }));

@@ -1,5 +1,7 @@
 import Home from '../screens/homeFeed';
 import About from '../screens/about';
+import Blog from '../screens/blog';
+import Contact from '../screens/contact';
 import HowWeWork from '../screens/howWeWork';
 import GetInvolved from '../screens/getInvolved';
 import SingleAnnotation from '../screens/singleAnnotation';
@@ -22,6 +24,16 @@ export const Routes: IRoute[] = [
         component: About,
         name: 'About',
         path: '/about'
+    },
+    {
+        component: Blog,
+        name: 'Blog',
+        path: '/blog'
+    },
+    {
+        component: Contact,
+        name: 'Contact',
+        path: '/contact'
     },
     {
         component: HowWeWork,

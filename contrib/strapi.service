@@ -1,0 +1,14 @@
+[Unit]
+Description=Strapi service
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=root
+ExecStart=/root/.nvm/versions/node/v14.4.0/bin/node /opt/app/packages/server/dist/server.js
+
+[Install]
+WantedBy=multi-user.target

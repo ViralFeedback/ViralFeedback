@@ -9,11 +9,13 @@
     "timestamps": true
   },
   "attributes": {
-    "Email": {
-      "type": "email"
+    "email": {
+      "type": "email",
+      "required": true
     },
-    "Message": {
-      "type": "text"
+    "message": {
+      "type": "text",
+      "required": true
     }
   }
 }

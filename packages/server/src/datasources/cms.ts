@@ -7,7 +7,7 @@ export default class CMS_API extends RESTDataSource {
     }
 
     async getPost(id) {
-        return this.get(`posts/{id}`);
+        return this.get(`posts/${id.id}`);
     }
 
     async getPosts() {
@@ -15,6 +15,6 @@ export default class CMS_API extends RESTDataSource {
     }
 
     async submitContactForm(form: any) {
-        return this.post('contact-form', form);
+        return this.post('contact-forms', form);
     }
 }
