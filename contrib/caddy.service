@@ -6,8 +6,8 @@ After=network.target
 [Service]
 User=ubuntu
 Group=ubuntu
-ExecStart=/usr/bin/caddy run --environ --config /var/www/web/packages/web/contrib/Caddyfile
-ExecReload=/usr/bin/caddy reload --config /var/www/web/packages/web/contrib/Caddyfile
+ExecStart=/usr/bin/caddy run --environ --config /var/www/web/viralfeedback/contrib/Caddyfile
+ExecReload=/usr/bin/caddy reload --config /var/www/web/viralfeedback/contrib/Caddyfile
 TimeoutStopSec=5s
 LimitNOFILE=1048576
 LimitNPROC=512

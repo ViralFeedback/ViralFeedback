@@ -1,5 +1,5 @@
 167.172.114.39, viralfeedback.org {
-  root * /var/www/web/packages/web/build
+  root * /var/www/web/viralfeedback/packages/web/build
   file_server
   try_files {path} {path}/ /index.html
 }
