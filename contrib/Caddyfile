@@ -7,3 +7,7 @@
 api.viralfeedback.org {
   reverse_proxy localhost:8080
 }
+
+cms.viralfeedback.org {
+  reverse_proxy localhost:1337
+}

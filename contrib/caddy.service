@@ -4,8 +4,7 @@ Documentation=https://caddyserver.com/docs/
 After=network.target
 
 [Service]
-User=ubuntu
-Group=ubuntu
+User=root
 ExecStart=/usr/bin/caddy run --environ --config /var/www/web/viralfeedback/contrib/Caddyfile
 ExecReload=/usr/bin/caddy reload --config /var/www/web/viralfeedback/contrib/Caddyfile
 TimeoutStopSec=5s
