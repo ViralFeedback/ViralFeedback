@@ -267,7 +267,7 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({
                             })}
                         </div>
                     </div>
-                    <div className="level-right">
+                    <div className="level-right actions">
                         <a
                             className="level-item has-tooltip-left"
                             data-tooltip="View in context"

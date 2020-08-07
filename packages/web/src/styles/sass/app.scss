@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 // Overrides
-$link: #a6a6a6;
+$light-grey: #a6a6a6;
 $progress-indeterminate-duration: 0.75s;
 
 .app {
@@ -15,6 +15,12 @@ $progress-indeterminate-duration: 0.75s;
             padding: 20px;
             border: none;
             overflow: hidden;
+
+            .actions {
+                a {
+                    color: $light-grey;
+                }
+            }
 
             .content {
                 .annotation-content {
