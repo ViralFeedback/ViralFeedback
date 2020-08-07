@@ -51,8 +51,7 @@ export const Routes: IRoute[] = [
     {
         component: Jobs,
         name: 'Jobs',
-        path: '/jobs',
-        hidden: true
+        path: '/jobs'
     },
     {
         name: 'Single Annotation',

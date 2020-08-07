@@ -17,7 +17,8 @@ const Jobs: FunctionComponent = () => {
                 <div className="hero-body">
                     {jobs && jobs.length > 0 ? (
                         <div className="container content">
-                            <h1 className="title">Blog</h1>
+                            <h1 className="title">Job Board</h1>
+                            <hr />
                             {jobs.map((value, key) => {
                                 return <Job data={value} key={key} />;
                             })}

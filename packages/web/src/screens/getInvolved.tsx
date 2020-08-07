@@ -123,28 +123,6 @@ const GetInvolved: FunctionComponent = () => {
                             interested volunteers.
                         </p>
                         <p>
-                            <strong>
-                                Viral Feedback is also seeking a senior
-                                moderator for our annotator group.
-                            </strong>{' '}
-                            The ideal candidate would be a post-doctoral
-                            researcher or early career scientist passionate
-                            about science communication and interested in
-                            collaborations between junior and senior scientists
-                            and other content experts. This person will play a
-                            leading role in fostering a supportive community
-                            that continually strives to improve communication of
-                            science with the public. Funding for this role is
-                            provided by Schmidt Futures. Preference for
-                            individuals with PhD or equivalent and content
-                            expertise in virology, molecular biology,
-                            epidemiology, statistics, health policy, or related
-                            fields. Grant support is available to support up to
-                            50% FTE. To apply for the Senior Moderator, please
-                            submit CV + Cover Letter to{' '}
-                            <em>inbox@viralfeedback.org</em>.
-                        </p>
-                        <p>
                             If you would like to participate in Viral Feedback,
                             please fill out this{' '}
                             <a

@@ -127,6 +127,8 @@ type Category {
 type Job {
     title: String
     description: String
+    created_at: DateTime!
+    updated_at: DateTime!
 }
 
 type UploadFile {

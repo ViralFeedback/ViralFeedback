@@ -2,6 +2,7 @@ import gql from 'graphql-tag';
 import * as ApolloReactCommon from '@apollo/react-common';
 import * as ApolloReactHooks from '@apollo/react-hooks';
 export type Maybe<T> = T | null;
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -21,7 +22,7 @@ export type Scalars = {
  * ##
  */
 export type Annotation = {
-   __typename?: 'Annotation';
+  __typename?: 'Annotation';
   id?: Maybe<Scalars['String']>;
   created?: Maybe<Scalars['String']>;
   updated?: Maybe<Scalars['String']>;
@@ -41,13 +42,13 @@ export type Annotation = {
 };
 
 export type ApiResponse = {
-   __typename?: 'APIResponse';
+  __typename?: 'APIResponse';
   total?: Maybe<Scalars['Int']>;
   rows?: Maybe<Array<Annotation>>;
 };
 
 export type Document = {
-   __typename?: 'Document';
+  __typename?: 'Document';
   title?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
@@ -56,7 +57,7 @@ export type DocumentInput = {
 };
 
 export type Links = {
-   __typename?: 'Links';
+  __typename?: 'Links';
   html?: Maybe<Scalars['String']>;
   incontext?: Maybe<Scalars['String']>;
   json?: Maybe<Scalars['String']>;
@@ -69,7 +70,7 @@ export type LinksInput = {
 };
 
 export type Permissions = {
-   __typename?: 'Permissions';
+  __typename?: 'Permissions';
   delete?: Maybe<Array<Maybe<Scalars['String']>>>;
   update?: Maybe<Array<Maybe<Scalars['String']>>>;
   admin?: Maybe<Array<Maybe<Scalars['String']>>>;
@@ -84,7 +85,7 @@ export type PermissionsInput = {
 };
 
 export type Selector = {
-   __typename?: 'Selector';
+  __typename?: 'Selector';
   type?: Maybe<Scalars['String']>;
   exact?: Maybe<Scalars['String']>;
   endOffset?: Maybe<Scalars['Int']>;
@@ -103,7 +104,7 @@ export type SelectorInput = {
 };
 
 export type Target = {
-   __typename?: 'Target';
+  __typename?: 'Target';
   source?: Maybe<Scalars['String']>;
   selector?: Maybe<Array<Maybe<Selector>>>;
 };
@@ -114,7 +115,7 @@ export type TargetInput = {
 };
 
 export type UserInfo = {
-   __typename?: 'UserInfo';
+  __typename?: 'UserInfo';
   display_name?: Maybe<Scalars['String']>;
 };
 
@@ -128,7 +129,7 @@ export type UserInfoInput = {
  * ##
  */
 export type ContactForm = {
-   __typename?: 'ContactForm';
+  __typename?: 'ContactForm';
   id: Scalars['ID'];
   created_at: Scalars['DateTime'];
   updated_at: Scalars['DateTime'];
@@ -137,7 +138,7 @@ export type ContactForm = {
 };
 
 export type Post = {
-   __typename?: 'Post';
+  __typename?: 'Post';
   id: Scalars['ID'];
   created_at: Scalars['DateTime'];
   updated_at: Scalars['DateTime'];
@@ -149,18 +150,20 @@ export type Post = {
 };
 
 export type Category = {
-   __typename?: 'Category';
+  __typename?: 'Category';
   name?: Maybe<Scalars['String']>;
 };
 
 export type Job = {
-   __typename?: 'Job';
+  __typename?: 'Job';
   title?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
+  created_at: Scalars['DateTime'];
+  updated_at: Scalars['DateTime'];
 };
 
 export type UploadFile = {
-   __typename?: 'UploadFile';
+  __typename?: 'UploadFile';
   id: Scalars['ID'];
   created_at: Scalars['DateTime'];
   updated_at: Scalars['DateTime'];
@@ -181,7 +184,7 @@ export type UploadFile = {
 };
 
 export type Query = {
-   __typename?: 'Query';
+  __typename?: 'Query';
   annotations?: Maybe<ApiResponse>;
   annotation?: Maybe<Annotation>;
   jobs?: Maybe<Array<Maybe<Job>>>;
@@ -220,7 +223,7 @@ export type QueryPostArgs = {
 };
 
 export type Mutation = {
-   __typename?: 'Mutation';
+  __typename?: 'Mutation';
   createAnnotation?: Maybe<Annotation>;
   submitContactForm?: Maybe<ContactForm>;
 };
@@ -251,7 +254,7 @@ export type MutationSubmitContactFormArgs = {
   message?: Maybe<Scalars['String']>;
 };
 
-export type AnnotationsQueryVariables = {
+export type AnnotationsQueryVariables = Exact<{
   _separate_replies?: Maybe<Scalars['Boolean']>;
   any?: Maybe<Scalars['String']>;
   group?: Maybe<Scalars['String']>;
@@ -268,7 +271,7 @@ export type AnnotationsQueryVariables = {
   uri?: Maybe<Scalars['String']>;
   user?: Maybe<Scalars['String']>;
   wildcard_uri?: Maybe<Scalars['String']>;
-};
+}>;
 
 
 export type AnnotationsQuery = (
@@ -297,9 +300,9 @@ export type AnnotationsQuery = (
   )> }
 );
 
-export type AnnotationQueryVariables = {
+export type AnnotationQueryVariables = Exact<{
   id?: Maybe<Scalars['String']>;
-};
+}>;
 
 
 export type AnnotationQuery = (
@@ -324,9 +327,9 @@ export type AnnotationQuery = (
   )> }
 );
 
-export type PostQueryVariables = {
+export type PostQueryVariables = Exact<{
   id?: Maybe<Scalars['String']>;
-};
+}>;
 
 
 export type PostQuery = (
@@ -344,7 +347,7 @@ export type PostQuery = (
   )> }
 );
 
-export type PostsQueryVariables = {};
+export type PostsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type PostsQuery = (
@@ -362,18 +365,18 @@ export type PostsQuery = (
   )>>> }
 );
 
-export type JobsQueryVariables = {};
+export type JobsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type JobsQuery = (
   { __typename?: 'Query' }
   & { jobs?: Maybe<Array<Maybe<(
     { __typename?: 'Job' }
-    & Pick<Job, 'title' | 'description'>
+    & Pick<Job, 'title' | 'description' | 'created_at' | 'updated_at'>
   )>>> }
 );
 
-export type CreateAnnotationMutationVariables = {
+export type CreateAnnotationMutationVariables = Exact<{
   id?: Maybe<Scalars['String']>;
   created?: Maybe<Scalars['String']>;
   updated?: Maybe<Scalars['String']>;
@@ -390,7 +393,7 @@ export type CreateAnnotationMutationVariables = {
   permissions?: Maybe<PermissionsInput>;
   references?: Maybe<Array<Maybe<Scalars['String']>>>;
   tags?: Maybe<Array<Maybe<Scalars['String']>>>;
-};
+}>;
 
 
 export type CreateAnnotationMutation = (
@@ -401,10 +404,10 @@ export type CreateAnnotationMutation = (
   )> }
 );
 
-export type SubmitContactFormMutationVariables = {
+export type SubmitContactFormMutationVariables = Exact<{
   email?: Maybe<Scalars['String']>;
   message?: Maybe<Scalars['String']>;
-};
+}>;
 
 
 export type SubmitContactFormMutation = (
@@ -632,6 +635,8 @@ export const JobsDocument = gql`
   jobs {
     title
     description
+    created_at
+    updated_at
   }
 }
     `;
