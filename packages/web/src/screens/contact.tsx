@@ -32,6 +32,7 @@ const About: FunctionComponent = () => {
                 <div className="hero-body">
                     <div className="container content">
                         <h1 className="title">Contact</h1>
+                        <hr />
                         <div className="field">
                             <p className="control has-icons-left has-icons-right">
                                 <input
