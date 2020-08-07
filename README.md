@@ -73,4 +73,8 @@ npm test
 
 Deploying to a Digital Ocean droplet is handled by a Github action. You will need to add secrets for your instance. See `.github/workflows/ci.yml` for more info.
 
-The `contrib` folder containing example systemd services. Additionally, there is a `Caddyfile` used for configuring a [caddy server](https://caddyserver.com/) for serving static assets and serving as a reverse proxy for the API.
+The `contrib` folder contains example systemd services.
+
+Additionally, there is a `Caddyfile` used for configuring a [caddy server](https://caddyserver.com/) for serving static assets and serving as a reverse proxy for the APIs. NOTE: you will need to edit this file to add your domain.
+
+The Strapi CMS has it's own [documentation for deployments](https://strapi.io/documentation/v3.x/getting-started/deployment.html#hosting-provider-guides).
