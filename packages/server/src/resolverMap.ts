@@ -1,5 +1,6 @@
 import { IResolvers } from 'graphql-tools';
 import { ApiResponse } from './graphql';
+import axios from 'axios';
 
 const resolverMap: IResolvers = {
     Query: {
@@ -24,6 +25,22 @@ const resolverMap: IResolvers = {
             return await ctx.dataSources.HypothesisAPI.createAnnotation(args);
         },
         async submitContactForm(_: void, args: void, ctx: any): Promise<any> {
+            // Send slack notification
+            if (process.env.SLACK_WEBHOOK) {
+                axios
+                    .post(process.env.SLACK_WEBHOOK, {
+                        text: `${args.email} -- ${args.message}`
+                    })
+                    .then((res) => {
+                        console.log(
+                            'Contact form submitted, slack channel notified'
+                        );
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
+            }
+
             return await ctx.dataSources.CMS_API.submitContactForm(args);
         }
     }
