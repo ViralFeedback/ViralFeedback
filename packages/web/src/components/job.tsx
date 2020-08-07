@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { formatRelative } from 'date-fns';
+import ReactMarkdown from 'react-markdown';
 
 const Job: FunctionComponent<any> = ({ data }) => {
     const { title, description, created_at } = data;
@@ -12,7 +13,9 @@ const Job: FunctionComponent<any> = ({ data }) => {
             <p>
                 <em>Posted {posted}</em>
             </p>
-            <div className="content">{description}</div>
+            <div className="content">
+                <ReactMarkdown>{description}</ReactMarkdown>
+            </div>
         </div>
     );
 };

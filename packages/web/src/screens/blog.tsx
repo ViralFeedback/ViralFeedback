@@ -18,6 +18,7 @@ const About: FunctionComponent = () => {
                     {posts && posts.length > 0 ? (
                         <div className="container content">
                             <h1 className="title">Blog</h1>
+                            <hr />
                             {posts.map((value, key) => {
                                 const published = value?.published;
                                 if (!published) return null;
