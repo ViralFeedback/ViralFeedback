@@ -24,12 +24,14 @@ const resolverMap: IResolvers = {
         async createAnnotation(_: void, args: void, ctx: any): Promise<any> {
             return await ctx.dataSources.HypothesisAPI.createAnnotation(args);
         },
-        async submitContactForm(_: void, args: void, ctx: any): Promise<any> {
+        async submitContactForm(_: void, args: any, ctx: any): Promise<any> {
             // Send slack notification
+            // TODO remove console.log
+            console.log(process.env.SLACK_WEBHOOK);
             if (process.env.SLACK_WEBHOOK) {
                 axios
                     .post(process.env.SLACK_WEBHOOK, {
-                        text: `${args.email} -- ${args.message}`
+                        text: `NEW CONTACT FORM SUBMISSION: ${args.email} -- ${args.message}`
                     })
                     .then((res) => {
                         console.log(
