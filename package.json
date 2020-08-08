@@ -1,6 +1,7 @@
 {
     "name": "viral-feedback",
     "private": true,
+    "workspaces": ["packages/*"],
     "scripts": {
         "gql": "graphql-codegen --config codegen.yml",
         "lint": "eslint ./ --ext .js,.jsx,.ts,.tsx",
