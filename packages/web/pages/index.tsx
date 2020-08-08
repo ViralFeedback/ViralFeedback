@@ -1,8 +1,8 @@
 import React, { FunctionComponent, useState } from 'react';
-import Annotation from 'components/annotation';
-import EmptyState from 'components/emptyState';
-import Loading from 'components/loading';
-import { useAnnotationsQuery } from '../graphql';
+import Annotation from '../components/annotation';
+import EmptyState from '../components/emptyState';
+import Loading from '../components/loading';
+import { useAnnotationsQuery } from '../src/graphql';
 import Select from 'react-select';
 
 const HomeFeed: FunctionComponent = () => {
