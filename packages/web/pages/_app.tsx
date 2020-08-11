@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Nav from '../components/nav';
 import '../styles/css/app.css';
 
 import '@fortawesome/fontawesome-free/css/all.css';
@@ -22,6 +23,7 @@ function App({ Component, pageProps }) {
     return (
         <div className="app">
             <ApolloProvider client={client}>
+                <Nav />
                 <Component {...pageProps} />
             </ApolloProvider>
         </div>

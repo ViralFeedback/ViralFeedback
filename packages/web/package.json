@@ -40,7 +40,7 @@
         "start": "next start",
         "build": "next build",
         "dev": "next dev",
-        "css-build": "node-sass --omit-source-map-url src/styles/sass/app.scss src/styles/css/app.css",
+        "css-build": "node-sass --omit-source-map-url styles/sass/app.scss styles/css/app.css",
         "css-watch": "npm run css-build -- --watch",
         "test": "react-scripts test --watchAll=false"
     },

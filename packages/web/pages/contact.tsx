@@ -1,6 +1,10 @@
 import React, { FunctionComponent, useState } from 'react';
-import * as bulmaToast from 'bulma-toast';
-import { useSubmitContactFormMutation } from '../graphql';
+// import * as bulmaToast from 'bulma-toast';
+import { useSubmitContactFormMutation } from '../src/graphql';
+
+import dynamic from 'next/dynamic';
+
+const bulmaToast = dynamic(() => import('bulma-toast'), { ssr: false });
 
 const About: FunctionComponent = () => {
     const [submitContactForm] = useSubmitContactFormMutation();

@@ -1,8 +1,8 @@
 import React, { FunctionComponent } from 'react';
-import EmptyState from 'components/emptyState';
-import Loading from 'components/loading';
-import Job from 'components/job';
-import { useJobsQuery } from '../graphql';
+import EmptyState from '../components/emptyState';
+import Loading from '../components/loading';
+import Job from '../components/job';
+import { useJobsQuery } from '../src/graphql';
 
 const Jobs: FunctionComponent = () => {
     const { data, loading } = useJobsQuery();

@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import EmptyState from 'components/emptyState';
 import Loading from 'components/loading';
 import Post from 'components/post';
-import { usePostsQuery } from '../graphql';
+import { usePostsQuery } from '../src/graphql';
 
 const About: FunctionComponent = () => {
     const { data, loading } = usePostsQuery();

@@ -5,6 +5,8 @@ $light-grey: #a6a6a6;
 $progress-indeterminate-duration: 0.75s;
 
 .app {
+    margin-top: 36px;
+
     .annotation-feed {
         padding-top: 30px;
 
@@ -156,10 +158,6 @@ $progress-indeterminate-duration: 0.75s;
             margin-right: -1.5em;
         }
     }
-
-    .page-content {
-        margin-top: 36px;
-    }
 }
 
 // Mobile stylngs
@@ -191,6 +189,6 @@ $progress-indeterminate-duration: 0.75s;
 }
 
 // Vendor
-@import '../../../node_modules/bulma/bulma.sass';
-@import '../../../node_modules/bulma-tooltip/src/sass/index.sass';
-@import '../../../node_modules/bulma-checkradio/src/sass/index.sass';
+@import '../../node_modules/bulma/bulma.sass';
+@import '../../node_modules/bulma-tooltip/src/sass/index.sass';
+@import '../../node_modules/bulma-checkradio/src/sass/index.sass';

@@ -1,16 +1,16 @@
-import Home from '../screens/homeFeed';
-import About from '../screens/about';
-import Blog from '../screens/blog';
-import Contact from '../screens/contact';
-import HowWeWork from '../screens/howWeWork';
-import GetInvolved from '../screens/getInvolved';
-import Jobs from '../screens/jobs';
-import SingleAnnotation from '../screens/singleAnnotation';
-import SinglePost from '../screens/singlePost';
+// import Home from '../../pages/homeFeed';
+import About from '../../pages/about';
+import Blog from '../../pages/blog';
+import Contact from '../../pages/contact';
+import HowWeWork from '../../pages/howWeWork';
+import GetInvolved from '../../pages/getInvolved';
+import Jobs from '../../pages/jobs';
+import SingleAnnotation from '../../pages/singleAnnotation';
+import SinglePost from '../../pages/singlePost';
 
 interface IRoute {
     path: string;
-    component: React.FC | React.ComponentClass;
+    component?: React.FC | React.ComponentClass;
     name: string;
     iconClassName?: string;
     hidden?: boolean;
@@ -18,50 +18,49 @@ interface IRoute {
 
 export const Routes: IRoute[] = [
     {
-        component: Home,
         name: 'Home',
         path: '/'
     },
     {
-        component: About,
+        // component: About,
         name: 'About',
         path: '/about'
     },
     {
-        component: Blog,
+        // component: Blog,
         name: 'Blog',
         path: '/blog',
         hidden: true
     },
     {
-        component: Contact,
+        // component: Contact,
         name: 'Contact',
         path: '/contact'
     },
     {
-        component: HowWeWork,
+        // component: HowWeWork,
         name: 'How We Work',
         path: '/how-we-work'
     },
     {
-        component: GetInvolved,
+        // component: GetInvolved,
         name: 'Get Involved',
         path: '/get-involved'
     },
     {
-        component: Jobs,
+        // component: Jobs,
         name: 'Jobs',
         path: '/jobs'
     },
     {
         name: 'Single Annotation',
-        component: SingleAnnotation,
+        // component: SingleAnnotation,
         hidden: true,
         path: '/annotation/:id'
     },
     {
         name: 'Single Post',
-        component: SinglePost,
+        // component: SinglePost,
         hidden: true,
         path: '/post/:id'
     }

@@ -1,13 +1,8 @@
 import React, { FunctionComponent, useState } from 'react';
-// import {
-//     Link,
-//     RouteComponentProps,
-//     matchPath,
-//     useLocation
-// } from 'react-router-dom';
 import { useRouter } from 'next/router';
-import { Routes } from '../navigation/routes';
+import { Routes } from '../src/navigation/routes';
 import SuggestArticleModal from './suggestArticleModal';
+import Link from 'next/link';
 
 interface INav extends RouteComponentProps {}
 
@@ -15,7 +10,9 @@ const Nav: FunctionComponent<any> = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const [modalOpen, setModalOpen] = useState(false);
 
-    // const location = useLocation();
+    const router = useRouter();
+
+    console.log(router.pathname);
 
     return (
         <>
@@ -54,34 +51,29 @@ const Nav: FunctionComponent<any> = () => {
                     className={`navbar-menu ${menuOpen ? 'is-active' : ''}`}
                 >
                     <div className="navbar-start">
-                        {
-                            // Routes.map((value, key) => {
-                            // if (value.hidden) return null;
-                            // return (
-                            //     <Link
-                            //         to={value.path}
-                            //         key={key}
-                            //         className={`navbar-item ${
-                            //             !!matchPath(
-                            //                 location.pathname,
-                            //                 value.path
-                            //             )
-                            //                 ? 'is-active'
-                            //                 : ''
-                            //         }`}
-                            //     >
-                            //         {value.iconClassName ? (
-                            //             <i
-                            //                 className={`sidebar-icon ${value.iconClassName}`}
-                            //             />
-                            //         ) : (
-                            //             ' '
-                            //         )}{' '}
-                            //         {value.name}
-                            //     </Link>
-                            // );
-                            //                         })
-                        }
+                        {Routes.map((value, key) => {
+                            if (value.hidden) return null;
+                            return (
+                                <Link href={value.path} key={key}>
+                                    <span
+                                        className={`navbar-item ${
+                                            router.pathname === value.path
+                                                ? 'is-active'
+                                                : ''
+                                        }`}
+                                    >
+                                        {value.iconClassName ? (
+                                            <i
+                                                className={`sidebar-icon ${value.iconClassName}`}
+                                            />
+                                        ) : (
+                                            ' '
+                                        )}{' '}
+                                        {value.name}
+                                    </span>
+                                </Link>
+                            );
+                        })}
                     </div>
 
                     <div className="navbar-end">

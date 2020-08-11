@@ -1,15 +1,14 @@
 import { formatRelative } from 'date-fns';
 import React, { FunctionComponent, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
-// import { ReactTinyLink } from 'react-tiny-link';
 import TextTruncate from 'react-text-truncate';
-// import { Link } from 'react-router-dom';
 import Link from 'next/link';
 
 import dynamic from 'next/dynamic';
 
-const ReactTinyLink = dynamic(() =>
-    import('react-tiny-link').then((mod) => mod.ReactTinyLink)
+const ReactTinyLink = dynamic(
+    () => import('react-tiny-link').then((mod) => mod.ReactTinyLink),
+    { ssr: false }
 );
 
 export interface Range {
@@ -287,7 +286,8 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({
                         <Link
                             className="level-item has-tooltip-left"
                             data-tooltip="Share this annotation"
-                            href={`/annotation/${data.id}`}
+                            href={`/annotation/[id]`}
+                            as={`/annotation/${data.id}`}
                         >
                             <span className="icon is-small">
                                 <i className="fas fa-share-alt"></i>
