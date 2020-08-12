@@ -20,7 +20,6 @@
         "bulma-toast": "^2.0.1",
         "bulma-tooltip": "^3.0.2",
         "date-fns": "^2.14.0",
-        "graphql": "^15.1.0",
         "isomorphic-unfetch": "^3.0.0",
         "next": "^9.5.1",
         "react": "^16.13.1",
@@ -50,11 +49,7 @@
         "extends": "react-app"
     },
     "browserslist": {
-        "production": [
-            ">0.2%",
-            "not dead",
-            "not op_mini all"
-        ],
+        "production": [">0.2%", "not dead", "not op_mini all"],
         "development": [
             "last 1 chrome version",
             "last 1 firefox version",
