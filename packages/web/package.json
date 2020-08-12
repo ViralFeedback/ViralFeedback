@@ -4,6 +4,7 @@
     "private": true,
     "dependencies": {
         "@apollo/react-hooks": "^3.1.5",
+        "@apollo/react-ssr": "^4.0.0",
         "@fortawesome/fontawesome-free": "^5.13.0",
         "@testing-library/jest-dom": "^4.2.4",
         "@testing-library/react": "^9.3.2",
@@ -20,6 +21,7 @@
         "bulma-tooltip": "^3.0.2",
         "date-fns": "^2.14.0",
         "graphql": "^15.1.0",
+        "isomorphic-unfetch": "^3.0.0",
         "next": "^9.5.1",
         "react": "^16.13.1",
         "react-dom": "^16.13.1",
@@ -48,7 +50,11 @@
         "extends": "react-app"
     },
     "browserslist": {
-        "production": [">0.2%", "not dead", "not op_mini all"],
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
         "development": [
             "last 1 chrome version",
             "last 1 firefox version",

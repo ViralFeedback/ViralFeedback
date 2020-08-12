@@ -1,13 +1,17 @@
 import React, { FunctionComponent } from 'react';
-import Annotation from '../components/annotation';
-import EmptyState from '../components/emptyState';
-import Loading from '../components/loading';
-import { useAnnotationQuery } from '../src/graphql';
-import { useParams } from 'react-router-dom';
+import Annotation from '../../components/annotation';
+import EmptyState from '../../components/emptyState';
+import Loading from '../../components/loading';
+import { useAnnotationQuery } from '../../src/graphql';
+import { useRouter } from 'next/router';
+
 import { Helmet } from 'react-helmet';
+import { withApollo } from '../../src/apollo';
 
 const SingleAnnotation: FunctionComponent = () => {
-    const { id } = useParams();
+    const router = useRouter();
+
+    const { id } = router.query;
 
     const { data, loading } = useAnnotationQuery({
         variables: {
@@ -50,31 +54,4 @@ const SingleAnnotation: FunctionComponent = () => {
     );
 };
 
-export default SingleAnnotation;
-
-// TODO, this should maybe go somewhere else?
-export async function getStandaloneApolloClient() {
-    // const { ApolloClient, InMemoryCache, HttpLink } = await import(
-    //     '@apollo/client'
-    // );
-    //
-    // const apiUri: string = process.env.REACT_APP_SERVER_URI
-    //     ? process.env.REACT_APP_SERVER_URI
-    //     : 'http://localhost:8080/graphql';
-    //
-    // return new ApolloClient({
-    //     link: new HttpLink({
-    //         uri: apiUri,
-    //         fetch
-    //     }),
-    //     cache: new InMemoryCache()
-    // });
-}
-
-export async function getStaticPaths() {
-    // Return a list of possible value for id
-}
-
-export async function getStaticProps({ params }) {
-    // Fetch necessary data for the blog post using params.id
-}
+export default withApollo({ ssr: true })(SingleAnnotation);

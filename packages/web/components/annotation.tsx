@@ -286,8 +286,8 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({
                         <Link
                             className="level-item has-tooltip-left"
                             data-tooltip="Share this annotation"
-                            href={`/annotation/[id]`}
-                            as={`/annotation/${data.id}`}
+                            href={`/annotations/[id]`}
+                            as={`/annotations/${data.id}`}
                         >
                             <span className="icon is-small">
                                 <i className="fas fa-share-alt"></i>
