@@ -6,7 +6,7 @@ import createApolloClient from './apolloClient';
 
 // On the client, we store the Apollo Client in the following variable.
 // This prevents the client from reinitializing between page transitions.
-let globalApolloClient = null;
+let globalApolloClient: any = null;
 
 /**
  * Installs the Apollo Client on NextPageContext
@@ -29,7 +29,7 @@ export const initOnContext = (ctx) => {
     }
 
     // Initialize ApolloClient if not already done
-    const apolloClient =
+    const apolloClient: any =
         ctx.apolloClient ||
         initApolloClient(ctx.apolloState || {}, inAppContext ? ctx.ctx : ctx);
 

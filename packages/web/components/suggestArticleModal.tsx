@@ -1,6 +1,4 @@
 import React, { FunctionComponent, useState } from 'react';
-import * as bulmaToast from 'bulma-toast';
-import dynamic from 'next/dynamic';
 import { useCreateAnnotationMutation } from '../src/graphql';
 
 interface ISuggestArticleModal {
@@ -37,12 +35,7 @@ const SuggestArticleModal: FunctionComponent<ISuggestArticleModal> = ({
             }
         });
         handleClose();
-        bulmaToast.toast({
-            dismissible: true,
-            duration: 5000,
-            message: 'Success! Thanks for contributing.',
-            type: 'is-success'
-        });
+        alert('Success! Thanks for contributing.');
     };
 
     return (
@@ -105,6 +98,4 @@ const SuggestArticleModal: FunctionComponent<ISuggestArticleModal> = ({
     );
 };
 
-export default dynamic(() => Promise.resolve(SuggestArticleModal), {
-    ssr: false
-});
+export default SuggestArticleModal;

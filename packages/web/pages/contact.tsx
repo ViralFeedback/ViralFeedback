@@ -1,6 +1,4 @@
 import React, { FunctionComponent, useState } from 'react';
-import * as bulmaToast from 'bulma-toast';
-import dynamic from 'next/dynamic';
 import { useSubmitContactFormMutation } from '../src/graphql';
 
 const Contact: FunctionComponent = () => {
@@ -19,12 +17,7 @@ const Contact: FunctionComponent = () => {
         });
         setEmail('');
         setMessage('');
-        bulmaToast.toast({
-            dismissible: true,
-            duration: 5000,
-            message: 'Success! We will get back to you shortly.',
-            type: 'is-success'
-        });
+        alert("Message sent successfully, we'll be in touch.");
     };
 
     return (
@@ -74,6 +67,4 @@ const Contact: FunctionComponent = () => {
     );
 };
 
-export default dynamic(() => Promise.resolve(Contact), {
-    ssr: false
-});
+export default Contact;

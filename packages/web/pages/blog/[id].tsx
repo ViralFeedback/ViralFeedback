@@ -28,7 +28,7 @@ const Blog: FunctionComponent = () => {
         <div>
             <section className="hero is-bold">
                 <div className="hero-body">
-                    {posts ? (
+                    {post ? (
                         <div className="container content">
                             <Post data={post} />
                         </div>
