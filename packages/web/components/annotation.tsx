@@ -155,11 +155,16 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({
                             data.user
                         )}`}
                     >
-                        <strong className="username">
-                            {data.user_info.display_name
-                                ? data.user_info.display_name
-                                : parseUserName(data.user)}
-                        </strong>
+                        {data.user_info.display_name ? (
+                            <span className="username">
+                                <strong>{data.user_info.display_name}</strong>
+                                <small> (@{parseUserName(data.user)})</small>
+                            </span>
+                        ) : (
+                            <span className="username">
+                                <strong>{parseUserName(data.user)}</strong>
+                            </span>
+                        )}
                     </a>{' '}
                     <small className="timestamp">
                         {annotationPublishedDate}
@@ -285,13 +290,18 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({
                         </a>
                         <Link
                             className="level-item has-tooltip-left"
-                            data-tooltip="Share this annotation"
                             href={`/annotations/[id]`}
                             as={`/annotations/${data.id}`}
                         >
-                            <span className="icon is-small">
-                                <i className="fas fa-share-alt"></i>
-                            </span>
+                            <a
+                                data-tooltip="Sharable Link"
+                                className="has-tooltip-left"
+                                target="blank"
+                            >
+                                <span className="icon is-small">
+                                    <i className="fas fa-share-alt"></i>
+                                </span>
+                            </a>
                         </Link>
                     </div>
                 </nav>

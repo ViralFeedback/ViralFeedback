@@ -11,7 +11,7 @@ $progress-indeterminate-duration: 0.75s;
         padding-top: 30px;
 
         .annotation {
-            max-width: 670px;
+            max-width: 700px;
             margin: auto;
             margin-bottom: 30px;
             padding: 20px;
@@ -21,6 +21,19 @@ $progress-indeterminate-duration: 0.75s;
             .actions {
                 a {
                     color: $light-grey;
+
+                    &:hover {
+                        color: #5d5b5b;
+                    }
+                }
+
+                .fa-share-alt {
+                    color: $light-grey;
+                    cursor: pointer;
+
+                    &:hover {
+                        color: #5d5b5b;
+                    }
                 }
             }
 
@@ -39,6 +52,10 @@ $progress-indeterminate-duration: 0.75s;
 
                 .text {
                     position: relative;
+
+                    a {
+                        text-decoration: underline;
+                    }
                 }
             }
 
@@ -106,7 +123,13 @@ $progress-indeterminate-duration: 0.75s;
             }
 
             .username {
-                color: #363636;
+                strong {
+                    color: #363636;
+                }
+
+                small {
+                    color: $light-grey;
+                }
             }
         }
 
@@ -119,7 +142,7 @@ $progress-indeterminate-duration: 0.75s;
         }
 
         .search-bar {
-            max-width: 670px;
+            max-width: 700px;
             margin: auto;
             padding-bottom: 25px;
 

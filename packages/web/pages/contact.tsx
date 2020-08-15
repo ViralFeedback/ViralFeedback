@@ -1,12 +1,9 @@
 import React, { FunctionComponent, useState } from 'react';
-// import * as bulmaToast from 'bulma-toast';
+import * as bulmaToast from 'bulma-toast';
+import dynamic from 'next/dynamic';
 import { useSubmitContactFormMutation } from '../src/graphql';
 
-import dynamic from 'next/dynamic';
-
-const bulmaToast = dynamic(() => import('bulma-toast'), { ssr: false });
-
-const About: FunctionComponent = () => {
+const Contact: FunctionComponent = () => {
     const [submitContactForm] = useSubmitContactFormMutation();
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
@@ -77,4 +74,6 @@ const About: FunctionComponent = () => {
     );
 };
 
-export default About;
+export default dynamic(() => Promise.resolve(Contact), {
+    ssr: false
+});
