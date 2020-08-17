@@ -40,6 +40,17 @@ const SingleAnnotation: FunctionComponent = () => {
                             content={description}
                             key="description"
                         />
+
+                        <meta
+                            property="og:type"
+                            content="website"
+                            key="og:type"
+                        />
+                        <meta
+                            property="og:url"
+                            content={`https://viralfeedback.org/annotations/${data.annotation.id}`}
+                            key="og:url"
+                        />
                         <meta
                             property="og:title"
                             content="Viral Feedback Annotation"
@@ -60,6 +71,11 @@ const SingleAnnotation: FunctionComponent = () => {
                             property="twitter:card"
                             content="summary_large_image"
                             key="twitter:card"
+                        />
+                        <meta
+                            property="twitter:url"
+                            content={`https://viralfeedback.org/annotations/${data.annotation.id}`}
+                            key="twitter:url"
                         />
                         <meta
                             property="twitter:title"
