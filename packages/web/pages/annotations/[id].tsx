@@ -4,9 +4,8 @@ import EmptyState from '../../components/emptyState';
 import Loading from '../../components/loading';
 import { useAnnotationQuery } from '../../src/graphql';
 import { useRouter } from 'next/router';
-
-import { Helmet } from 'react-helmet';
 import { withApollo } from '../../src/apollo';
+import Head from 'next/head';
 
 const SingleAnnotation: FunctionComponent = () => {
     const router = useRouter();
@@ -19,25 +18,65 @@ const SingleAnnotation: FunctionComponent = () => {
         }
     });
 
+    const description = data.annotation.text
+        ? data.annotation.text.substring(0, 240)
+        : '';
+
     if (loading) return <Loading />;
 
     return (
         <div className="annotation-feed container">
             {data && data.annotation ? (
                 <>
-                    <Helmet>
+                    <Head>
                         <title>Viral Feedback Annotation</title>
-                        <meta property="og:type" content="website" />
+                        <meta
+                            name="title"
+                            content="Viral Feedback Annotation"
+                            key="title"
+                        />
                         <meta
                             name="description"
-                            content={
-                                data.annotation.text
-                                    ? data.annotation.text.substring(0, 240)
-                                    : ''
-                            }
+                            content={description}
+                            key="description"
                         />
-                        <meta property="og:image" content="/virus.png" />
-                    </Helmet>
+                        <meta
+                            property="og:title"
+                            content="Viral Feedback Annotation"
+                            key="og:title"
+                        />
+                        <meta
+                            property="og:description"
+                            content={description}
+                            key="og:description"
+                        />
+                        <meta
+                            property="og:image"
+                            content="https://viralfeedback.org/virus.png"
+                            key="og:image"
+                        />
+
+                        <meta
+                            property="twitter:card"
+                            content="summary_large_image"
+                            key="twitter:card"
+                        />
+                        <meta
+                            property="twitter:title"
+                            content="Viral Feedback Annotation"
+                            key="twitter:title"
+                        />
+                        <meta
+                            property="twitter:description"
+                            content={description}
+                            key="twitter:description"
+                        />
+                        <meta
+                            property="twitter:image"
+                            content="https://viralfeedback.org/virus.png"
+                            key="twitter:image"
+                        />
+                    </Head>
                     <Annotation
                         compact={false}
                         data={data.annotation}

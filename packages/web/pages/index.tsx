@@ -5,6 +5,7 @@ import Loading from '../components/loading';
 import { useAnnotationsQuery } from '../src/graphql';
 import Select from 'react-select';
 import dynamic from 'next/dynamic';
+import Head from 'next/head';
 
 const HomeFeed: FunctionComponent = () => {
     const [isSearchMenuOpen, setSearchMenuOpen] = useState(false);

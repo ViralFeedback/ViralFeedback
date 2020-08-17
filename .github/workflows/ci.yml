@@ -74,7 +74,7 @@ jobs:
                       nvm install lts/Erbium
                       yarn
                       yarn build
-                      pm2 restart frontend
+                      /root/.nvm/versions/node/v14.4.0/bin/pm2 restart frontend
 
             - name: Build and restart server
               uses: appleboy/ssh-action@master
@@ -113,4 +113,4 @@ jobs:
                       nvm install lts/Erbium
                       yarn
                       yarn build
-                      pm2 restart cms
+                      /root/.nvm/versions/node/v14.4.0/bin/pm2 restart cms
