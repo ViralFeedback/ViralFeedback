@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import EmptyState from '../../components/emptyState';
 import Loading from '../../components/loading';
+import Meta from '../../components/meta';
 import Post from '../../components/post';
 import { useRouter } from 'next/router';
 import { usePostQuery } from '../../src/graphql';
@@ -26,6 +27,7 @@ const Blog: FunctionComponent = () => {
 
     return (
         <div>
+            <Meta />
             <section className="hero is-bold">
                 <div className="hero-body">
                     {post ? (

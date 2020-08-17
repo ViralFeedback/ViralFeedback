@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import EmptyState from '../components/emptyState';
 import Loading from '../components/loading';
+import Meta from '../components/meta';
 import Job from '../components/job';
 import { useJobsQuery } from '../src/graphql';
 
@@ -13,6 +14,7 @@ const Jobs: FunctionComponent = () => {
 
     return (
         <div>
+            <Meta />
             <section className="hero is-bold">
                 <div className="hero-body">
                     {jobs && jobs.length > 0 ? (

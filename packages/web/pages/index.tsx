@@ -2,6 +2,7 @@ import React, { FunctionComponent, useState } from 'react';
 import Annotation from '../components/annotation';
 import EmptyState from '../components/emptyState';
 import Loading from '../components/loading';
+import Meta from '../components/meta';
 import { useAnnotationsQuery } from '../src/graphql';
 import Select from 'react-select';
 import dynamic from 'next/dynamic';
@@ -83,6 +84,7 @@ const HomeFeed: FunctionComponent = () => {
 
     return (
         <>
+            <Meta />
             <div className="annotation-feed container">
                 <section className="hero">
                     <div className="hero-body">

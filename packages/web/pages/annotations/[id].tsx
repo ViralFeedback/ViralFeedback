@@ -2,6 +2,7 @@ import React, { FunctionComponent } from 'react';
 import Annotation from '../../components/annotation';
 import EmptyState from '../../components/emptyState';
 import Loading from '../../components/loading';
+import Meta from '../../components/meta';
 import { useAnnotationQuery } from '../../src/graphql';
 import { useRouter } from 'next/router';
 import { withApollo } from '../../src/apollo';
@@ -26,73 +27,13 @@ const SingleAnnotation: FunctionComponent = () => {
 
     return (
         <div className="annotation-feed container">
+            <Meta
+                description={description}
+                title="Viral Feedback Annotation"
+                url={`https://viralfeedback.org/annotations/${data.annotation.id}`}
+            />
             {data && data.annotation ? (
                 <>
-                    <Head>
-                        <title>Viral Feedback Annotation</title>
-                        <meta
-                            name="title"
-                            content="Viral Feedback Annotation"
-                            key="title"
-                        />
-                        <meta
-                            name="description"
-                            content={description}
-                            key="description"
-                        />
-
-                        <meta
-                            property="og:type"
-                            content="website"
-                            key="og:type"
-                        />
-                        <meta
-                            property="og:url"
-                            content={`https://viralfeedback.org/annotations/${data.annotation.id}`}
-                            key="og:url"
-                        />
-                        <meta
-                            property="og:title"
-                            content="Viral Feedback Annotation"
-                            key="og:title"
-                        />
-                        <meta
-                            property="og:description"
-                            content={description}
-                            key="og:description"
-                        />
-                        <meta
-                            property="og:image"
-                            content="https://viralfeedback.org/virus.png"
-                            key="og:image"
-                        />
-
-                        <meta
-                            property="twitter:card"
-                            content="summary_large_image"
-                            key="twitter:card"
-                        />
-                        <meta
-                            property="twitter:url"
-                            content={`https://viralfeedback.org/annotations/${data.annotation.id}`}
-                            key="twitter:url"
-                        />
-                        <meta
-                            property="twitter:title"
-                            content="Viral Feedback Annotation"
-                            key="twitter:title"
-                        />
-                        <meta
-                            property="twitter:description"
-                            content={description}
-                            key="twitter:description"
-                        />
-                        <meta
-                            property="twitter:image"
-                            content="https://viralfeedback.org/virus.png"
-                            key="twitter:image"
-                        />
-                    </Head>
                     <Annotation
                         compact={false}
                         data={data.annotation}

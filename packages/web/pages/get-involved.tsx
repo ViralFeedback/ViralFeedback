@@ -1,8 +1,10 @@
 import React, { FunctionComponent } from 'react';
+import Meta from '../components/meta';
 
 const GetInvolved: FunctionComponent = () => {
     return (
         <div>
+            <Meta />
             <section className="hero is-bold">
                 <div className="hero-body">
                     <div className="container content">
