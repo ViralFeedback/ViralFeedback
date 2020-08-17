@@ -176,8 +176,8 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({
                             maxLine={2}
                             minLine={1}
                             proxyUrl={
-                                process.env.REACT_APP_PROXY
-                                    ? process.env.REACT_APP_PROXY
+                                process.env.NEXT_PUBLIC_PROXY
+                                    ? process.env.NEXT_PUBLIC_PROXY
                                     : 'http://localhost:8080/proxy'
                             }
                             showGraphic={true}
