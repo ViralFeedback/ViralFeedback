@@ -4,8 +4,8 @@ import { HttpLink } from 'apollo-link-http';
 import fetch from 'isomorphic-unfetch';
 
 export default function createApolloClient(initialState, ctx) {
-    const apiUri: string = process.env.REACT_APP_SERVER_URI
-        ? process.env.REACT_APP_SERVER_URI
+    const apiUri: string = process.env.NEXT_PUBLIC_SERVER_URI
+        ? process.env.NEXT_PUBLIC_SERVER_URI
         : 'http://localhost:8080/graphql';
 
     // The `ctx` (NextPageContext) will only be present on the server.

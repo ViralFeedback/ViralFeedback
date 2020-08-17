@@ -8,8 +8,8 @@ import ApolloClient from 'apollo-boost';
 
 import { ApolloProvider } from '@apollo/react-hooks';
 
-const apiUri: string = process.env.REACT_APP_SERVER_URI
-    ? process.env.REACT_APP_SERVER_URI
+const apiUri: string = process.env.NEXT_PUBLIC_SERVER_URI
+    ? process.env.NEXT_PUBLIC_SERVER_URI
     : 'http://localhost:8080/graphql';
 
 const client = new ApolloClient({
