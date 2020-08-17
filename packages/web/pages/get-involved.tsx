@@ -7,6 +7,7 @@ const GetInvolved: FunctionComponent = () => {
                 <div className="hero-body">
                     <div className="container content">
                         <h1 className="title">Get Involved</h1>
+                        <hr />
                         <p>
                             <strong>Viral Feedback</strong> is a
                             community-driven effort spearheaded by{' '}

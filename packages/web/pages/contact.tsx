@@ -1,8 +1,7 @@
 import React, { FunctionComponent, useState } from 'react';
-import * as bulmaToast from 'bulma-toast';
-import { useSubmitContactFormMutation } from '../graphql';
+import { useSubmitContactFormMutation } from '../src/graphql';
 
-const About: FunctionComponent = () => {
+const Contact: FunctionComponent = () => {
     const [submitContactForm] = useSubmitContactFormMutation();
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
@@ -18,12 +17,7 @@ const About: FunctionComponent = () => {
         });
         setEmail('');
         setMessage('');
-        bulmaToast.toast({
-            dismissible: true,
-            duration: 5000,
-            message: 'Success! We will get back to you shortly.',
-            type: 'is-success'
-        });
+        alert("Message sent successfully, we'll be in touch.");
     };
 
     return (
@@ -32,6 +26,7 @@ const About: FunctionComponent = () => {
                 <div className="hero-body">
                     <div className="container content">
                         <h1 className="title">Contact</h1>
+                        <hr />
                         <div className="field">
                             <p className="control has-icons-left has-icons-right">
                                 <input
@@ -72,4 +67,4 @@ const About: FunctionComponent = () => {
     );
 };
 
-export default About;
+export default Contact;

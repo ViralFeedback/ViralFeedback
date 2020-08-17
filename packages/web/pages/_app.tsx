@@ -1,9 +1,9 @@
 import React from 'react';
 
-import './styles/css/app.css';
+import Nav from '../components/nav';
+import '../styles/css/app.css';
 
 import '@fortawesome/fontawesome-free/css/all.css';
-import { Navigation } from './navigation/navigation';
 import ApolloClient from 'apollo-boost';
 
 import { ApolloProvider } from '@apollo/react-hooks';
@@ -19,11 +19,12 @@ const client = new ApolloClient({
     uri: apiUri
 });
 
-function App() {
+function App({ Component, pageProps }) {
     return (
         <div className="app">
             <ApolloProvider client={client}>
-                <Navigation />
+                <Nav />
+                <Component {...pageProps} />
             </ApolloProvider>
         </div>
     );

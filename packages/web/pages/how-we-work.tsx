@@ -6,6 +6,7 @@ const CommunityGuidelines: FunctionComponent = () => {
             <div className="hero-body">
                 <div className="container content">
                     <h1 className="title">Workflow</h1>
+                    <hr />
                     <p className="">
                         ViralFeedback.org operates on a model with three main
                         steps: <strong>Discovery</strong>,{' '}

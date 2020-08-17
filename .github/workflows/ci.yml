@@ -20,13 +20,13 @@ jobs:
 
             # Runs a single command using the runners shell
             - name: Install dependencies
-              run: npm ci && npx lerna exec npm ci
+              run: yarn
 
             - name: Lint code
-              run: npm run lint
+              run: yarn lint
 
             - name: Test code
-              run: npm run test
+              run: yarn test
 
     deploy:
         needs: [build-lint-test]
@@ -72,8 +72,8 @@ jobs:
                       export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
                       [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
                       nvm install lts/Erbium
-                      npm ci
-                      npm run build
+                      yarn
+                      yarn build
 
             - name: Executing remote command
               uses: appleboy/ssh-action@master
@@ -92,21 +92,6 @@ jobs:
                       export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
                       [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
                       nvm install lts/Erbium
-                      npm ci
-                      npm run build
+                      yarn
+                      yarn build
                       systemctl restart viral
-
-            - name: Executing remote command
-              uses: appleboy/ssh-action@master
-              env:
-                  REACT_APP_HYPOTHESIS_GROUP_ID: ${{ secrets.REACT_APP_HYPOTHESIS_GROUP_ID }}
-              with:
-                  host: ${{ secrets.HOST }}
-                  username: ${{ secrets.USERNAME }}
-                  port: ${{ secrets.PORT }}
-                  key: ${{ secrets.SSHKEY }}
-                  envs: HYPOTHESIS_API_TOKEN
-                  script: |
-                      export REACT_APP_HYPOTHESIS_GROUP_ID=$REACT_APP_HYPOTHESIS_GROUP_ID
-                      echo $REACT_APP_HYPOTHESIS_GROUP_ID
-                      ls

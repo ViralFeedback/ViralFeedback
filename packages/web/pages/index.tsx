@@ -1,9 +1,10 @@
 import React, { FunctionComponent, useState } from 'react';
-import Annotation from 'components/annotation';
-import EmptyState from 'components/emptyState';
-import Loading from 'components/loading';
-import { useAnnotationsQuery } from '../graphql';
+import Annotation from '../components/annotation';
+import EmptyState from '../components/emptyState';
+import Loading from '../components/loading';
+import { useAnnotationsQuery } from '../src/graphql';
 import Select from 'react-select';
+import dynamic from 'next/dynamic';
 
 const HomeFeed: FunctionComponent = () => {
     const [isSearchMenuOpen, setSearchMenuOpen] = useState(false);
@@ -255,4 +256,6 @@ const HomeFeed: FunctionComponent = () => {
     );
 };
 
-export default HomeFeed;
+export default dynamic(() => Promise.resolve(HomeFeed), {
+    ssr: false
+});

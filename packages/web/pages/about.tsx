@@ -7,6 +7,7 @@ const About: FunctionComponent = () => {
                 <div className="hero-body">
                     <div className="container content">
                         <h1 className="title">About</h1>
+                        <hr />
                         <p>
                             Viral Feedback is a community of scientists, health
                             professionals, and associated content experts

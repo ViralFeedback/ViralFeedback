@@ -1,7 +1,5 @@
 167.172.114.39, viralfeedback.org {
-  root * /var/www/web/viralfeedback/packages/web/build
-  file_server
-  try_files {path} {path}/ /index.html
+  reverse_proxy localhost:3000
 }
 
 api.viralfeedback.org {

@@ -1,13 +1,17 @@
 import React, { FunctionComponent } from 'react';
-import Annotation from 'components/annotation';
-import EmptyState from 'components/emptyState';
-import Loading from 'components/loading';
-import { useAnnotationQuery } from '../graphql';
-import { useParams } from 'react-router-dom';
+import Annotation from '../../components/annotation';
+import EmptyState from '../../components/emptyState';
+import Loading from '../../components/loading';
+import { useAnnotationQuery } from '../../src/graphql';
+import { useRouter } from 'next/router';
+
 import { Helmet } from 'react-helmet';
+import { withApollo } from '../../src/apollo';
 
 const SingleAnnotation: FunctionComponent = () => {
-    const { id } = useParams();
+    const router = useRouter();
+
+    const { id } = router.query;
 
     const { data, loading } = useAnnotationQuery({
         variables: {
@@ -50,4 +54,4 @@ const SingleAnnotation: FunctionComponent = () => {
     );
 };
 
-export default SingleAnnotation;
+export default withApollo({ ssr: true })(SingleAnnotation);

@@ -4,6 +4,7 @@
     "private": true,
     "dependencies": {
         "@apollo/react-hooks": "^3.1.5",
+        "@apollo/react-ssr": "^4.0.0",
         "@fortawesome/fontawesome-free": "^5.13.0",
         "@testing-library/jest-dom": "^4.2.4",
         "@testing-library/react": "^9.3.2",
@@ -19,7 +20,8 @@
         "bulma-toast": "^2.0.1",
         "bulma-tooltip": "^3.0.2",
         "date-fns": "^2.14.0",
-        "graphql": "^15.1.0",
+        "isomorphic-unfetch": "^3.0.0",
+        "next": "^9.5.1",
         "react": "^16.13.1",
         "react-dom": "^16.13.1",
         "react-ga": "^3.1.2",
@@ -36,22 +38,18 @@
         "node-sass": "^4.14.0"
     },
     "scripts": {
-        "start": "react-scripts start",
-        "build": "react-scripts build",
-        "css-build": "node-sass --omit-source-map-url src/styles/sass/app.scss src/styles/css/app.css",
+        "start": "next start",
+        "build": "next build",
+        "dev": "next dev",
+        "css-build": "node-sass --omit-source-map-url styles/sass/app.scss styles/css/app.css",
         "css-watch": "npm run css-build -- --watch",
-        "test": "react-scripts test --watchAll=false",
-        "eject": "react-scripts eject"
+        "test": "jest"
     },
     "eslintConfig": {
         "extends": "react-app"
     },
     "browserslist": {
-        "production": [
-            ">0.2%",
-            "not dead",
-            "not op_mini all"
-        ],
+        "production": [">0.2%", "not dead", "not op_mini all"],
         "development": [
             "last 1 chrome version",
             "last 1 firefox version",

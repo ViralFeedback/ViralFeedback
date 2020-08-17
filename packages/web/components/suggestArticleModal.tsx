@@ -1,6 +1,5 @@
 import React, { FunctionComponent, useState } from 'react';
-import * as bulmaToast from 'bulma-toast';
-import { useCreateAnnotationMutation } from '../graphql';
+import { useCreateAnnotationMutation } from '../src/graphql';
 
 interface ISuggestArticleModal {
     open: boolean;
@@ -36,12 +35,7 @@ const SuggestArticleModal: FunctionComponent<ISuggestArticleModal> = ({
             }
         });
         handleClose();
-        bulmaToast.toast({
-            dismissible: true,
-            duration: 5000,
-            message: 'Success! Thanks for contributing.',
-            type: 'is-success'
-        });
+        alert('Success! Thanks for contributing.');
     };
 
     return (
