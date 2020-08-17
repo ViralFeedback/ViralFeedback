@@ -74,8 +74,9 @@ jobs:
                       nvm install lts/Erbium
                       yarn
                       yarn build
+                      pm2 restart frontend
 
-            - name: Executing remote command
+            - name: Build and restart server
               uses: appleboy/ssh-action@master
               env:
                   HYPOTHESIS_API_TOKEN: ${{ secrets.HYPOTHESIS_API_TOKEN }}
@@ -95,3 +96,21 @@ jobs:
                       yarn
                       yarn build
                       systemctl restart viral
+
+            - name: Build and restart cms
+              uses: appleboy/ssh-action@master
+              with:
+                  host: ${{ secrets.HOST }}
+                  username: ${{ secrets.USERNAME }}
+                  port: ${{ secrets.PORT }}
+                  key: ${{ secrets.SSHKEY }}
+                  envs: HYPOTHESIS_API_TOKEN
+                  script: |
+                      cd /var/www/web/viralfeedback/packages/cms
+                      wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+                      export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+                      [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+                      nvm install lts/Erbium
+                      yarn
+                      yarn build
+                      pm2 restart cms
