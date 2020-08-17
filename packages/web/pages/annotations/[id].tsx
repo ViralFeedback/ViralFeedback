@@ -18,11 +18,11 @@ const SingleAnnotation: FunctionComponent = () => {
         }
     });
 
+    if (loading) return <Loading />;
+
     const description = data.annotation.text
         ? data.annotation.text.substring(0, 240)
         : '';
-
-    if (loading) return <Loading />;
 
     return (
         <div className="annotation-feed container">
