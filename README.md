@@ -19,6 +19,9 @@ You'll need a `HYPOTHESIS_API_TOKEN` if you're working with private groups or po
 ```sh
 cd packages/server
 cp .env.example .env
+
+cd ../../packages/web
+cp .env.example .env.local
 ```
 
 Open the newly created env file and add your API token.
@@ -77,4 +80,4 @@ The `contrib` folder contains example systemd services.
 
 Additionally, there is a `Caddyfile` used for configuring a [caddy server](https://caddyserver.com/) for serving static assets and serving as a reverse proxy for the APIs. NOTE: you will need to edit this file to add your domain.
 
-The Strapi CMS has it's own [documentation for deployments](https://strapi.io/documentation/v3.x/getting-started/deployment.html#hosting-provider-guides).
+The Strapi CMS has it's own [documentation for deployments](https://strapi.io/documentation/v3.x/getting-started/deployment.html#hosting-provider-guides) using [PM2](https://pm2.keymetrics.io/). We also use [PM2](https://pm2.keymetrics.io/) for serving our [Next.js](https://nextjs.org/) frontend.
