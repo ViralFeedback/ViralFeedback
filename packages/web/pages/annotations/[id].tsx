@@ -50,4 +50,4 @@ const SingleAnnotation: FunctionComponent = () => {
     );
 };
 
-export default withApollo({ ssr: true })(SingleAnnotation);
+export default withApollo({ ssr: false })(SingleAnnotation);
