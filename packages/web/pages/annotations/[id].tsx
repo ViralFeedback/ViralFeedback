@@ -5,7 +5,8 @@ import Loading from '../../components/loading';
 import Meta from '../../components/meta';
 import { useAnnotationQuery } from '../../src/graphql';
 import { useRouter } from 'next/router';
-import { withApollo } from '../../src/apollo';
+import withApollo from '../../src/apollo';
+import { getDataFromTree } from '@apollo/react-ssr';
 import Head from 'next/head';
 
 const SingleAnnotation: FunctionComponent = () => {
@@ -50,4 +51,4 @@ const SingleAnnotation: FunctionComponent = () => {
     );
 };
 
-export default withApollo({ ssr: false })(SingleAnnotation);
+export default withApollo(SingleAnnotation, { getDataFromTree });

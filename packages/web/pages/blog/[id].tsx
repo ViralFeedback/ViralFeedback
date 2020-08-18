@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 import { usePostQuery } from '../../src/graphql';
 
 import { withApollo } from '../../src/apollo';
+import { getDataFromTree } from '@apollo/react-ssr';
 
 const Blog: FunctionComponent = () => {
     const router = useRouter();
@@ -47,4 +48,4 @@ const Blog: FunctionComponent = () => {
     );
 };
 
-export default withApollo({ ssr: true })(Blog);
+export default withApollo(blog, { getDataFromTree });
