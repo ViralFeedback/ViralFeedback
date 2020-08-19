@@ -3,7 +3,9 @@ import Annotation from '../../components/annotation';
 import EmptyState from '../../components/emptyState';
 import Loading from '../../components/loading';
 import Meta from '../../components/meta';
-import { useAnnotationQuery } from '../../src/graphql';
+import { AnnotationDocument } from '../../src/graphql';
+import { useQuery } from '@apollo/react-hooks';
+
 import { useRouter } from 'next/router';
 import withApollo from '../../src/apollo';
 import { getDataFromTree } from '@apollo/react-ssr';
@@ -14,7 +16,7 @@ const SingleAnnotation: FunctionComponent = () => {
 
     const { id } = router.query;
 
-    const { data, loading } = useAnnotationQuery({
+    const { data, loading } = useQuery(AnnotationDocument, {
         variables: {
             id
         }
