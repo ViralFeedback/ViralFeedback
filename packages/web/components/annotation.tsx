@@ -167,7 +167,7 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({
                         )}
                     </a>{' '}
                     <small className="timestamp">
-                        {annotationPublishedDate}
+                        annotated {annotationPublishedDate}
                     </small>
                     <div className="annotation-content">
                         <ReactTinyLink
