@@ -141,7 +141,7 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({
         // if (value.toLowerCase() === 'poorly supported') color = 'is-danger';
     });
 
-    const quoteLines = window.innerWidth > 520 ? 3 : 5;
+    const quoteLines = window && window.innerWidth > 520 ? 3 : 5;
 
     return (
         <article

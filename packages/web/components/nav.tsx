@@ -12,8 +12,6 @@ const Nav: FunctionComponent<any> = () => {
 
     const router = useRouter();
 
-    console.log(router.pathname);
-
     return (
         <>
             <nav className="navbar is-transparent is-fixed-top">
