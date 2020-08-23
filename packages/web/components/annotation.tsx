@@ -315,4 +315,6 @@ const parseUserName = (account: string) => {
     return username;
 };
 
-export default Annotation;
+export default dynamic(() => Promise.resolve(Annotation), {
+    ssr: false
+});
