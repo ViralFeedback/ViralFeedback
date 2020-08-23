@@ -5,7 +5,7 @@ import { concatPagination } from '@apollo/client/utilities';
 let apolloClient;
 
 function createApolloClient() {
-    const apiUri: string = process.env.NEXT_PUBLIC_SERVER_URI
+    const apiUri = process.env.NEXT_PUBLIC_SERVER_URI
         ? process.env.NEXT_PUBLIC_SERVER_URI
         : 'http://localhost:8080/graphql';
     return new ApolloClient({

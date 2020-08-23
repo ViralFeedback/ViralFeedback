@@ -6,7 +6,7 @@ import Post from '../../components/post';
 import { useRouter } from 'next/router';
 import { usePostQuery } from '../../src/graphql';
 
-import { withApollo } from '../../src/apollo';
+import { initializeApollo } from '../../src/apolloClient';
 import { getDataFromTree } from '@apollo/react-ssr';
 
 const Blog: FunctionComponent = () => {
@@ -48,4 +48,4 @@ const Blog: FunctionComponent = () => {
     );
 };
 
-export default withApollo(blog, { getDataFromTree });
+export default Blog;
