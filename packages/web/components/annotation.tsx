@@ -1,5 +1,6 @@
 import { formatRelative } from 'date-fns';
 import React, { FunctionComponent, useState } from 'react';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 import ReactMarkdown from 'react-markdown';
 import TextTruncate from 'react-text-truncate';
 import Link from 'next/link';
@@ -104,6 +105,7 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({
     const [visible, setVisible] = useState(false);
     const [showExtendedQuote, setShowExtendedQuote] = useState(expanded);
     const [showExtendedText, setShowExtendedText] = useState(expanded);
+    const [shareMenuOpen, setShareMenuOpen] = useState(false);
 
     const selector = data.target[0]?.selector;
     if (selector) {
@@ -288,21 +290,98 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({
                                 <i className="fas fa-external-link-square-alt"></i>
                             </span>
                         </a>
-                        <Link
-                            className="level-item has-tooltip-left"
-                            href={`/annotations/[id]`}
-                            as={`/annotations/${data.id}`}
+                        {
+                            // <Link
+                            //     className="level-item has-tooltip-left"
+                            //     href={`/annotations/[id]`}
+                            //     as={`/annotations/${data.id}`}
+                            // >
+                            //     <a
+                            //         data-tooltip="Sharable Link"
+                            //         className="has-tooltip-left"
+                            //         target="blank"
+                            //     >
+                            //         <span className="icon is-small">
+                            //             <i className="fas fa-share-alt"></i>
+                            //         </span>
+                            //     </a>
+                            // </Link>
+                        }
+                        <div
+                            className={`dropdown is-up is-right ${
+                                shareMenuOpen ? 'is-active' : ''
+                            }`}
                         >
-                            <a
-                                data-tooltip="Sharable Link"
-                                className="has-tooltip-left"
-                                target="blank"
+                            <div className="dropdown-trigger">
+                                <a
+                                    aria-haspopup="true"
+                                    aria-controls="share-menu"
+                                    data-tooltip="Sharable Link"
+                                    className="has-tooltip-left"
+                                    onClick={() =>
+                                        setShareMenuOpen(!shareMenuOpen)
+                                    }
+                                    target="blank"
+                                >
+                                    <span className="icon is-small">
+                                        <i className="fas fa-share-alt"></i>
+                                    </span>
+                                </a>
+                            </div>
+                            <div
+                                className="dropdown-menu"
+                                id="share-menu"
+                                role="menu"
                             >
-                                <span className="icon is-small">
-                                    <i className="fas fa-share-alt"></i>
-                                </span>
-                            </a>
-                        </Link>
+                                <div className="dropdown-content">
+                                    {
+                                        // <div className="dropdown-item">
+                                        //     <p className="control">
+                                        //         <a
+                                        //             className="bd-tw-button button is-default"
+                                        //             data-social-network="Twitter"
+                                        //             data-social-action="tweet"
+                                        //             data-social-target={`https://viralfeedback.org/annotations/${data.id}`}
+                                        //             target="_blank"
+                                        //             rel="noopener noreferrer"
+                                        //             href={`https://twitter.com/intent/tweet?text=Viral Feedback is a community of scientists providing science-based feedback about viral and pandemic topics in service of society.&amp;hashtags=viralfeedback&amp;url=https://viralfeedback.org/annotations/${data.id}`}
+                                        //         >
+                                        //             <span className="icon">
+                                        //                 <i className="fab fa-twitter"></i>
+                                        //             </span>
+                                        //         </a>
+                                        //     </p>
+                                        // </div>
+                                    }
+                                    {
+                                        // <hr className="dropdown-divider" />
+                                    }
+                                    <div className="dropdown-item">
+                                        <div className="field has-addons">
+                                            <div className="control">
+                                                <input
+                                                    className="input"
+                                                    type="text"
+                                                    value={`https://viralfeedback.org/annotations/${data.id}`}
+                                                    readOnly={true}
+                                                />
+                                            </div>
+                                            <div className="control">
+                                                <CopyToClipboard
+                                                    text={`https://viralfeedback.org/annotations/${data.id}`}
+                                                >
+                                                    <a className="button is-default">
+                                                        <span className="icon">
+                                                            <i className="far fa-copy"></i>
+                                                        </span>
+                                                    </a>
+                                                </CopyToClipboard>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </nav>
             </div>
