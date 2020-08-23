@@ -67,19 +67,16 @@ const SingleAnnotation: FunctionComponent = (props) => {
 };
 
 SingleAnnotation.getInitialProps = async function ({ query }) {
-    if (typeof window == 'undefined') {
-        const apolloClient = initializeApollo();
-        let {
-            data: { annotation }
-        } = await apolloClient.query({
-            query: AnnotationDocument,
-            variables: {
-                id: query.id
-            }
-        });
-        return { annotation };
-    }
-    return { annotation: null };
+    const apolloClient = initializeApollo();
+    let {
+        data: { annotation }
+    } = await apolloClient.query({
+        query: AnnotationDocument,
+        variables: {
+            id: query.id
+        }
+    });
+    return { annotation };
 };
 
 export default SingleAnnotation;
