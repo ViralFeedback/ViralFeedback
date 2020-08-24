@@ -1,5 +1,5 @@
 import { formatRelative } from 'date-fns';
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, useEffect, useRef, useState } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import ReactMarkdown from 'react-markdown';
 import TextTruncate from 'react-text-truncate';
@@ -107,6 +107,32 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({
     const [showExtendedText, setShowExtendedText] = useState(expanded);
     const [shareMenuOpen, setShareMenuOpen] = useState(false);
     const [linkCopied, setLinkCopied] = useState(false);
+
+    const shareMenuRef = useRef(null);
+    useOutsideAlerter(shareMenuRef);
+
+    /**
+     * Hook that alerts clicks outside of the passed ref
+     */
+    function useOutsideAlerter(ref) {
+        useEffect(() => {
+            /**
+             * Alert if clicked on outside of element
+             */
+            function handleClickOutside(event) {
+                if (ref.current && !ref.current.contains(event.target)) {
+                    setShareMenuOpen(false);
+                }
+            }
+
+            // Bind the event listener
+            document.addEventListener('mousedown', handleClickOutside);
+            return () => {
+                // Unbind the event listener on clean up
+                document.removeEventListener('mousedown', handleClickOutside);
+            };
+        }, [ref]);
+    }
 
     const selector = data.target[0]?.selector;
     if (selector) {
@@ -323,7 +349,10 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({
                                 id="share-menu"
                                 role="menu"
                             >
-                                <div className="dropdown-content">
+                                <div
+                                    className="dropdown-content"
+                                    ref={shareMenuRef}
+                                >
                                     {
                                         // <div className="dropdown-item">
                                         //     <p className="control">

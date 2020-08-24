@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, useEffect, useRef, useState } from 'react';
 import Select from 'react-select';
 import { useRouter } from 'next/router';
 
@@ -61,8 +61,34 @@ const SearchMenu: FunctionComponent = () => {
         router.push('/');
     };
 
+    const searchMenuRef = useRef(null);
+    useOutsideAlerter(searchMenuRef);
+
+    /**
+     * Hook that alerts clicks outside of the passed ref
+     */
+    function useOutsideAlerter(ref) {
+        useEffect(() => {
+            /**
+             * Alert if clicked on outside of element
+             */
+            function handleClickOutside(event) {
+                if (ref.current && !ref.current.contains(event.target)) {
+                    setSearchMenuOpen(false);
+                }
+            }
+
+            // Bind the event listener
+            document.addEventListener('mousedown', handleClickOutside);
+            return () => {
+                // Unbind the event listener on clean up
+                document.removeEventListener('mousedown', handleClickOutside);
+            };
+        }, [ref]);
+    }
+
     return (
-        <div className="level-right">
+        <div className="level-right" ref={searchMenuRef}>
             <div
                 className={`dropdown level-item is-right  ${
                     isSearchMenuOpen ? 'is-active' : ''
