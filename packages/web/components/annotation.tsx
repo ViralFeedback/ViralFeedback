@@ -106,6 +106,7 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({
     const [showExtendedQuote, setShowExtendedQuote] = useState(expanded);
     const [showExtendedText, setShowExtendedText] = useState(expanded);
     const [shareMenuOpen, setShareMenuOpen] = useState(false);
+    const [linkCopied, setLinkCopied] = useState(false);
 
     const selector = data.target[0]?.selector;
     if (selector) {
@@ -148,7 +149,9 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({
     return (
         <article
             className={`media annotation card ${color}`}
-            onClick={() => setVisible(!visible)}
+            onClick={() => {
+                setVisible(!visible);
+            }}
         >
             <div className="media-content">
                 <div className="content">
@@ -290,23 +293,6 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({
                                 <i className="fas fa-external-link-square-alt"></i>
                             </span>
                         </a>
-                        {
-                            // <Link
-                            //     className="level-item has-tooltip-left"
-                            //     href={`/annotations/[id]`}
-                            //     as={`/annotations/${data.id}`}
-                            // >
-                            //     <a
-                            //         data-tooltip="Sharable Link"
-                            //         className="has-tooltip-left"
-                            //         target="blank"
-                            //     >
-                            //         <span className="icon is-small">
-                            //             <i className="fas fa-share-alt"></i>
-                            //         </span>
-                            //     </a>
-                            // </Link>
-                        }
                         <div
                             className={`dropdown is-up is-right ${
                                 shareMenuOpen ? 'is-active' : ''
@@ -329,7 +315,7 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({
                                 </a>
                             </div>
                             <div
-                                className="dropdown-menu"
+                                className="dropdown-menu share-menu"
                                 id="share-menu"
                                 role="menu"
                             >
@@ -357,6 +343,16 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({
                                         // <hr className="dropdown-divider" />
                                     }
                                     <div className="dropdown-item">
+                                        <p>
+                                            Sharable Link:{' '}
+                                            {linkCopied ? (
+                                                <small className="timestamp">
+                                                    (Copied to clipboard!)
+                                                </small>
+                                            ) : (
+                                                ''
+                                            )}
+                                        </p>
                                         <div className="field has-addons">
                                             <div className="control">
                                                 <input
@@ -369,6 +365,16 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({
                                             <div className="control">
                                                 <CopyToClipboard
                                                     text={`https://viralfeedback.org/annotations/${data.id}`}
+                                                    onCopy={() => {
+                                                        setLinkCopied(true);
+                                                        setTimeout(
+                                                            () =>
+                                                                setShareMenuOpen(
+                                                                    false
+                                                                ),
+                                                            1000
+                                                        );
+                                                    }}
                                                 >
                                                     <a className="button is-default">
                                                         <span className="icon">

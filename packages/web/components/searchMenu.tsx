@@ -36,11 +36,11 @@ const SearchMenu: FunctionComponent = () => {
 
         if (searchText !== '') query.text = encodeURI(searchText);
 
-        if (selectedQuality !== []) {
+        if (selectedQuality.length !== 0) {
             query.quality = encodeURI(selectedQuality.value);
         }
 
-        if (selectedTopic !== []) {
+        if (selectedTopic.length !== 0) {
             query.topic = encodeURI(selectedTopic.value);
         }
 
