@@ -1,5 +1,6 @@
 import { formatRelative } from 'date-fns';
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, useEffect, useRef, useState } from 'react';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 import ReactMarkdown from 'react-markdown';
 import TextTruncate from 'react-text-truncate';
 import Link from 'next/link';
@@ -104,6 +105,34 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({
     const [visible, setVisible] = useState(false);
     const [showExtendedQuote, setShowExtendedQuote] = useState(expanded);
     const [showExtendedText, setShowExtendedText] = useState(expanded);
+    const [shareMenuOpen, setShareMenuOpen] = useState(false);
+    const [linkCopied, setLinkCopied] = useState(false);
+
+    const shareMenuRef = useRef(null);
+    useOutsideAlerter(shareMenuRef);
+
+    /**
+     * Hook that alerts clicks outside of the passed ref
+     */
+    function useOutsideAlerter(ref) {
+        useEffect(() => {
+            /**
+             * Alert if clicked on outside of element
+             */
+            function handleClickOutside(event) {
+                if (ref.current && !ref.current.contains(event.target)) {
+                    setShareMenuOpen(false);
+                }
+            }
+
+            // Bind the event listener
+            document.addEventListener('mousedown', handleClickOutside);
+            return () => {
+                // Unbind the event listener on clean up
+                document.removeEventListener('mousedown', handleClickOutside);
+            };
+        }, [ref]);
+    }
 
     const selector = data.target[0]?.selector;
     if (selector) {
@@ -146,7 +175,9 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({
     return (
         <article
             className={`media annotation card ${color}`}
-            onClick={() => setVisible(!visible)}
+            onClick={() => {
+                setVisible(!visible);
+            }}
         >
             <div className="media-content">
                 <div className="content">
@@ -246,34 +277,38 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({
                         <div className="tags">
                             {data.tags.map((value, key) => {
                                 return (
-                                    <span
-                                        className={`tag  ${
-                                            value.toLowerCase() ===
-                                            'well supported'
-                                                ? 'is-success'
-                                                : ''
-                                        } ${
-                                            value.toLowerCase() ===
-                                            'additional context'
-                                                ? 'is-info'
-                                                : ''
-                                        } ${
-                                            value.toLowerCase() ===
-                                                'more context needed' ||
-                                            value.toLowerCase() ===
-                                                'needs more context'
-                                                ? 'is-warning'
-                                                : ''
-                                        } ${
-                                            value.toLowerCase() ===
-                                            'poorly supported'
-                                                ? 'is-danger'
-                                                : ''
-                                        }`}
-                                        key={key}
+                                    <Link
+                                        href={`/?tags=${value.toLowerCase()}`}
                                     >
-                                        {value}
-                                    </span>
+                                        <span
+                                            className={`tag  ${
+                                                value.toLowerCase() ===
+                                                'well supported'
+                                                    ? 'is-success'
+                                                    : ''
+                                            } ${
+                                                value.toLowerCase() ===
+                                                'additional context'
+                                                    ? 'is-info'
+                                                    : ''
+                                            } ${
+                                                value.toLowerCase() ===
+                                                    'more context needed' ||
+                                                value.toLowerCase() ===
+                                                    'needs more context'
+                                                    ? 'is-warning'
+                                                    : ''
+                                            } ${
+                                                value.toLowerCase() ===
+                                                'poorly supported'
+                                                    ? 'is-danger'
+                                                    : ''
+                                            }`}
+                                            key={key}
+                                        >
+                                            {value}
+                                        </span>
+                                    </Link>
                                 );
                             })}
                         </div>
@@ -288,21 +323,104 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({
                                 <i className="fas fa-external-link-square-alt"></i>
                             </span>
                         </a>
-                        <Link
-                            className="level-item has-tooltip-left"
-                            href={`/annotations/[id]`}
-                            as={`/annotations/${data.id}`}
+                        <div
+                            className={`dropdown is-up is-right ${
+                                shareMenuOpen ? 'is-active' : ''
+                            }`}
                         >
-                            <a
-                                data-tooltip="Sharable Link"
-                                className="has-tooltip-left"
-                                target="blank"
+                            <div className="dropdown-trigger">
+                                <a
+                                    aria-haspopup="true"
+                                    aria-controls="share-menu"
+                                    data-tooltip="Sharable Link"
+                                    className="has-tooltip-left"
+                                    onClick={() =>
+                                        setShareMenuOpen(!shareMenuOpen)
+                                    }
+                                    target="blank"
+                                >
+                                    <span className="icon is-small">
+                                        <i className="fas fa-share-alt"></i>
+                                    </span>
+                                </a>
+                            </div>
+                            <div
+                                className="dropdown-menu share-menu"
+                                id="share-menu"
+                                role="menu"
                             >
-                                <span className="icon is-small">
-                                    <i className="fas fa-share-alt"></i>
-                                </span>
-                            </a>
-                        </Link>
+                                <div
+                                    className="dropdown-content"
+                                    ref={shareMenuRef}
+                                >
+                                    {
+                                        // <div className="dropdown-item">
+                                        //     <p className="control">
+                                        //         <a
+                                        //             className="bd-tw-button button is-default"
+                                        //             data-social-network="Twitter"
+                                        //             data-social-action="tweet"
+                                        //             data-social-target={`https://viralfeedback.org/annotations/${data.id}`}
+                                        //             target="_blank"
+                                        //             rel="noopener noreferrer"
+                                        //             href={`https://twitter.com/intent/tweet?text=Viral Feedback is a community of scientists providing science-based feedback about viral and pandemic topics in service of society.&amp;hashtags=viralfeedback&amp;url=https://viralfeedback.org/annotations/${data.id}`}
+                                        //         >
+                                        //             <span className="icon">
+                                        //                 <i className="fab fa-twitter"></i>
+                                        //             </span>
+                                        //         </a>
+                                        //     </p>
+                                        // </div>
+                                    }
+                                    {
+                                        // <hr className="dropdown-divider" />
+                                    }
+                                    <div className="dropdown-item">
+                                        <p>
+                                            Sharable Link:{' '}
+                                            {linkCopied ? (
+                                                <small className="timestamp">
+                                                    (Copied to clipboard!)
+                                                </small>
+                                            ) : (
+                                                ''
+                                            )}
+                                        </p>
+                                        <div className="field has-addons">
+                                            <div className="control">
+                                                <input
+                                                    className="input"
+                                                    type="text"
+                                                    value={`https://viralfeedback.org/annotations/${data.id}`}
+                                                    readOnly={true}
+                                                />
+                                            </div>
+                                            <div className="control">
+                                                <CopyToClipboard
+                                                    text={`https://viralfeedback.org/annotations/${data.id}`}
+                                                    onCopy={() => {
+                                                        setLinkCopied(true);
+                                                        setTimeout(
+                                                            () =>
+                                                                setShareMenuOpen(
+                                                                    false
+                                                                ),
+                                                            1000
+                                                        );
+                                                    }}
+                                                >
+                                                    <a className="button is-default">
+                                                        <span className="icon">
+                                                            <i className="far fa-copy"></i>
+                                                        </span>
+                                                    </a>
+                                                </CopyToClipboard>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </nav>
             </div>
