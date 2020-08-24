@@ -251,34 +251,38 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({
                         <div className="tags">
                             {data.tags.map((value, key) => {
                                 return (
-                                    <span
-                                        className={`tag  ${
-                                            value.toLowerCase() ===
-                                            'well supported'
-                                                ? 'is-success'
-                                                : ''
-                                        } ${
-                                            value.toLowerCase() ===
-                                            'additional context'
-                                                ? 'is-info'
-                                                : ''
-                                        } ${
-                                            value.toLowerCase() ===
-                                                'more context needed' ||
-                                            value.toLowerCase() ===
-                                                'needs more context'
-                                                ? 'is-warning'
-                                                : ''
-                                        } ${
-                                            value.toLowerCase() ===
-                                            'poorly supported'
-                                                ? 'is-danger'
-                                                : ''
-                                        }`}
-                                        key={key}
+                                    <Link
+                                        href={`/?tags=${value.toLowerCase()}`}
                                     >
-                                        {value}
-                                    </span>
+                                        <span
+                                            className={`tag  ${
+                                                value.toLowerCase() ===
+                                                'well supported'
+                                                    ? 'is-success'
+                                                    : ''
+                                            } ${
+                                                value.toLowerCase() ===
+                                                'additional context'
+                                                    ? 'is-info'
+                                                    : ''
+                                            } ${
+                                                value.toLowerCase() ===
+                                                    'more context needed' ||
+                                                value.toLowerCase() ===
+                                                    'needs more context'
+                                                    ? 'is-warning'
+                                                    : ''
+                                            } ${
+                                                value.toLowerCase() ===
+                                                'poorly supported'
+                                                    ? 'is-danger'
+                                                    : ''
+                                            }`}
+                                            key={key}
+                                        >
+                                            {value}
+                                        </span>
+                                    </Link>
                                 );
                             })}
                         </div>

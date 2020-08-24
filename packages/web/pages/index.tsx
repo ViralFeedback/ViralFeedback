@@ -22,18 +22,13 @@ const HomeFeed: FunctionComponent = () => {
     };
 
     const router = useRouter();
-    const { topic, quality, text } = router.query;
+    const { tags, text } = router.query;
 
     if (text && text !== '') variables.any = text;
 
-    let tags: string[] = [];
-    if (quality && quality !== 'undefined') {
-        tags.push(decodeURI(quality));
+    if (tags && tags !== 'undefined') {
+        variables.tags = decodeURI(tags).split(',');
     }
-    if (topic && topic !== 'undefined') {
-        tags.push(decodeURI(topic));
-    }
-    if (tags.length > 0) variables.tags = tags;
 
     const { data, loading, error, refetch } = useAnnotationsQuery({
         variables,

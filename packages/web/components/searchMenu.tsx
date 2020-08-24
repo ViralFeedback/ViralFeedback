@@ -36,13 +36,16 @@ const SearchMenu: FunctionComponent = () => {
 
         if (searchText !== '') query.text = encodeURI(searchText);
 
+        let tags: string[] = [];
         if (selectedQuality.length !== 0) {
-            query.quality = encodeURI(selectedQuality.value);
+            tags.push(encodeURI(selectedQuality.value));
         }
 
         if (selectedTopic.length !== 0) {
-            query.topic = encodeURI(selectedTopic.value);
+            tags.push(encodeURI(selectedTopic.value));
         }
+
+        if (tags.length > 0) query.tags = tags;
 
         router.push({
             pathname: '/',
