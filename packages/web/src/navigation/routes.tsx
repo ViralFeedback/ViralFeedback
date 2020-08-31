@@ -34,6 +34,7 @@ export const Routes: IRoute[] = [
     },
     {
         name: 'Jobs',
-        path: '/jobs'
+        path: '/jobs',
+        hidden: true
     }
 ];
