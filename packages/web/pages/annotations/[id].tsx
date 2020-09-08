@@ -38,7 +38,7 @@ const SingleAnnotation: FunctionComponent = (props) => {
     }
 
     const description = data.annotation.text
-        ? data.annotation.text.substring(0, 240)
+        ? data.annotation.text.substring(0, 240).replace('**Take away:** ', '')
         : '';
 
     return (
