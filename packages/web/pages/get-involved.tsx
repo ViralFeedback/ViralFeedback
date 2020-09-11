@@ -127,14 +127,23 @@ const GetInvolved: FunctionComponent = () => {
                         </p>
                         <p>
                             If you would like to participate in Viral Feedback,
-                            please fill out this{' '}
+                            please click the button to fill out our{' '}
                             <a
                                 target="blank"
                                 href="https://docs.google.com/forms/d/e/1FAIpQLSecU3s31FI1njiywu1nudT-MXlYB68OtNHJ1GqnjVsgJVQdZw/viewform"
                             >
-                                form
+                                application form
                             </a>
                             .
+                        </p>
+                        <p>
+                            <a
+                                className="button is-large is-success   "
+                                target="blank"
+                                href="https://docs.google.com/forms/d/e/1FAIpQLSecU3s31FI1njiywu1nudT-MXlYB68OtNHJ1GqnjVsgJVQdZw/viewform"
+                            >
+                                Join Viral Feedback
+                            </a>
                         </p>
                         <p>
                             <strong>
