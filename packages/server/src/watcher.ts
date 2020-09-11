@@ -39,10 +39,6 @@ if (process.env.ENVIRONMENT === 'development') {
                     if (tag.toLowerCase() === 'publish') {
                         if (!ids.includes(annotation.id)) {
                             console.log('Found an annotation to publish!');
-                            fs.appendFileSync(
-                                './annotation_ids.txt',
-                                annotation.id + '\n'
-                            );
 
                             // account_api_keys.txt should be formated:
                             // username, api_key
@@ -73,8 +69,6 @@ if (process.env.ENVIRONMENT === 'development') {
                                     }
                                 }
                             }
-
-                            console.log(apiKey);
 
                             if (apiKey) {
                                 console.log(
@@ -115,6 +109,12 @@ if (process.env.ENVIRONMENT === 'development') {
                                 const createAnnotationResponseJSON = await createAnnotationResponse.json();
 
                                 console.log(createAnnotationResponseJSON);
+
+                                // Add to published annotations
+                                fs.appendFileSync(
+                                    './annotation_ids.txt',
+                                    annotation.id + '\n'
+                                );
 
                                 fs.appendFileSync(
                                     './annotation_ids.txt',
