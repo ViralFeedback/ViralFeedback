@@ -172,6 +172,11 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({
 
     const quoteLines = window && window.innerWidth > 520 ? 3 : 5;
 
+    const handleArticleClick = (e) => {
+        e.preventDefault();
+        window.open(data.links.incontext, '_blank');
+    };
+
     return (
         <article
             className={`media annotation card ${color}`}
@@ -213,6 +218,7 @@ const Annotation: FunctionComponent<IAnnotationDataObject> = ({
                             }
                             showGraphic={true}
                             url={data.target[0].source}
+                            onClick={handleArticleClick}
                         />
                         {!compact || visible ? (
                             <>
