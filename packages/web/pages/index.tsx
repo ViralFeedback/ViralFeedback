@@ -18,7 +18,8 @@ const HomeFeed: FunctionComponent = () => {
         group: process.env.NEXT_PUBLIC_HYPOTHESIS_GROUP_ID
             ? process.env.NEXT_PUBLIC_HYPOTHESIS_GROUP_ID
             : 'igRizgwB',
-        offset: 0
+        offset: 0,
+        sort: 'created'
     };
 
     const router = useRouter();
