@@ -51,6 +51,24 @@ const Nav: FunctionComponent<any> = () => {
                     <div className="navbar-start">
                         {Routes.map((value, key) => {
                             if (value.hidden) return null;
+                            if (value.href) {
+                                return (
+                                    <a
+                                        href={value.href}
+                                        key={key}
+                                        className="navbar-item"
+                                    >
+                                        {value.iconClassName ? (
+                                            <i
+                                                className={`sidebar-icon ${value.iconClassName}`}
+                                            />
+                                        ) : (
+                                            ' '
+                                        )}{' '}
+                                        {value.name}
+                                    </a>
+                                );
+                            }
                             return (
                                 <Link href={value.path} key={key}>
                                     <span
@@ -96,7 +114,7 @@ const Nav: FunctionComponent<any> = () => {
                                         data-social-target="https://viralfeedback.org"
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        href="https://twitter.com/intent/tweet?text=Viral Feedback is a community of scientists providing science-based feedback about viral and pandemic topics in service of society.&amp;hashtags=viralfeedback&amp;url=https://viralfeedback.org"
+                                        href="https://twitter.com/intent/tweet?text=@Viral_Feedback is a community of scientists providing science-based feedback about viral and pandemic topics in service of society.&amp;url=https://viralfeedback.org"
                                     >
                                         <span className="icon">
                                             <i className="fab fa-twitter"></i>

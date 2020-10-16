@@ -1,9 +1,10 @@
 interface IRoute {
-    path: string;
+    path?: string;
     component?: React.FC | React.ComponentClass;
     name: string;
     iconClassName?: string;
     hidden?: boolean;
+    href?: string;
 }
 
 export const Routes: IRoute[] = [
@@ -17,8 +18,7 @@ export const Routes: IRoute[] = [
     },
     {
         name: 'Blog',
-        path: '/blog',
-        hidden: true
+        href: 'https://medium.com/viral-feedback'
     },
     {
         name: 'Contact',
